@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The SFFaudio Public Domain PDF Page</title>
+    <link>https://sffaudio.herokuapp.com/pdf/rss</link>
+    <description>Public domain PDFs.</description>
+    <copyright>2016 SFFaudio</copyright>
+    <language>en-US</language>
+        <atom:link href="pdf/rss" rel="self" type="application/rss+xml" />
+    <itunes:category text="Arts">
+      <itunes:category text="Literature" />
+    </itunes:category>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="http://sffaudio.herokuapp.com/PDFPage160x120b.jpg" />
+      <itunes:owner>
+          <itunes:name>SffAudio with Jesse Willis</itunes:name>
+          <itunes:email>jessewillis@yahoo.com</itunes:email>
+      </itunes:owner>
+    
+
+
+    <itunes:author>\test\test_1\test_1.xml</itunes:author>
+    
+
+    <itunes:summary>C:\_progs_\slurps\test\test_1\test_1.xml</itunes:summary>
+
+ 
+
+
+
+
+
+<item>
+<title>The Eternal Eve by John Wyndham</title>
+<link>http://www.sffaudio.com/podcasts/TheEternalEveByJohnWyndham.pdf</link>
+<guid isPermaLink="false">10000121</guid>
+<enclosure url="\tconsole_a_local\files\ToTHEBOWERS1829ByEdgarAllanPoe.pdf" length="11140" type="application/pdf" />
+<description>22 pages, Amazing Stories, December 1950</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Reservation Deferred by John Wyndham</title>
+<link>http://www.sffaudio.com/podcasts/ReservationDeferredByJohnWyndham.pdf</link>
+<guid isPermaLink="false">10000111</guid>
+<enclosure url="\tconsole_a_local\files\AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf" length="11431" type="application/pdf" />
+<description>6 pages, Fantastic, May-June 1953</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+
+<item>
+<title>Deluge II by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/DelugeIIByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000071</guid>
+<enclosure url="\tconsole_a_local\files\TheDwellerInTheHillsByAugustDerleth.pdf" length="12261" type="application/pdf" />
+<description>31 pages, Fantastic, October 1961</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+
+
+  </channel>
+</rss>
+

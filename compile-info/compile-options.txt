@@ -1,0 +1,20 @@
+
+Project Options | Custom Options
+
+1 gui_podcast_downloader.exe
+  -dALLOW_GUI_STATE     allow gui_state.pas to be compiled into the gui_podcast_downloader.exe
+  -dALLOW_DEBUG_SERVER  allow debug_server.pas to be compiled into the gui_podcast_downloader.exe
+
+2 console_podcast_downloader.exe
+  -dSTOP_GUI_STATE     stop gui_state.pas from being compiled into the console_podcast_downloader.exe
+  -dSTOP_DEBUG_SERVER  stop debug_server.pas from being compiled into the console_podcast_downloader.exe
+
+3 gui_test_runner.exe
+  -dALLOW_GUI_STATE    allow gui_state.pas be compiled into the gui_test_runner.exe
+  -dSTOP_DEBUG_SERVER  stop debug_server.pas from being compiled into the console_podcast_downloader.exe
+
+4 console_test_runner.exe
+  -dSTOP_GUI_STATE     stop gui_state.pas from being compiled into the console_podcast_downloader.exe
+  -dSTOP_DEBUG_SERVER  stop debug_server.pas from being compiled into the console_podcast_downloader.exe 
+
+

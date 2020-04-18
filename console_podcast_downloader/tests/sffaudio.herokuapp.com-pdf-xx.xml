@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The SFFaudio Public Domain PDF Page</title>
+    <link>https://sffaudio.herokuapp.com/pdf/rss</link>
+    <description>Public domain PDFs.</description>
+    <copyright>2016 SFFaudio</copyright>
+    <language>en-US</language>
+        <atom:link href="pdf/rss" rel="self" type="application/rss+xml" />
+    <itunes:category text="Arts">
+      <itunes:category text="Literature" />
+    </itunes:category>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="http://sffaudio.herokuapp.com/PDFPage160x120b.jpg" />
+      <itunes:owner>
+          <itunes:name>SffAudio with Jesse Willis</itunes:name>
+          <itunes:email>jessewillis@yahoo.com</itunes:email>
+      </itunes:owner>
+    <itunes:author>SffAudio with Jesse Willis</itunes:author>
+    <itunes:summary>Public domain PDFs.</itunes:summary>
+
+     <item>
+<title>Lovecraftiana (a letter to Thrilling Wonder Stories, February 1948 about H.P.Lovecraft) by Muriel Eddy</title>
+<link>http://www.sffaudio.com/podcasts/LovecraftianaLetterFromMrsMurielEddyToThrillingWonderStoriesFeb1948AboutH.P.Lovecraft.pdf</link>
+<guid isPermaLink="false">10059691</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/XTheUnknownByH.P.Lovecraft.pdf" length="12345678" type="application/pdf" />
+<description>3 pages, Thrilling Wonder Stories, February 1948</description>
+<pubDate>Thu, 6 Feb 2020 22:00:00 MDT</pubDate>
+<the_date>2020-02-06 22:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+
+
+
+
+
+
+<item>
+<title>The Eternal Eve by John Wyndham</title>
+<link>http://www.sffaudio.com/podcasts/TheEternalEveByJohnWyndham.pdf</link>
+<guid isPermaLink="false">10000121</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/ToTHEBOWERS1829ByEdgarAllanPoe.pdf" length="0" type="application/pdf" />
+<description>22 pages, Amazing Stories, December 1950</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Reservation Deferred by John Wyndham</title>
+<link>http://www.sffaudio.com/podcasts/ReservationDeferredByJohnWyndham.pdf</link>
+<guid isPermaLink="false">10000111</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf" length="0" type="application/pdf" />
+<description>6 pages, Fantastic, May-June 1953</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Time Stops Today by John Wyndham</title>
+<link>http://www.sffaudio.com/podcasts/TimeStopsTodayByJohnWyndham.pdf</link>
+<guid isPermaLink="false">10000101</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/TheWhiteElephantByH.P.LovecraftAndR.H.Barlow.pdf" length="0" type="application/pdf" />
+<description>16 pages, Future Science Fiction, January 1953</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Acre In The Sky by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/AcreInTheSkyByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000091</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/OurLittleNeighborByLelandS.Copeland.pdf" length="0" type="application/pdf" />
+<description>7 pages, Fantastic Universe, November 1958</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>The Blonde From Barsoom by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/TheBlondeFromBarsoomByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000081</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/BeyondZimbabweByH.P.LovecraftAndR.H.Barlow.pdf" length="0" type="application/pdf" />
+<description>10 pages, Amazing Stories, July 1962</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Deluge II by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/DelugeIIByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000071</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/TheDwellerInTheHillsByAugustDerleth.pdf" length="0" type="application/pdf" />
+<description>31 pages, Fantastic, October 1961</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+
+<item>
+<title>The Girl In His Mind by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/TheGirlInHisMindByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000051</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/TheMothByWalterDeLaMareLIVING AGEDec61919.pdf" length="0" type="application/pdf" />
+<description>24 pages, Worlds Of Tomorrow, April 1963</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Let There Be Night by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/LetThereBeNightByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000041</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/OnReadingLordDunsanysBookOfWonderByH.P.Lovecraft.pdf" length="0" type="application/pdf" />
+<description>32 pages, Fantastic Stories Of Imagination, October 1963</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Neither Stairs Nor Door by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/NeitherStairsNorDoorByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000031</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/AnAprilNightByLucyMaudMontgomery.pdf" length="0" type="application/pdf" />
+<description>10 pages, Fantastic, January 1963</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>To See Ourselves by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/ToSeeOurselvesByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000021</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/SongOfTheBrothersOfMercyByFriedrichVonSchillerWTDec1926.pdf" length="0" type="application/pdf" />
+<description>5 pages, Science Fiction Stories, #2 1954</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+<item>
+<title>Victim Of The Year by Robert F. Young</title>
+<link>http://www.sffaudio.com/podcasts/VictimOfTheYearByRobertF.Young.pdf</link>
+<guid isPermaLink="false">10000011</guid>
+<enclosure url="http://www.sffaudio.com/podcasts/SonnetToZanteByEdgarAllanPoeBJJul191845.pdf" length="0" type="application/pdf" />
+<description>16 pages, Fantastic, August 1962.</description>
+<pubDate>Wed, 10 Feb 2016 08:00:00 MDT</pubDate>
+<the_date>2016-02-10 08:00</the_date>
+<itunes:duration></itunes:duration>
+</item>
+ 
+
+  </channel>
+</rss>

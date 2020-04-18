@@ -1,0 +1,8 @@
+C:\_progs_\slurps\console_podcast_downloader\console_podcast_downloader.exe 
+Heap dump by heaptrc unit
+220339 memory blocks allocated : 4766150/5235912
+220339 memory blocks freed     : 4766150/5235912
+0 unfreed memory blocks : 0
+True heap size : 425984
+True free heap : 425856
+Should be : 425984

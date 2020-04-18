@@ -1,0 +1,7 @@
+
+For the console tests to work the 'Command line parameters' must be set to
+	-a --format=plain
+
+
+
+

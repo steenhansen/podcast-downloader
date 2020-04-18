@@ -1,0 +1,439 @@
+object podcastForm: TpodcastForm
+  Left = 696
+  Height = 630
+  Top = 192
+  Width = 1000
+  Caption = 'Podcast Downloader - 123,456,789 bytes read'
+  ClientHeight = 610
+  ClientWidth = 1000
+  Menu = MainMenu1
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  LCLVersion = '2.0.6.0'
+  object btnDownloadAll: TButton
+    Left = 568
+    Height = 25
+    Top = 120
+    Width = 216
+    Caption = 'Select All 12345 Episodes for Download'
+    OnClick = btnDownloadAllClick
+    TabOrder = 0
+  end
+  object btnDownloadNone: TButton
+    Left = 800
+    Height = 25
+    Top = 120
+    Width = 192
+    Caption = 'Select No Episodes for Download'
+    OnClick = btnDownloadNoneClick
+    TabOrder = 1
+  end
+  object gbFailedEpisodes: TGroupBox
+    Left = 336
+    Height = 104
+    Top = 480
+    Width = 656
+    Caption = 'Failed Episodes'
+    ClientHeight = 84
+    ClientWidth = 652
+    TabOrder = 2
+    object memFailedFiles: TMemo
+      Left = 0
+      Height = 84
+      Top = 0
+      Width = 652
+      Align = alClient
+      ReadOnly = True
+      TabOrder = 0
+    end
+  end
+  object gbPodcastDescription: TGroupBox
+    Left = 8
+    Height = 40
+    Top = 56
+    Width = 984
+    Caption = 'Podcast Description'
+    ClientHeight = 20
+    ClientWidth = 980
+    TabOrder = 3
+    object lblPodcastDescription: TLabel
+      Left = 8
+      Height = 15
+      Top = 0
+      Width = 921
+      Caption = '1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890  1234567890 '
+      ParentColor = False
+    end
+  end
+  object gbSelectDirectory: TGroupBox
+    Left = 8
+    Height = 49
+    Top = 432
+    Width = 984
+    Caption = 'Save to Directory'
+    ClientHeight = 29
+    ClientWidth = 980
+    TabOrder = 4
+    object edtSaveDirectory: TEdit
+      Left = 8
+      Height = 23
+      Top = 0
+      Width = 696
+      Enabled = False
+      TabOrder = 0
+    end
+    object btnDirectoryChange: TButton
+      Left = 760
+      Height = 25
+      Top = -2
+      Width = 216
+      Caption = 'Select Different Directory to Save to'
+      OnClick = selectDirBtn
+      TabOrder = 1
+    end
+  end
+  object gbPodcastFeed: TGroupBox
+    Left = 8
+    Height = 48
+    Top = 0
+    Width = 984
+    Caption = 'Enter Podcast Feed URL to Download Files From'
+    ClientHeight = 28
+    ClientWidth = 980
+    TabOrder = 5
+    object edtCopyableExample: TEdit
+      Left = 740
+      Height = 15
+      Top = 0
+      Width = 240
+      BorderStyle = bsNone
+      Color = clBtnFace
+      OnClick = edtCopyableExampleClick
+      ReadOnly = True
+      TabOrder = 0
+      Text = 'http://feeds.serialpodcast.org/serialpodcast'
+    end
+    object BtnReadRss: TButton
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Side = asrBottom
+      Left = 544
+      Height = 25
+      Top = -4
+      Width = 138
+      Caption = 'Read Podcast Feed'
+      Enabled = False
+      OnClick = BtnReadRssClick
+      TabOrder = 1
+    end
+    object edRssUrl: TEdit
+      Left = 8
+      Height = 23
+      Top = -2
+      Width = 528
+      OnChange = edRssUrlChange
+      OnClick = edRssUrlChange
+      TabOrder = 2
+      Text = '\test\sffaudio.herokuapp.com-pdf-rss8.xml'
+    end
+    object lblExample: TLabel
+      Left = 688
+      Height = 15
+      Top = 0
+      Width = 48
+      Caption = 'example:'
+      ParentColor = False
+    end
+  end
+  object grTextFilter: TGroupBox
+    Left = 8
+    Height = 49
+    Top = 104
+    Width = 503
+    Caption = 'Search for Text'
+    ClientHeight = 29
+    ClientWidth = 499
+    TabOrder = 6
+    object edtTextFilter: TEdit
+      Left = 8
+      Height = 23
+      Top = 0
+      Width = 232
+      AutoSize = False
+      AutoSelect = False
+      OnChange = edtTextFilterChange
+      TabOrder = 0
+    end
+    object btnDownloadFiltered: TButton
+      Left = 248
+      Height = 25
+      Top = -2
+      Width = 248
+      Caption = 'Add 12345 Episodes Matching Search Text'
+      Color = clInfoBk
+      OnClick = btnDownloadFilteredClick
+      TabOrder = 1
+    end
+  end
+  object downloadBtnPanel: TPanel
+    Left = 8
+    Height = 66
+    Top = 488
+    Width = 146
+    BevelColor = 39680
+    Caption = 'downloadBtnPanel'
+    ClientHeight = 66
+    ClientWidth = 146
+    TabOrder = 7
+    object btnDownloadChecked: TBCMDButton
+      Left = 1
+      Height = 64
+      Top = 1
+      Width = 144
+      StyleNormal.Color = 14803425
+      StyleNormal.TextColor = 39680
+      StyleHover.Color = 16511461
+      StyleHover.TextColor = 39680
+      StyleActive.Color = clSkyBlue
+      StyleActive.TextColor = clBlack
+      StyleDisabled.Color = 13421772
+      StyleDisabled.TextColor = 9474192
+      TextAutoSize = True
+      TextProportional = False
+      TextProportionalRatio = 0.5
+      Align = alClient
+      Caption = 'Download Checked'
+      Color = clMenuHighlight
+      Font.Style = [fsBold]
+      OnClick = downloadCheckedEpisodes
+      OnMouseEnter = btnDownloadCheckedMouseEnter
+      OnMouseLeave = btnDownloadCheckedMouseLeave
+      ParentFont = False
+      ParentShowHint = False
+    end
+  end
+  object cancelBtnPanel: TPanel
+    Left = 168
+    Height = 50
+    Top = 488
+    Width = 146
+    BevelColor = 192
+    Caption = 'cancelBtnPanel'
+    ClientHeight = 50
+    ClientWidth = 146
+    TabOrder = 8
+    object btnCancel: TBCMDButton
+      Left = 1
+      Height = 48
+      Top = 1
+      Width = 144
+      StyleNormal.Color = 14803425
+      StyleNormal.TextColor = 192
+      StyleHover.Color = 16511461
+      StyleHover.TextColor = 192
+      StyleActive.Color = 13027014
+      StyleActive.TextColor = clBlack
+      StyleDisabled.Color = 13421772
+      StyleDisabled.TextColor = 9474192
+      TextAutoSize = True
+      TextProportional = False
+      TextProportionalRatio = 0.5
+      Align = alClient
+      Caption = 'Cancel'
+      Font.Style = [fsBold]
+      OnClick = btnStopClick
+      OnMouseEnter = btnCancelMouseEnter
+      OnMouseLeave = btnCancelMouseLeave
+      ParentFont = False
+      ParentShowHint = False
+    end
+  end
+  object pnlCheckEpisodes: TPanel
+    Left = -8
+    Height = 89
+    Top = 216
+    Width = 72
+    BevelOuter = bvNone
+    TabOrder = 9
+  end
+  object gbEpisodesToDownload: TGroupBox
+    Left = 8
+    Height = 264
+    Top = 160
+    Width = 984
+    Caption = 'Check Episodes to Download'
+    ClientHeight = 244
+    ClientWidth = 980
+    TabOrder = 10
+    object clbEpisodeFiles: TCheckListBox
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideRight.Control = splFirst
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 2
+      Height = 239
+      Top = 0
+      Width = 354
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderStyle = bsNone
+      ExtendedSelect = False
+      Items.Strings = (
+        'Episode 1'
+      )
+      ItemHeight = 17
+      OnItemClick = clbEpisodeFilesItemClick
+      ParentBidiMode = False
+      Style = lbOwnerDrawFixed
+      TabOrder = 0
+      Data = {
+        0100000000
+      }
+    end
+    object lbEpisodeTitle: TListBox
+      AnchorSideLeft.Control = splFirst
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideRight.Control = splSecond
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 356
+      Height = 239
+      Top = 0
+      Width = 161
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderStyle = bsNone
+      DoubleBuffered = False
+      Items.Strings = (
+        'Heist Podcast - Episode 67 - Weapons, Beautiful Women and Fast Cars'
+      )
+      ItemHeight = 17
+      ParentBidiMode = False
+      ParentDoubleBuffered = False
+      Style = lbOwnerDrawFixed
+      TabOrder = 1
+    end
+    object splFirst: TSplitter
+      AnchorSideBottom.Side = asrBottom
+      Left = 340
+      Height = 239
+      Top = 0
+      Width = 16
+      Align = alCustom
+      Anchors = [akTop, akBottom]
+      AutoSnap = False
+      Beveled = True
+      Color = clBtnShadow
+      OnMoved = splFirstMoved
+      ParentColor = False
+      ResizeStyle = rsPattern
+    end
+    object splSecond: TSplitter
+      AnchorSideBottom.Side = asrBottom
+      Left = 501
+      Height = 239
+      Top = 0
+      Width = 16
+      Align = alCustom
+      Anchors = [akTop, akBottom]
+      AutoSnap = False
+      Beveled = True
+      Color = clBtnShadow
+      OnMoved = splSecondMoved
+      ParentColor = False
+      ResizeStyle = rsPattern
+    end
+    object lbEpisodeDesc: TListBox
+      AnchorSideLeft.Control = splSecond
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 517
+      Height = 239
+      Top = 0
+      Width = 460
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderStyle = bsNone
+      DoubleBuffered = False
+      Items.Strings = (
+        '123.56MB - Episode 1 Description'
+      )
+      ItemHeight = 17
+      OnClick = lbEpisodeDescClick
+      OnSelectionChange = lbEpisodeDescSelectionChange
+      ParentBidiMode = False
+      ParentDoubleBuffered = False
+      Style = lbOwnerDrawFixed
+      TabOrder = 4
+    end
+  end
+  object lblDownloadingXofY: TLabel
+    Left = 16
+    Height = 15
+    Top = 568
+    Width = 109
+    Caption = 'lblDownloadingXofY'
+    ParentColor = False
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog
+    InitialDir = 'desktop'
+    left = 400
+    top = 48
+  end
+  object MainMenu1: TMainMenu
+    left = 504
+    top = 56
+    object menuExamples: TMenuItem
+      Caption = 'Examples'
+      object menuVideo: TMenuItem
+        Caption = 'Video Podcasts'
+        object menuChannel9: TMenuItem
+          Caption = 'Microsoft Channel 9'
+          OnClick = channelNineClick
+        end
+        object menuTedTalk: TMenuItem
+          Caption = 'TED Talks Daily'
+          OnClick = menuTedTalkClick
+        end
+      end
+      object menuPdf: TMenuItem
+        Caption = 'PDF '
+        object menuSffAudio: TMenuItem
+          Caption = 'Public Domain PDFs 6000+'
+          OnClick = menuSffAudioClick
+        end
+      end
+      object menuImages: TMenuItem
+        Caption = 'Image Podcasts'
+        object menuNasa: TMenuItem
+          Caption = 'NASA Image of the Day'
+          OnClick = menuNasaClick
+        end
+        object menuBostonGlobe: TMenuItem
+          Caption = 'Smithsonian Photos'
+          OnClick = menuSmithsonianPhotosClick
+        end
+      end
+      object menuAudio: TMenuItem
+        Caption = 'Audio Podcasts'
+        object menuJoeRogan: TMenuItem
+          Caption = 'All of ''The Joe Rogan Experience'''
+          OnClick = menuJoeRoganClick
+        end
+        object menuThisAmericanLife: TMenuItem
+          Caption = 'All of ''This American Life'''
+          OnClick = menuThisAmericanLifeClick
+        end
+        object menuPhpRoundTable: TMenuItem
+          Caption = 'PHP Roundtable'
+          OnClick = menuPhpRoundTableClick
+        end
+        object MenuHeist: TMenuItem
+          Caption = 'Heist Podcast'
+          OnClick = MenuHeistClick
+        end
+      end
+    end
+  end
+end

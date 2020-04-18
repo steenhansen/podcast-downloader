@@ -1,0 +1,6 @@
+
+The files libeay32.dll and ssleay32.dll must be in the same directory as any exes.
+
+if not then the rss feed of https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss 
+does not work.
+

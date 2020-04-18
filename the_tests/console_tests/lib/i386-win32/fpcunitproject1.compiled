@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.0.4\bin\i386-win32\fpc.exe" Date="1331393133"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -l -vewnhibq -FiC:\_progs_\slurps\the_tests\console_tests\lib\i386-win32 -FuC:\_progs_\slurps -FuC:\_progs_\slurps\console_podcast_downloader -FuC:\_progs_\slurps\the_tests -FuC:\lazarus\lcl\units\i386-win32 -FuC:\lazarus\components\lazutils\lib\i386-win32 -FuC:\lazarus\packager\units\i386-win32 -FuC:\_progs_\slurps\the_tests\console_tests\ -FUC:\_progs_\slurps\the_tests\console_tests\lib\i386-win32\ -FEC:\_progs_\slurps\the_tests\console_tests\ -oC:\_progs_\slurps\the_tests\console_tests\fpcunitproject1.exe -dSTOP_GUI_STATE -dSTOP_DEBUG_SERVER fpcunitproject1.lpr"/>
+</CONFIG>

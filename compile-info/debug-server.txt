@@ -1,0 +1,11 @@
+
+To use the debug server as a terminal window for debugging
+  - Compile /lazarus/tools/debugserver/debugserver.lpi
+  - Color icon a new color to distinguish debug server when pinned to taskbar
+  - Start /lazarus/tools/debugserver/debugserver.exe
+  - Pin debugserver to taskbar
+  - use debug_server in program
+  	- SendDebug('my debug message') from dbugintf will log messages in debugserver.exe
+        - _d('short-hand') will also log messages
+
+  - NB consol apps cannot use this program
