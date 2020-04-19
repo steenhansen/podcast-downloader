@@ -11,24 +11,7 @@ uses
 {$ENDIF}
 
   Types, Messages, Controls, StdCtrls, SysUtils,
-  Classes, Graphics, Dialogs, CheckLst;
-
-const
-  HRectIndent = 2;
-  VRectIndent = 2;
-  CheckRectSize = 13;
-
-  COLOR_CHECKBOX_BORDER = TColor($333333);
-  COLOR_CHECKBOX_INTERIOR = TColor($FFFFFF);
-
-  COLOR_EVEN_ROW_MATCH = TColor($22FFFF);
-  COLOR_EVEN_ROW_NO_MATCH = TColor($ddFFFF);
-  COLOR_ODD_ROW_MATCH = TColor($FFFF22);
-  COLOR_ODD_ROW_NO_MATCH = TColor($FFFFdd);
-
-  COLOR_CHECKMARK_TOP = TColor($EEEEEE);
-  COLOR_CHECKMARK_MIDDLE = TColor($444444);
-  COLOR_CHECKMARK_BOTTOM = TColor($666666);
+  Classes, Graphics, CheckLst;
 
 type
 
@@ -108,8 +91,8 @@ var
   begin
     with theListBox.Canvas do
     begin
-      right_x2 := left_x2 + CheckRectSize;
-      bot_y2 := top_y2 + CheckRectSize;
+      right_x2 := left_x2 + CHECK_RECT_SIZE;
+      bot_y2 := top_y2 + CHECK_RECT_SIZE;
       rectangle22 := Rect(left_x2, top_y2, right_x2, bot_y2);
       Brush.Color := outside_box_color;
       FillRect(rectangle22);
@@ -188,8 +171,8 @@ begin
   myobj := lbEpisodeDesc.Items.Objects[Index];
   filterMatch := decodeFilterMatch(myobj);
   theListBox := (Control as TCheckListBox);
-  left_x2 := ARect.Left + HRectIndent;
-  top_y2 := ARect.Top + VRectIndent;
+  left_x2 := ARect.Left + H_RECT_INDENT;
+  top_y2 := ARect.Top + V_RECT_INDENT;
   background_color := colorBackGround(filterMatch);
   drawCheckBox(COLOR_CHECKBOX_BORDER, COLOR_CHECKBOX_INTERIOR);
   drawText(clBlack, background_color);
@@ -213,7 +196,7 @@ begin
     Font.Color := clBlack;
     Brush.Color := listBoxBackGround(index, filterMatch);
     FillRect(ARect);
-    TextOut(ARect.Left, ARect.Top, theItem);
+    TextOut(ARect.Left +EPISODE_TITLE_INDENT, ARect.Top, theItem);
   end;
 end;
 

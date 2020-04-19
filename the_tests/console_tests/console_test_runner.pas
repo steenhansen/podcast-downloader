@@ -2,22 +2,17 @@ program console_test_runner;
 
 {$mode objfpc}{$H+}
 
-
 // NB run parameter of
 //     -a --format=plain
 
-
-
 uses
   Classes, consoletestrunner,
-
   test_local,
   test_internet,
   Keyboard;
 
 type
 
-  { TMyTestRunner }
 
   TMyTestRunner = class(TTestRunner)
   protected

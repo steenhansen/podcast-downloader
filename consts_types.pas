@@ -5,7 +5,7 @@ unit consts_types;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils, Graphics;
 
 const
   OUT_OF_SLASH = '/';
@@ -16,12 +16,29 @@ const
   ARE_TESTING = True;
   RSS_TEMP_FILE = 'RSS_TEMP_FILE_NAME';
   NO_BYTE_SIZE_INDENT = '                     ';
-  EPISODE_DESC_INDENT = 16;
+  EPISODE_DESC_INDENT = 20;
+  EPISODE_TITLE_INDENT = 4;
 
   STOP_RED = $000000C0;
   STANDARD_HOVER_EDGE = $00D77800;
   START_GREEN = $00009B00;
   ESCAPE_KEY = #27;
+
+    H_RECT_INDENT = 2;
+  V_RECT_INDENT = 2;
+  CHECK_RECT_SIZE = 13;
+
+  COLOR_CHECKBOX_BORDER = TColor($333333);
+  COLOR_CHECKBOX_INTERIOR = TColor($FFFFFF);
+
+  COLOR_EVEN_ROW_MATCH = TColor($22FFFF);
+  COLOR_EVEN_ROW_NO_MATCH = TColor($ddFFFF);
+  COLOR_ODD_ROW_MATCH = TColor($FFFF22);
+  COLOR_ODD_ROW_NO_MATCH = TColor($FFFFdd);
+
+  COLOR_CHECKMARK_TOP = TColor($EEEEEE);
+  COLOR_CHECKMARK_MIDDLE = TColor($444444);
+  COLOR_CHECKMARK_BOTTOM = TColor($666666);
 
   CONSOLE_KEY_QUIT = 'console_escape_key_quit';
   GUI_CANCEL_BUTTON_QUIT = 'gui_cancel_button_quit';

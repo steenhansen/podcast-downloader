@@ -38,28 +38,27 @@ type
     constructor Create(url_or_file: string);
     destructor Destroy; override;
     procedure checkedAllOfThem(clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox);
-    function clickedBoxNew(fileList: TCheckListBox; lbEpisodeDesc: TListBox; itemNumber: integer;
-      btnDownloadChecked: TBCMDButton): integer;
+    function clickedBoxNew(fileList: TCheckListBox; lbEpisodeDesc: TListBox; itemNumber: integer;      btnDownloadChecked: TBCMDButton): integer;
     procedure checkedNoneOfThem(clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox);
-    function startDownloading(lbEpisodeDesc: TListBox; DoOnWriteStream: TOnWriteStream;
-      DoOnFailedReadEpisode: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
+    function startDownloading(lbEpisodeDesc: TListBox; DoOnWriteStream: TOnWriteStream;      DoOnFailedReadEpisode: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
     function checkedCount(clbEpisodeFiles: TCheckListBox): integer;
     function addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox): integer;
-    procedure showFilterMatch(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
-      TEDITtextFilter: TEdit; downloadFiltered: TButton);
-    procedure readingMediaFile(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
-      itemNumber: integer; fileSize: int64);
+    procedure showFilterMatch(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;       TEDITtextFilter: TEdit; downloadFiltered: TButton);
+    procedure readingMediaFile(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;       itemNumber: integer; fileSize: int64);
     procedure readingRss(podcastForm: TForm; fileSize: int64);
-    function readRssFile(edtSaveDirectory: TEdit; podcastForm: TForm; lblPodcastDescription: TLabel;
-      DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast: TOnFailedReadPodcast): integer;
+    function readRssFile(edtSaveDirectory: TEdit; podcastForm: TForm; lblPodcastDescription: TLabel;       DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast: TOnFailedReadPodcast): integer;
     function calcDownload(fileList: TCheckListBox; btnDownloadChecked: TBCMDButton): integer;
-    function makeCheckList(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
-      btnDownloadAll: TButton): integer;
+    function makeCheckList(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;       btnDownloadAll: TButton): integer;
     procedure displayDescription(episode_index, display_number: integer);
+
+
+    function getSearchIndex(search_text: string; ith_search_index: integer): integer;
+
+
   published
   end;
 
-function downloadCaption(checkedCount, totalFileSize: integer): string;
+function downloadCaption(checkedCount, totalFileSize: int64): string;
 
 implementation
 
@@ -85,7 +84,7 @@ begin
   inherited Destroy;
 end;
 
-function downloadCaption(checkedCount, totalFileSize: integer): string;
+function downloadCaption(checkedCount, totalFileSize: int64): string;
 var
   checkedCountStr, totalSizeStr, countedCaption: string;
 begin
@@ -205,20 +204,7 @@ begin
   Result := totalFileSize;
 end;
 
-function TSelectionMediator.calcDownload(fileList: TCheckListBox; btnDownloadChecked: TBCMDButton): integer;
-var
-  totalFileSize: int64;
-  checkedFileCount: integer;
-  a: integer;
-begin
-  totalFileSize := FrssPodcast.amountToDownload();
-  checkedFileCount := 0;
-  for a := 0 to FNumItems - 1 do
-    if fileList.Checked[a] then
-      checkedFileCount := checkedFileCount + 1;
-  btnDownloadChecked.Caption := downloadCaption(checkedFileCount, totalFileSize);
-  Result := totalFileSize;
-end;
+
 
 procedure TSelectionMediator.readingMediaFile(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox;
   lbEpisodeDesc: TListBox; itemNumber: integer; fileSize: int64);
@@ -403,55 +389,28 @@ end;
 
 
 
+function TSelectionMediator.getSearchIndex(search_text: string; ith_search_index: integer): integer;
+var
+  ith_searched: integer;
+begin
+  ith_searched := FrssPodcast.getIthOfSearch(search_text, ith_search_index);
+  Result := ith_searched;
+end;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    function TSelectionMediator.calcDownload(fileList: TCheckListBox; btnDownloadChecked: TBCMDButton): integer;
+var
+  totalFileSize: int64;
+  checkedFileCount: integer;
+  a: integer;
+begin
+  totalFileSize := FrssPodcast.amountToDownload();
+  checkedFileCount := 0;
+  for a := 0 to FNumItems - 1 do
+    if fileList.Checked[a] then
+      checkedFileCount := checkedFileCount + 1;
+  btnDownloadChecked.Caption := downloadCaption(checkedFileCount, totalFileSize);
+  Result := totalFileSize;
+end;
 
 
 

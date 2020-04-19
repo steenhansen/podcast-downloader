@@ -15,10 +15,10 @@ type
     procedure htmlEntities();
     procedure fileNames();
     procedure urlsLocals();
-          procedure byteLengths();
-          procedure theEnclosure();
-          procedure theEntities();
-              procedure episodeCreations();
+    procedure byteLengths();
+    procedure theEnclosure();
+    procedure theEntities();
+    procedure episodeCreations();
   end;
 
 implementation
@@ -31,9 +31,8 @@ procedure TTestCaseXmlEpisode.cDataHtmlText();
 var
   cdata_html_desc, text_desc: string;
 begin
-  cdata_html_desc := '<Description color=blue><![CDATA[' +
-    '&lt;br&gt;' + 'real -' +
-    LINE_ENDING + '<i>description</i>]]></Description>';
+  cdata_html_desc := '<Description color=blue><![CDATA[' + '&lt;br&gt;' + 'real -' + LINE_ENDING +
+    '<i>description</i>]]></Description>';
   text_desc := removeCDataHtmlElem(cdata_html_desc);
   assertEquals('no html in description', 'real - description', text_desc);
 end;
@@ -43,9 +42,8 @@ procedure TTestCaseXmlEpisode.htmlEntities();
 var
   html_entities_desc, text_desc: string;
 begin
-  html_entities_desc := '<item><title>title</title><description color=blue><![CDATA[' +
-    '&lt;br&gt;' + 'real -' +
-    LINE_ENDING + '<i>description</i>&quot;]]></description></item>';
+  html_entities_desc := '<item><title>title</title><description color=blue><![CDATA[' + '&lt;br&gt;' +
+    'real -' + LINE_ENDING + '<i>description</i>&quot;]]></description></item>';
   text_desc := getTheDesc(html_entities_desc);
   assertEquals('no html in description', 'real - description"', text_desc);
 end;
@@ -82,7 +80,7 @@ end;
 procedure TTestCaseXmlEpisode.byteLengths();
 var
   url_enclosure, local_enclosure: string;
-  has_bytes, no_bytes:integer;
+  has_bytes, no_bytes: integer;
 begin
   url_enclosure := '<enclosure length="170337414" />';
   has_bytes := bytesOfEpisode(url_enclosure);
@@ -97,7 +95,7 @@ end;
 procedure TTestCaseXmlEpisode.theEnclosure();
 var
   full_enclosure, odd_enclosure: string;
-  enclosure_full, enclosure_odd:string;
+  enclosure_full, enclosure_odd: string;
 begin
   full_enclosure := '<item><enclosure length="123" /></item>';
   enclosure_full := enclosureOfEpisode(full_enclosure);
@@ -113,7 +111,7 @@ procedure TTestCaseXmlEpisode.theEntities();
 var
   html_entities, clean_text: string;
 begin
-   html_entities:='&lt;&nbsp;&#60;&#160;&gt;&#62;&amp;&#38;&quot;&#34;&#8220;&#8221;&apos;&#39;&#8217;&cent;&#162;&pound;&#163;&yen;&#165;&euro;&#8364;&copy;&#169;&reg;&#174;';
+  html_entities := '&lt;&nbsp;&#60;&#160;&gt;&#62;&amp;&#38;&quot;&#34;&#8220;&#8221;&apos;&#39;&#8217;&cent;&#162;&pound;&#163;&yen;&#165;&euro;&#8364;&copy;&#169;&reg;&#174;';
   clean_text := htmlCharEntities(html_entities);
   assertEquals('ignore html gets', '< < >>&&""""''''''¢¢££¥¥€€©©®®', clean_text);
 end;
@@ -128,7 +126,7 @@ var
   xml_episode: TXmlEpisode;
 begin
   episode_text := '<item>' + '<title>The Eternal Eve by John Wyndham</title>' +
-    '<enclosure url="\test_data\test_0\files\ToTHEBOWERS1829ByEdgarAllanPoe.pdf" length="11140" type="application/pdf" />'  +
+    '<enclosure url="\test_data\test_0\files\ToTHEBOWERS1829ByEdgarAllanPoe.pdf" length="11140" type="application/pdf" />' +
     '<description>22 pages, Amazing Stories, December 1950</description>' + '</item>';
 
   xml_episode := TXmlEpisode.Create(episode_text);
@@ -147,6 +145,8 @@ initialization
   RegisterTest(TTestCaseXmlEpisode);
 
 end.
+
+
 
 
 

@@ -16,8 +16,7 @@ function fileDirName(url_or_file: string): string;
 function deskDirName(rssUrl: string): string;
 function xmlPathName(rssUrl, chosenDir: string): string;
 function getUrlProtocol(url: string): string;
-
-function mbFileSize(fileByteSize: integer): string;
+function mbFileSize(fileByteSize: int64): string;
 
 implementation
 
@@ -88,10 +87,9 @@ begin
   Result := filePath;
 end;
 
-function mbFileSize(fileByteSize: integer): string;
+function mbFileSize(fileByteSize: int64): string;
 const
-  Description: array [0 .. 8] of string =
-    ('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+  Description: array [0 .. 8] of string = ('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
   //  010.88 KB
   //  1023Bytes
 var

@@ -6,31 +6,29 @@ unit gui_e2e_local_2_local;
 interface
 
 uses
-  Classes, SysUtils, fpcunit, testregistry,  Dialogs,  Forms;
+  Classes, SysUtils, fpcunit, testregistry, Dialogs, Forms;
+
 type
 
   TTestCaseE2ELocal2Local = class(TTestCase)
   protected
     procedure SetUp; override;
     procedure TearDown; override;
-
   published
-
-
-        procedure process_test_0_e2e_local_to_local_click_3rd;
+    procedure process_test_0_e2e_local_to_local_click_3rd;
     procedure process_test_1_e2e_local_to_local_anecdote;
     procedure process_test_2_e2e_local_to_local_all();
     procedure process_test_3_e2e_local_to_local_none();
   end;
 
 implementation
+
 uses
   gui_support,
- test_support,
+  test_support,
   form_events,
   process_data,
   consts_types;
-
 
 procedure TTestCaseE2ELocal2Local.SetUp;
 begin
@@ -42,8 +40,6 @@ procedure TTestCaseE2ELocal2Local.Teardown;
 begin
   podcastForm.Hide();
 end;
-
-
 
 procedure TTestCaseE2ELocal2Local.process_test_0_e2e_local_to_local_click_3rd;
 var
@@ -66,7 +62,7 @@ begin
   memActualText := filesWithSizes(outputPath);
   memExpectedText := '_rss_test_0_e2e_local_to_local_click_3rd.xml~~2600' + LINE_ENDING +
     'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING;
-  AssertEquals('Bytes of all files', 34832, allPossibleFileSize );
+  AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 12261, fileSizeChecked);
   AssertEquals('Number successful files', 1, numberSuccess);
   AssertEquals('Number failed files', 0, numberFailed);
@@ -78,7 +74,7 @@ var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
   allPossibleFileSize, fileSizeChecked, numberSuccess, numberFailed: integer;
-      checked_and_total_size:   TCheckedAndTotalSize ;
+  checked_and_total_size: TCheckedAndTotalSize;
 begin
   xmlFile := xmlFileName('test_1_e2e_local_to_local_anecdote');
   outputPath := outputPathName('test_1_e2e_local_to_local_anecdote');
@@ -86,7 +82,7 @@ begin
   allPossibleFileSize := process_a_podcast(xmlFile);
 
   checked_and_total_size := process_b_filter('anecdote');
-         fileSizeChecked:=           checked_and_total_size.fileSizeChecked;
+  fileSizeChecked := checked_and_total_size.fileSizeChecked;
   failsAndSuccesses := process_c_episodes(xmlFile, outputPath);
   numberSuccess := failsAndSuccesses.successCount;
   numberFailed := failsAndSuccesses.failedCount;
@@ -99,7 +95,6 @@ begin
   AssertEquals('Number failed files', 0, numberFailed);
   guiDirectory(memExpectedText, memActualText, 'TTestCaseE2ELocal.process_test_1_e2e_local_to_local_anecdote');
 end;
-
 
 
 
@@ -123,8 +118,7 @@ begin
   memActualText := filesWithSizes(outputPath);
   memExpectedText := '_rss_test_2_e2e_local_to_local_all.xml~~2582' + LINE_ENDING +
     'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING +
-    'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING +
-    'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140' + LINE_ENDING;
+    'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 34832, fileSizeChecked);
   AssertEquals('Number successful files', 3, numberSuccess);
@@ -165,6 +159,7 @@ initialization
 
   RegisterTest(TTestCaseE2ELocal2Local);
 end.
+
 
 
 

@@ -1,7 +1,7 @@
 object podcastForm: TpodcastForm
-  Left = 397
+  Left = 623
   Height = 630
-  Top = 135
+  Top = 229
   Width = 1000
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
@@ -15,7 +15,7 @@ object podcastForm: TpodcastForm
   OnKeyPress = FormKeyPress
   LCLVersion = '2.0.6.0'
   object btnDownloadAll: TButton
-    Left = 568
+    Left = 576
     Height = 25
     Top = 120
     Width = 216
@@ -125,7 +125,6 @@ object podcastForm: TpodcastForm
       Top = -4
       Width = 138
       Caption = 'Read Podcast Feed'
-      Enabled = False
       OnClick = BtnReadRssClick
       TabOrder = 1
     end
@@ -137,7 +136,7 @@ object podcastForm: TpodcastForm
       OnChange = edRssUrlChange
       OnClick = edRssUrlChange
       TabOrder = 2
-      Text = '\test\sffaudio.herokuapp.com-pdf-rss8.xml'
+      Text = 'http://feeds.serialpodcast.org/serialpodcast'
     end
     object lblExample: TLabel
       Left = 688
@@ -152,30 +151,38 @@ object podcastForm: TpodcastForm
     Left = 8
     Height = 49
     Top = 104
-    Width = 503
+    Width = 560
     Caption = 'Search for Text'
     ClientHeight = 29
-    ClientWidth = 499
+    ClientWidth = 556
     TabOrder = 6
     object edtTextFilter: TEdit
       Left = 8
       Height = 23
       Top = 0
-      Width = 232
+      Width = 176
       AutoSize = False
       AutoSelect = False
       OnChange = edtTextFilterChange
       TabOrder = 0
     end
     object btnDownloadFiltered: TButton
-      Left = 248
+      Left = 192
       Height = 25
-      Top = -2
+      Top = 0
       Width = 248
       Caption = 'Add 12345 Episodes Matching Search Text'
       Color = clInfoBk
       OnClick = btnDownloadFilteredClick
       TabOrder = 1
+    end
+    object StaticText1: TStaticText
+      Left = 444
+      Height = 31
+      Top = -2
+      Width = 113
+      Caption = 'Click to View Next'#13#10'Match in Grid Below'
+      TabOrder = 2
     end
   end
   object downloadBtnPanel: TPanel
@@ -380,12 +387,12 @@ object podcastForm: TpodcastForm
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog
     InitialDir = 'desktop'
-    left = 400
-    top = 48
+    left = 696
+    top = 72
   end
   object MainMenu1: TMainMenu
-    left = 504
-    top = 56
+    left = 880
+    top = 80
     object menuExamples: TMenuItem
       Caption = 'Examples'
       object menuVideo: TMenuItem

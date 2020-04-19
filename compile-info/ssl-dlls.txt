@@ -6,3 +6,5 @@ does not work.
 
 The Lazarus IDE automatically includes them only when testing, but not for release. 
 
+http://synapse.ararat.cz/files/crypt/
+

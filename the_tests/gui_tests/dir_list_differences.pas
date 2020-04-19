@@ -5,9 +5,7 @@ unit dir_list_differences;
 interface
 
 uses
-  Classes, SysUtils,
-
-  Forms,
+  Classes, SysUtils, Forms,
  {$IfDef ALLOW_DEBUG_SERVER}
     debug_server,                    // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
@@ -23,7 +21,6 @@ type
     lblTestMessage: TLabel;
     memExpectedDirListing: TMemo;
     memActualDirListing: TMemo;
-    procedure RichMemo1Change(Sender: TObject);
   private
 
   public
@@ -36,12 +33,6 @@ var
 implementation
 
 {$R *.lfm}
-
-
-procedure TfrmTestDirListDifference.RichMemo1Change(Sender: TObject);
-begin
-
-end;
 
 end.
 

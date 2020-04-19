@@ -20,6 +20,10 @@ function process_b_all(): integer;
 function process_b_none(): integer;
 function process_b_choices(index: integer; are_testing: boolean = False): integer;
 function process_b_filter(filteredText: string): TCheckedAndTotalSize;
+
+function process_b_index_of_filter(search_text: string; ith_search_index: integer): integer;
+
+
 function process_c_episodes(podcast_file, saveDir: string): TFailsAndSuccesses;
 
 implementation
@@ -49,17 +53,7 @@ begin
     Result := number_episodes;         // Since sffAudio PDFs have no file size we must do this hack.
 end;
 
-function process_b_all(): integer;
-var
-  fileSizeChecked: integer;
-begin
-  with PodcastForm do
-  begin
-    fileSelectionMediator.checkedAllOfThem(clbEpisodeFiles, lbEpisodeDesc);
-    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
-  end;
-  Result := fileSizeChecked;
-end;
+
 
 function process_b_none(): integer;
 var
@@ -73,20 +67,7 @@ begin
   Result := fileSizeChecked;
 end;
 
-function process_b_filter(filteredText: string): TCheckedAndTotalSize;
-var
-  fileSizeChecked, checkedFileCount: integer;
-  checked_and_total_size: TCheckedAndTotalSize;
-begin
-  with PodcastForm do
-  begin
-    checkedFileCount := fileSelectionMediator.addFilteredToDownload(filteredText, clbEpisodeFiles);
-    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
-  end;
-  checked_and_total_size.checkedFileCount := checkedFileCount;
-  checked_and_total_size.fileSizeChecked := fileSizeChecked;
-  Result := checked_and_total_size;
-end;
+
 
 function process_b_choices(index: integer; are_testing: boolean = False): integer;
 var
@@ -112,6 +93,45 @@ begin
     failsAndSuccesses := fileSelectionMediator.startDownloading(lbEpisodeDesc, @DoOnWriteEpisode, @DoOnFailedReadEpisode, podcast_file, saveDir);
   end;
   Result := failsAndSuccesses;
+end;
+
+
+
+
+function process_b_filter(filteredText: string): TCheckedAndTotalSize;
+var
+  fileSizeChecked, checkedFileCount: integer;
+  checked_and_total_size: TCheckedAndTotalSize;
+begin
+  with PodcastForm do
+  begin
+    checkedFileCount := fileSelectionMediator.addFilteredToDownload(filteredText, clbEpisodeFiles);
+    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
+  end;
+  checked_and_total_size.checkedFileCount := checkedFileCount;
+  checked_and_total_size.fileSizeChecked := fileSizeChecked;
+  Result := checked_and_total_size;
+end;
+
+
+function process_b_index_of_filter(search_text: string; ith_search_index: integer): integer;
+var
+  index_of_filter: integer;
+begin
+  index_of_filter := fileSelectionMediator.getSearchIndex(search_text, ith_search_index);
+  Result := index_of_filter;
+end;
+
+   function process_b_all(): integer;
+var
+  fileSizeChecked: integer;
+begin
+  with PodcastForm do
+  begin
+    fileSelectionMediator.checkedAllOfThem(clbEpisodeFiles, lbEpisodeDesc);
+    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
+  end;
+  Result := fileSizeChecked;
 end;
 
 
