@@ -27,7 +27,6 @@ const
 POINTER_1_HOURGLASS_START_READ_PODCAST = crHourGlass;
    POINTER_2_DEFAULT_READING_PODCAST =  crDefault;
 
-
    POINTER_3_HOURGLASS_START_PARSE_EPISODES = crHourGlass;
    POINTER_4_DEFAULT_STOP_PARSE_EPISODES =  crDefault;
 
@@ -40,15 +39,9 @@ type
     FState: integer;
     FEdURL: TEdit;
     FBtnReadRss: TButton;
-
     FlblPodcastDescription: TLabel;
-
-
     FEpisodeFiles: TCheckListBox;
-
-    FEpisodeTitle: TListBox;
-
-
+     FEpisodeTitle: TListBox;
     FEpisodeDesc: TListBox;
     FFailedFiles: TMemo;
     FbtnStop: TBCMDButton;
@@ -59,9 +52,7 @@ type
     FedtSaveDirectory: TEdit;
     FButton2: TButton;
     FdownloadBtn: TBCMDButton;
-
-      FlblDownloadingXofY: TLabel;
-
+       FlblDownloadingXofY: TLabel;
     procedure beforeAUrl_1();
     procedure afterAUrl_2();
     procedure whileParsingRss_3();
@@ -69,46 +60,25 @@ type
     procedure afterOneCheck_5();
     procedure whileDownloading_6();
     procedure afterFinished_7();
-
-
-
-
   public
     constructor Create(podcastForm: TForm);
     procedure initCaptions();
     destructor Destroy; override;
     procedure setState(the_guiState: integer);
     function getState(): integer;
-
-    procedure enableGui(theControl: TControl);
+     procedure enableGui(theControl: TControl);
     procedure disableGui(theControl: TControl);
-
-
-    procedure beforeAfterUrl(url_value: string);
-
+     procedure beforeAfterUrl(url_value: string);
     function finishedMess(succesfulDownloads, failedCount: integer): string;
   published
   end;
 
-
-  
 procedure mouseConnectToUrl();
-
-
 procedure mouseReadingUrl();
-
-
-
- procedure mouseStartParseEpisodes();
-
-
-
-  procedure mouseStopParseEpisodes();
-
-
+procedure mouseStartParseEpisodes();
+procedure mouseStopParseEpisodes();
 
 implementation
-
 
 {$IfDef STOP_GUI_STATE}
    stop_compilation_instruction('A console_podcast_downloader.exe cannot include debug_server.');
@@ -116,62 +86,44 @@ implementation
    stop_compilation_instruction('Comment out all "use debug_server" to compile A or B.');
 {$EndIf}
 
-
 uses
    consts_types,
-  selection_mediator  ;
-
-
+  selection_mediator;
 
 procedure mouseConnectToUrl();
 begin
   Screen.Cursor :=POINTER_1_HOURGLASS_START_READ_PODCAST;
 end;
 
-
 procedure mouseReadingUrl();
 begin
   Screen.Cursor :=POINTER_2_DEFAULT_READING_PODCAST;
 end;
-
-
 
  procedure mouseStartParseEpisodes();
 begin
   Screen.Cursor :=POINTER_3_HOURGLASS_START_PARSE_EPISODES;
 end;
 
-
-
   procedure mouseStopParseEpisodes();
 begin
   Screen.Cursor :=POINTER_4_DEFAULT_STOP_PARSE_EPISODES;
 end;
-
-
-
-
-
-
 
 constructor TGuiState.Create(podcastForm: TForm);
 begin
   inherited Create;
   FForm := podcastForm;
   FState := 0;
-
-  with PodcastForm do
+    with PodcastForm do
   begin
     FEdURL := TEdit(FindComponent('edRssUrl'));
     FBtnReadRss := TButton(FindComponent('BtnReadRss'));
     FlblPodcastDescription := TLabel(FindComponent('lblPodcastDescription'));
     FEpisodeFiles := TCheckListBox(FindComponent('clbEpisodeFiles'));
-
-       FEpisodeDesc := TListBox(FindComponent('lbEpisodeDesc'));
+         FEpisodeDesc := TListBox(FindComponent('lbEpisodeDesc'));
     FEpisodeTitle := TListBox(FindComponent('lbEpisodeTitle'));
-
-
-    FFailedFiles := TMemo(FindComponent('memFailedFiles'));
+      FFailedFiles := TMemo(FindComponent('memFailedFiles'));
     FbtnStop := TBCMDButton(FindComponent('btnCancel'));
     Ffilter1 := TEdit(FindComponent('edtTextFilter'));
     FdownloadFiltered := TButton(FindComponent('btnDownloadFiltered'));
@@ -180,10 +132,8 @@ begin
     FedtSaveDirectory := TEdit(FindComponent('edtSaveDirectory'));
     FButton2 := TButton(FindComponent('btnDirectoryChange'));
     FdownloadBtn := TBCMDButton(FindComponent('btnDownloadChecked'));
-
          FlblDownloadingXofY := TLabel(FindComponent('lblDownloadingXofY'));
   end;
-
 end;
 
 procedure TGuiState.initCaptions();
@@ -221,13 +171,10 @@ begin
   FEpisodeTitle.Clear;
   FEpisodeDesc.Clear;
    Ffilter1.Clear;
-
-  enableGui(FEdURL);
+     enableGui(FEdURL);
   FEdURL.SetFocus;
-
-   FdownloadBtn.Caption := downloadCaption(0, 0);
-
-  disableGui(FBtnReadRss);
+     FdownloadBtn.Caption := downloadCaption(0, 0);
+   disableGui(FBtnReadRss);
   disableGui(FbtnStop);
   disableGui(Ffilter1);
   disableGui(FdownloadFiltered);
@@ -236,20 +183,15 @@ begin
   disableGui(FedtSaveDirectory);
   disableGui(FButton2);
   disableGui(FdownloadBtn);
-
-  disableGui(FEpisodeFiles);
+   disableGui(FEpisodeFiles);
   disableGui(FEpisodeDesc);
   enableGui(FFailedFiles);
-
-
-  FlblDownloadingXofY.Visible:=false;
+    FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.afterAUrl_2();
 begin
              mouseStopParseEpisodes();
-
-
   enableGui(FEdURL);
   enableGui(FBtnReadRss);
   disableGui(FbtnStop);
@@ -260,9 +202,7 @@ begin
   disableGui(FedtSaveDirectory);
   disableGui(FButton2);
   disableGui(FdownloadBtn);
-
-
-  disableGui(FEpisodeFiles);
+   disableGui(FEpisodeFiles);
   disableGui(FEpisodeDesc);
   disableGui(FFailedFiles);
     FlblDownloadingXofY.Visible:=false;
@@ -271,8 +211,7 @@ end;
 
 procedure TGuiState.whileParsingRss_3();
 begin
-
-  disableGui(FEdURL);
+   disableGui(FEdURL);
   disableGui(FBtnReadRss);
   enableGui(FbtnStop);
   disableGui(Ffilter1);
@@ -282,9 +221,7 @@ begin
   disableGui(FedtSaveDirectory);
   disableGui(FButton2);
   disableGui(FdownloadBtn);
-
-
-  disableGui(FEpisodeFiles);
+   disableGui(FEpisodeFiles);
   disableGui(FEpisodeDesc);
   disableGui(FFailedFiles);
     FlblDownloadingXofY.Visible:=false;
@@ -294,26 +231,18 @@ procedure TGuiState.afterRssProcessed_4();
 begin
   disableGui(FEdURL);
   disableGui(FBtnReadRss);
-
   enableGui(FbtnStop);
-
-
-  enableGui(Ffilter1);
+   enableGui(Ffilter1);
   enableGui(FdownloadFiltered);
   enableGui(FbtnDownloadAll);
   enableGui(FdownloadNone);
   enableGui(FedtSaveDirectory);
   enableGui(FButton2);
   disableGui(FdownloadBtn);
-
-
   enableGui(FEpisodeFiles);
   enableGui(FEpisodeDesc);
   disableGui(FFailedFiles);
-
     FlblDownloadingXofY.Visible:=false;
-
-
 end;
 
 
@@ -330,9 +259,7 @@ begin
   enableGui(FedtSaveDirectory);
   enableGui(FButton2);
   enableGui(FdownloadBtn);
-
-
-  enableGui(FEpisodeFiles);
+   enableGui(FEpisodeFiles);
   enableGui(FEpisodeDesc);
   disableGui(FFailedFiles);
     FlblDownloadingXofY.Visible:=false;
@@ -350,9 +277,7 @@ begin
   disableGui(FedtSaveDirectory);
   disableGui(FButton2);
   disableGui(FdownloadBtn);
-
-
-  enableGui(FEpisodeFiles);
+   enableGui(FEpisodeFiles);
   enableGui(FEpisodeDesc);
   disableGui(FFailedFiles);
     FlblDownloadingXofY.Visible:=true;
@@ -370,9 +295,7 @@ begin
   disableGui(FedtSaveDirectory);
   disableGui(FButton2);
   disableGui(FdownloadBtn);
-
-
-  disableGui(FEpisodeFiles);
+   disableGui(FEpisodeFiles);
   disableGui(FEpisodeDesc);
   disableGui(FFailedFiles);
      FlblDownloadingXofY.Visible:=false;
@@ -395,9 +318,6 @@ begin
   end;
 end;
 
-
-
-
 procedure TGuiState.beforeAfterUrl(url_value: string);
 var
   rssUrl, trimmedRssUrl: string;
@@ -412,9 +332,6 @@ begin
     setState(GUI_AFTER_A_URL_2);
 end;
 
-
-
-
 function TGuiState.finishedMess(succesfulDownloads, failedCount: integer): string;
 var
   successStr, failStr, finishMess: string;
@@ -428,9 +345,6 @@ begin
          finishMess := successStr + ' successful downloads, and ' + LINE_ENDING  +
                        failStr + ' failures' + LINE_ENDING  +
                        'in ' + FedtSaveDirectory.Text  + LINE_ENDING ;
-
-
-
      end;
   Result := finishMess;
 end;

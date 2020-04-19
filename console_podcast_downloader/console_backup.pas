@@ -1,11 +1,8 @@
 unit console_backup;
 
-//  terminal_podcast  is a better name
-
 {$mode objfpc}{$H+}
 
 interface
-
 
 uses
   Classes, SysUtils,
@@ -31,15 +28,9 @@ type
     function readTheEpisodes(url_or_file, program_path: string): boolean;
     function getConsolLines(): string;
     procedure DoOnConsoleReadPodcast(Sender: TObject; APosition: int64; fileNumber: integer);
-       procedure DoOnFailedConsoleReadPodcast(Sender: TObject; mediaUrl: string);
-
-
+    procedure DoOnFailedConsoleReadPodcast(Sender: TObject; mediaUrl: string);
     procedure DoOnConsoleWriteEpisode(Sender: TObject; APosition: int64; file_number: integer);
-
     procedure DoOnFailedConsoleReadEpisode(Sender: TObject; mediaUrl: string);
-
-
-
     function parsePodcast(url_or_file, program_path: string): integer;
     procedure processPodcast(url_or_file, program_path: string);
     procedure writeRow(row_y: integer; row_str: string);
@@ -52,7 +43,6 @@ type
 function readAPodcast(test_podcast_url: string = ''): string;
 
 implementation
-
 
 uses
   consts_types,
@@ -97,9 +87,6 @@ begin
   Result := trimmed_consol;
 end;
 
-
-
-
 function TConsolePodcast.whichEpisode(file_number: integer): string;
 var
   episode_filename, total_episodes, unpadded_number, padded_number, out_of: string;
@@ -113,8 +100,6 @@ begin
   episode_filename := FrssPodcast.getFilenameByIndex(file_number);
   Result := out_of + ' ' + episode_filename + ' ';
 end;
-
-
 
 function TConsolePodcast.parsePodcast(url_or_file, program_path: string): integer;
 var
@@ -139,8 +124,8 @@ begin
   try
     failedFiles := nil;
     FrssPodcast.markAllDownload();
-    failedFiles := FrssPodcast.downloadChosen(@DoOnConsoleWriteEpisode, @DoOnFailedConsoleReadEpisode, url_or_file,
-      FDeskDownloadDir, program_path);
+    failedFiles := FrssPodcast.downloadChosen(@DoOnConsoleWriteEpisode, @DoOnFailedConsoleReadEpisode,
+      url_or_file, FDeskDownloadDir, program_path);
     FFailedFiles := consolePrintFailures(failedFiles);
     FreeAndNil(failedFiles);
     Result := FAtLeastOneFile;
@@ -198,13 +183,10 @@ begin
   begin
     url_or_file := test_podcast_url;
     writeRow(ENTER_POD_URL_CONSOL_ROW, 'Enter Podcast URL : ' + url_or_file);
-
   end;
   FDeskDownloadDir := deskDirName(url_or_file);
   Result := url_or_file;
 end;
-
-
 
 function readAPodcast(test_podcast_url: string = ''): string;
 var
@@ -213,7 +195,7 @@ var
 begin
   try
     console_lines := '';
-    podcast_backup := TConsolePodcast.Create();            /// where free?
+    podcast_backup := TConsolePodcast.Create();
     consoleClearScreen(' ');
     podcast_backup.writeRow(INTRODUCTION_CONSOL_ROW,
       'Download all episodes of a podcast, only downloads needed files. Hit Escape key to stop program.');
@@ -221,11 +203,8 @@ begin
     url_or_file := podcast_backup.getPodcastUrl(test_podcast_url);
     program_path := consoleProgramPath();
     podcast_backup.processPodcast(url_or_file, program_path);
-
-
-
-    console_lines := podcast_backup.getConsolLines();      /// qu*bert is seems we crash here
-  finally //except
+    console_lines := podcast_backup.getConsolLines();
+  finally
     FreeAndNil(podcast_backup);
   end;
   Result := Trim(console_lines);
@@ -237,17 +216,13 @@ var
 begin
   chopped_str := consoleWriteStr(row_y, row_str);
   FConsolLines[row_y] := chopped_str;
-  // _d(row_y, chopped_str);
 end;
-
-
 
 procedure TConsolePodcast.DoOnConsoleWriteEpisode(Sender: TObject; APosition: int64; file_number: integer);
 var
   file_size, my_line: string;
   episode_filename, total_episodes, unpadded_number, padded_number, out_of: string;
   total_chars: integer;
-  //    current_row: integer;
 begin
   file_size := mbFileSize(APosition);
 
@@ -261,12 +236,9 @@ begin
   out_of := padded_number + OUT_OF_SLASH + total_episodes;
   episode_filename := FrssPodcast.getFilenameByIndex(file_number);
   my_line := out_of + ' : ' + file_size + ' : ' + episode_filename + '   ';
-  //  current_row :=  FIRST_EPISODE_CONSOL_ROW + file_number;
   FCurrentRow := FIRST_EPISODE_CONSOL_ROW + file_number;
   writeRow(FCurrentRow, my_line);
-  //   _d('APosition, file_number, FCurrentRow ', APosition, file_number, FCurrentRow);
 end;
-
 
 procedure TConsolePodcast.DoOnConsoleReadPodcast(Sender: TObject; APosition: int64; fileNumber: integer);
 var
@@ -282,7 +254,7 @@ end;
 
   {$pop}
 
- procedure TConsolePodcast.DoOnFailedConsoleReadPodcast(Sender: TObject; mediaUrl: string);
+procedure TConsolePodcast.DoOnFailedConsoleReadPodcast(Sender: TObject; mediaUrl: string);
     {$push}{$warn 5024 off}// mediaUrl not used
 begin
   // no memFailedFiles.Lines.Add(e_message + ' ' + mediaUrl);
@@ -298,7 +270,6 @@ end;
 
   {$pop}
 
-
 procedure TConsolePodcast.podcastDetails();
 var
   podcast_title, podcast_description, number_episodes: string;
@@ -307,24 +278,16 @@ begin
   podcast_title := FrssPodcast.getTitle();
   podcast_description := FrssPodcast.getDescription();
   number_episodes := IntToStr(FrssPodcast.numberEpisodes());
-
   desk_top_fname := ExcludeTrailingBackslash(FDeskDownloadDir);
   the_desktop := 'THE_DESKTOP--' + ExtractFileName(desk_top_fname);
-
-
   writeRow(PODCAST_TITLE_CONSOL_ROW, '     Podcast Title : ' + podcast_title);
   writeRow(PODCAST_DESC_CONSOL_ROW, '       Description : ' + podcast_description);
   writeRow(NUM_EPISODES_CONSOL_ROW, '          Episodes : ' + number_episodes);
   writeRow(DEST_FOLDER_CONSOL_ROW, 'Destination Folder : ' + the_desktop);
-
   FCurrentRow := DEST_FOLDER_CONSOL_ROW;
-
 end;
 
 end.
-
-
-
 
 
 

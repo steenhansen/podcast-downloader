@@ -18,15 +18,23 @@ const
   VRectIndent = 2;
   CheckRectSize = 13;
 
+  COLOR_CHECKBOX_BORDER = TColor($333333);
+  COLOR_CHECKBOX_INTERIOR = TColor($FFFFFF);
 
+  COLOR_EVEN_ROW_MATCH = TColor($22FFFF);
+  COLOR_EVEN_ROW_NO_MATCH = TColor($ddFFFF);
+  COLOR_ODD_ROW_MATCH = TColor($FFFF22);
+  COLOR_ODD_ROW_NO_MATCH = TColor($FFFFdd);
+
+  COLOR_CHECKMARK_TOP = TColor($EEEEEE);
+  COLOR_CHECKMARK_MIDDLE = TColor($444444);
+  COLOR_CHECKMARK_BOTTOM = TColor($666666);
 
 type
 
   TFourPoints = array[0..3] of TPoint;
   TFourXs = array[0..3] of integer;
   TFourYs = array[0..3] of integer;
-
-
 
   TCheckListBox = class(checklst.TCheckListBox)
   private
@@ -46,13 +54,9 @@ type
     property OnScroll: TNotifyEvent read FOnScroll write FOnScroll;
   end;
 
-
 procedure checkBoxDrawItem(Control: TWinControl; Index: integer; ARect: TRect; lbEpisodeDesc: TListBox);
 procedure TitleListBoxDrawItem(Control: TWinControl; Index: integer; ARect: TRect; lbEpisodeDesc: TListBox);
 procedure EpisodeListBoxDrawItem(Control: TWinControl; Index: integer; ARect: TRect);
-
-
-
 
 implementation
 
@@ -74,27 +78,20 @@ begin
     FOnScroll(Self);
 end;
 
-
-
-
 function listBoxBackGround(row_index: integer; filter_match: boolean): TColor;
 begin
   if row_index mod 2 = 0 then
     if filter_match then
-      Result := TColor($22FFFF)
+      Result := COLOR_EVEN_ROW_MATCH
     else
-      Result := TColor($ddFFFF)
+      Result := COLOR_EVEN_ROW_NO_MATCH
   else
   if filter_match then
-    Result := TColor($FFFF22)
+    Result := COLOR_ODD_ROW_MATCH
   else
-    Result := TColor($FFFFdd);
+    Result := COLOR_ODD_ROW_NO_MATCH;
 end;
 
-
-
-
-//    https://forum.lazarus.freepascal.org/index.php?topic=24049.0
 procedure checkBoxDrawItem(Control: TWinControl; Index: integer; ARect: TRect; lbEpisodeDesc: TListBox);
 var
   theListBox: TCheckListBox;
@@ -122,7 +119,6 @@ var
     end;
   end;
 
-
   procedure drawText(text_color, background_color: TColor);
   var
     theItem: ansistring;
@@ -136,7 +132,6 @@ var
     end;
   end;
 
-
   function colorBackGround(filter_match: boolean): TColor;
   begin
     with theListBox.Canvas do
@@ -146,7 +141,6 @@ var
       Result := Brush.Color;
     end;
   end;
-
 
   function fourPointPoly(x_offsets, y_offsets: TIntegerDynArray): TFourPoints;
   var
@@ -197,10 +191,10 @@ begin
   left_x2 := ARect.Left + HRectIndent;
   top_y2 := ARect.Top + VRectIndent;
   background_color := colorBackGround(filterMatch);
-  drawCheckBox(TColor($333333), TColor($FFFFff));
+  drawCheckBox(COLOR_CHECKBOX_BORDER, COLOR_CHECKBOX_INTERIOR);
   drawText(clBlack, background_color);
   if theListBox.Checked[Index] then
-    drawCheckMark(TColor($eeeeee), TColor($444444), TColor($666666));
+    drawCheckMark(COLOR_CHECKMARK_TOP, COLOR_CHECKMARK_MIDDLE, COLOR_CHECKMARK_BOTTOM);
 end;
 
 procedure TitleListBoxDrawItem(Control: TWinControl; Index: integer; ARect: TRect; lbEpisodeDesc: TListBox);
@@ -222,9 +216,6 @@ begin
     TextOut(ARect.Left, ARect.Top, theItem);
   end;
 end;
-
-
-
 
 procedure EpisodeListBoxDrawItem(Control: TWinControl; Index: integer; ARect: TRect);
 var

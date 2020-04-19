@@ -4,13 +4,14 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="64">
+    <Units Count="65">
       <Unit0>
         <Filename Value="gui_podcast_downloader.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="13"/>
         <CursorPos Y="31"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="form_events.pas"/>
@@ -18,10 +19,9 @@
         <ComponentName Value="podcastForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="154"/>
-        <CursorPos X="55" Y="161"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="718"/>
+        <CursorPos X="35" Y="740"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
@@ -29,31 +29,33 @@
           <CursorPos X="18" Y="430"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="download_stream.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="101"/>
-        <CursorPos X="50" Y="122"/>
+        <EditorIndex Value="11"/>
+        <TopLine Value="31"/>
+        <CursorPos X="46" Y="51"/>
         <ExtraEditorCount Value="2"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="101"/>
-          <CursorPos Y="122"/>
+          <CursorPos X="87" Y="15"/>
         </ExtraEditor1>
         <ExtraEditor2>
           <EditorIndex Value="-1"/>
-          <CursorPos X="87" Y="15"/>
+          <TopLine Value="32"/>
+          <CursorPos X="46" Y="55"/>
         </ExtraEditor2>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="xml_episode.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="109" Y="31"/>
+        <EditorIndex Value="6"/>
+        <CursorPos Y="349"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
@@ -61,26 +63,28 @@
           <CursorPos Y="170"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="rss_podcast.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="96" Y="13"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="404"/>
+        <CursorPos Y="424"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="444"/>
-          <CursorPos Y="486"/>
+          <TopLine Value="432"/>
+          <CursorPos X="38" Y="435"/>
         </ExtraEditor1>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit4>
       <Unit5>
         <Filename Value="selection_mediator.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="232"/>
-        <CursorPos X="33" Y="254"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="3" Y="12"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
@@ -88,18 +92,22 @@
           <CursorPos X="14" Y="536"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="checks_descriptions.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="9" Y="9"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="220"/>
+        <CursorPos Y="95"/>
         <UsageCount Value="205"/>
+        <Loaded Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="episode_bits.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="12"/>
+        <TopLine Value="166"/>
         <CursorPos X="30" Y="4"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
@@ -107,19 +115,22 @@
           <CursorPos X="89" Y="9"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit7>
       <Unit8>
         <Filename Value="dirs_files.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="101" Y="10"/>
+        <EditorIndex Value="1"/>
+        <CursorPos Y="38"/>
         <UsageCount Value="203"/>
+        <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="gui_state.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="96" Y="9"/>
+        <EditorIndex Value="14"/>
+        <TopLine Value="4"/>
+        <CursorPos Y="29"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
@@ -127,44 +138,47 @@
           <CursorPos Y="228"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="process_data.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="23"/>
-        <CursorPos Y="50"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="20"/>
+        <CursorPos X="93" Y="95"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="consts_types.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="3"/>
-        <CursorPos X="18"/>
+        <EditorIndex Value="2"/>
+        <CursorPos Y="71"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit11>
       <Unit12>
         <Filename Value="progress_stream.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <CursorPos X="87" Y="13"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="16"/>
+        <CursorPos X="78" Y="40"/>
         <UsageCount Value="200"/>
+        <Loaded Value="True"/>
       </Unit12>
       <Unit13>
         <Filename Value="debug_server.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <CursorPos X="33" Y="14"/>
-        <UsageCount Value="162"/>
+        <TopLine Value="106"/>
+        <CursorPos X="13" Y="144"/>
+        <UsageCount Value="171"/>
+        <Loaded Value="True"/>
       </Unit13>
       <Unit14>
         <Filename Value="__consol_prog.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="22" Y="13"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="18"/>
       </Unit14>
       <Unit15>
         <Filename Value="testing_form.pas"/>
@@ -173,14 +187,14 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="328"/>
-        <UsageCount Value="99"/>
+        <UsageCount Value="98"/>
       </Unit15>
       <Unit16>
         <Filename Value="http_stream.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="1"/>
         <CursorPos X="76" Y="14"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="157"/>
       </Unit16>
       <Unit17>
         <Filename Value="examplesform.pas"/>
@@ -192,7 +206,7 @@
         <WindowIndex Value="1"/>
         <TopLine Value="25"/>
         <CursorPos X="20" Y="31"/>
-        <UsageCount Value="74"/>
+        <UsageCount Value="73"/>
       </Unit17>
       <Unit18>
         <Filename Value="xml_extract.pas"/>
@@ -206,20 +220,20 @@
           <WindowIndex Value="1"/>
           <CursorPos X="27" Y="8"/>
         </ExtraEditor1>
-        <UsageCount Value="171"/>
+        <UsageCount Value="170"/>
       </Unit18>
       <Unit19>
         <Filename Value="bithelpers.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="24" Y="134"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="36"/>
       </Unit19>
       <Unit20>
         <Filename Value="comp_unit2.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="8"/>
-        <UsageCount Value="158"/>
+        <UsageCount Value="157"/>
       </Unit20>
       <Unit21>
         <Filename Value="checkbox_mediator.pas"/>
@@ -228,7 +242,7 @@
         <WindowIndex Value="2"/>
         <TopLine Value="216"/>
         <CursorPos X="21" Y="240"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit21>
       <Unit22>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
@@ -236,14 +250,14 @@
         <WindowIndex Value="3"/>
         <TopLine Value="2910"/>
         <CursorPos Y="2915"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="23"/>
       </Unit22>
       <Unit23>
         <Filename Value="rss_media.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="79"/>
         <CursorPos X="30" Y="230"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="27"/>
       </Unit23>
       <Unit24>
         <Filename Value="animatedgif.pas"/>
@@ -251,14 +265,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="85"/>
         <CursorPos Y="111"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit24>
       <Unit25>
         <Filename Value="unit1.lfm"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="289"/>
         <CursorPos X="3" Y="300"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit25>
       <Unit26>
@@ -267,7 +281,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="9879"/>
         <CursorPos X="85" Y="9909"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit26>
       <Unit27>
         <Filename Value="C:\Users\steen\AppData\Local\lazarus\onlinepackagemanager\packages\bgracontrols-master\bcmdbutton.pas"/>
@@ -275,7 +289,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="702"/>
         <CursorPos X="86" Y="730"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
@@ -285,7 +299,7 @@
         <WindowIndex Value="1"/>
         <TopLine Value="219"/>
         <CursorPos X="3" Y="242"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
@@ -294,13 +308,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="198"/>
         <CursorPos X="3" Y="220"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit29>
       <Unit30>
         <Filename Value="..\slurps - Copy (12)\testing_form.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="82"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit30>
       <Unit31>
         <Filename Value="htmldecode.pas"/>
@@ -309,7 +323,7 @@
         <WindowIndex Value="2"/>
         <TopLine Value="442"/>
         <CursorPos X="48" Y="453"/>
-        <UsageCount Value="3"/>
+        <UsageCount Value="2"/>
       </Unit31>
       <Unit32>
         <Filename Value="C:\lazarus\lcl\lclmessageglue.pas"/>
@@ -317,19 +331,19 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="101"/>
         <CursorPos Y="131"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
       </Unit32>
       <Unit33>
         <Filename Value="_unit_xml_episode.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="18" Y="8"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit33>
       <Unit34>
         <Filename Value="_support_funcs.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="8" Y="35"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit34>
       <Unit35>
         <Filename Value="podcast_downloader_console.pas"/>
@@ -337,47 +351,47 @@
         <WindowIndex Value="1"/>
         <TopLine Value="53"/>
         <CursorPos X="48" Y="73"/>
-        <UsageCount Value="5"/>
+        <UsageCount Value="4"/>
       </Unit35>
       <Unit36>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-web\src\base\fphttpclient.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="192"/>
         <CursorPos X="15" Y="181"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="15"/>
       </Unit36>
       <Unit37>
         <Filename Value="console_podcast_downloader.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="35"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit37>
       <Unit38>
         <Filename Value="console_routines.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit38>
       <Unit39>
         <Filename Value="console_podcast_backup.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <CursorPos X="54" Y="110"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit39>
       <Unit40>
         <Filename Value="_dir_list_differences.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit40>
       <Unit41>
         <Filename Value="_integrate_rss_podcast.pas"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit41>
       <Unit42>
         <Filename Value="_test_dir_list_different.lfm"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
         <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit42>
       <Unit43>
@@ -385,7 +399,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="110"/>
         <CursorPos X="41" Y="130"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit43>
       <Unit44>
         <Filename Value="C:\lazarus\lcl\forms.pp"/>
@@ -393,13 +407,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1809"/>
         <CursorPos X="3" Y="1849"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit44>
       <Unit45>
         <Filename Value="the_tests\gui_tests\unit_xml_episode.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="33" Y="52"/>
-        <UsageCount Value="1"/>
+        <UsageCount Value="10"/>
       </Unit45>
       <Unit46>
         <Filename Value="C:\lazarus\lcl\graphics.pp"/>
@@ -407,7 +421,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="1004"/>
         <CursorPos X="38" Y="1038"/>
-        <UsageCount Value="24"/>
+        <UsageCount Value="23"/>
       </Unit46>
       <Unit47>
         <Filename Value="C:\lazarus\lcl\checklst.pas"/>
@@ -415,7 +429,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="33"/>
         <CursorPos X="21" Y="73"/>
-        <UsageCount Value="23"/>
+        <UsageCount Value="22"/>
       </Unit47>
       <Unit48>
         <Filename Value="C:\lazarus\components\tachart\tachartlistbox.pas"/>
@@ -423,7 +437,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="18"/>
         <CursorPos Y="28"/>
-        <UsageCount Value="6"/>
+        <UsageCount Value="5"/>
       </Unit48>
       <Unit49>
         <Filename Value="C:\lazarus\lcl\stdctrls.pp"/>
@@ -431,14 +445,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="480"/>
         <CursorPos X="19" Y="493"/>
-        <UsageCount Value="19"/>
+        <UsageCount Value="18"/>
       </Unit49>
       <Unit50>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\classes\classesh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2068"/>
         <CursorPos X="10" Y="2089"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit50>
       <Unit51>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\objpas\types.pp"/>
@@ -446,27 +460,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="62"/>
         <CursorPos X="3" Y="83"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit51>
       <Unit52>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\inc\typshrdh.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="92"/>
         <CursorPos X="3" Y="101"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit52>
       <Unit53>
         <Filename Value="gui_consts.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="43" Y="5"/>
-        <UsageCount Value="8"/>
+        <UsageCount Value="7"/>
       </Unit53>
       <Unit54>
         <Filename Value="the_tests\console_tests - Copy\consol_test_runner.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos X="55" Y="48"/>
-        <UsageCount Value="15"/>
+        <UsageCount Value="14"/>
       </Unit54>
       <Unit55>
         <Filename Value="console_podcast_downloader\console_backup.pas"/>
@@ -474,13 +488,13 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="138"/>
         <CursorPos X="84" Y="149"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="11"/>
       </Unit55>
       <Unit56>
         <Filename Value="console_podcast_downloader\console_routines.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="27" Y="10"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit56>
       <Unit57>
         <Filename Value="the_tests\console_tests\testcase1.pas"/>
@@ -488,33 +502,33 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="20" Y="51"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit57>
       <Unit58>
         <Filename Value="the_tests\gui_tests\gui_test_runner.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="6"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="8"/>
       </Unit58>
       <Unit59>
         <Filename Value="the_tests\gui_tests\dir_list_differences.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="96" Y="12"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit59>
       <Unit60>
         <Filename Value="console_podcast_downloader\console_podcast_downloader.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="23"/>
         <CursorPos Y="45"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="17"/>
       </Unit60>
       <Unit61>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\inc\heaptrc.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
         <CursorPos X="29" Y="50"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit61>
       <Unit62>
         <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
@@ -522,22 +536,148 @@
         <WindowIndex Value="3"/>
         <TopLine Value="50"/>
         <CursorPos Y="56"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit62>
       <Unit63>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\fcl-process\src\dbugintf.pp"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="128" Y="2"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="10"/>
       </Unit63>
+      <Unit64>
+        <Filename Value="the_tests\test_support.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="7"/>
+        <CursorPos Y="45"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit64>
     </Units>
     <OtherDefines Count="1">
       <Define0 Value="IS_GUI_PROGRAM"/>
     </OtherDefines>
-    <General>
-      <ActiveWindowIndexAtStart Value="-1"/>
-    </General>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="form_events.pas"/>
+        <Caret Line="696" Column="35" TopLine="678"/>
+      </Position1>
+      <Position2>
+        <Filename Value="form_events.pas"/>
+        <Caret Line="740" Column="35" TopLine="718"/>
+      </Position2>
+      <Position3>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="71" Column="25" TopLine="55"/>
+      </Position3>
+      <Position4>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="216" Column="40" TopLine="493"/>
+      </Position4>
+      <Position5>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="318" Column="25" TopLine="293"/>
+      </Position5>
+      <Position6>
+        <Filename Value="progress_stream.pas"/>
+        <Caret Line="29" Column="80" TopLine="13"/>
+      </Position6>
+      <Position7>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="531" Column="72" TopLine="513"/>
+      </Position7>
+      <Position8>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="400" Column="59" TopLine="385"/>
+      </Position8>
+      <Position9>
+        <Filename Value="download_stream.pas"/>
+        <Caret Line="29" Column="67" TopLine="11"/>
+      </Position9>
+      <Position10>
+        <Filename Value="download_stream.pas"/>
+        <Caret Line="49" Column="79" TopLine="31"/>
+      </Position10>
+      <Position11>
+        <Filename Value="download_stream.pas"/>
+        <Caret Line="51" Column="46" TopLine="31"/>
+      </Position11>
+      <Position12>
+        <Filename Value="progress_stream.pas"/>
+        <Caret Line="29" Column="68" TopLine="13"/>
+      </Position12>
+      <Position13>
+        <Filename Value="progress_stream.pas"/>
+        <Caret Line="41" Column="3" TopLine="13"/>
+      </Position13>
+      <Position14>
+        <Filename Value="progress_stream.pas"/>
+        <Caret Line="45" Column="20" TopLine="16"/>
+      </Position14>
+      <Position15>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="70" Column="61" TopLine="53"/>
+      </Position15>
+      <Position16>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="441" Column="74" TopLine="423"/>
+      </Position16>
+      <Position17>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="449" Column="60" TopLine="423"/>
+      </Position17>
+      <Position18>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="72" Column="102" TopLine="56"/>
+      </Position18>
+      <Position19>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="521" Column="3" TopLine="502"/>
+      </Position19>
+      <Position20>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="70" Column="89" TopLine="53"/>
+      </Position20>
+      <Position21>
+        <Filename Value="download_stream.pas"/>
+        <Caret Line="36" Column="74" TopLine="29"/>
+      </Position21>
+      <Position22>
+        <Filename Value="download_stream.pas"/>
+        <Caret Line="29" Column="82" TopLine="11"/>
+      </Position22>
+      <Position23>
+        <Filename Value="download_stream.pas"/>
+        <Caret Line="51" Column="46" TopLine="31"/>
+      </Position23>
+      <Position24>
+        <Filename Value="progress_stream.pas"/>
+        <Caret Line="29" Column="83" TopLine="16"/>
+      </Position24>
+      <Position25>
+        <Filename Value="progress_stream.pas"/>
+        <Caret Line="40" Column="78" TopLine="16"/>
+      </Position25>
+      <Position26>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="70" Column="76" TopLine="53"/>
+      </Position26>
+      <Position27>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="449" Column="60" TopLine="423"/>
+      </Position27>
+      <Position28>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="72" Column="117" TopLine="56"/>
+      </Position28>
+      <Position29>
+        <Filename Value="selection_mediator.pas"/>
+        <Caret Line="531" Column="87" TopLine="502"/>
+      </Position29>
+      <Position30>
+        <Filename Value="rss_podcast.pas"/>
+        <Caret Line="424" TopLine="404"/>
+      </Position30>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode=""/>

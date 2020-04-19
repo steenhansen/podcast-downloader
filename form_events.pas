@@ -660,11 +660,14 @@ end;
 
   procedure TPodcastForm.lbEpisodeDescClick(Sender: TObject);
   var
-    episode_index:integer;
+    episode_index, display_number:integer;
   begin
        for episode_index := 0 to (lbEpisodeDesc.Items.Count - 1) do
     if lbEpisodeDesc.Selected[episode_index] then
-        fileSelectionMediator.displayDescription(episode_index);
+    begin
+        display_number := lbEpisodeDesc.Items.Count  -episode_index;
+        fileSelectionMediator.displayDescription(episode_index, display_number);
+    end;
   end;
 
   {$push}{$warn 5024 off} // User not used
@@ -690,7 +693,7 @@ end;
 begin
   if G_start_stop <> '' then
        raise ECancelException.Create( READ_EXCEPTION_PODCAST + EXCEPTION_SPACE +G_start_stop);
-  fileSelectionMediator.readingRss2(podcastForm, APosition);
+  fileSelectionMediator.readingRss(podcastForm, APosition);
   Application.ProcessMessages;
 end;
 {$pop}
@@ -734,7 +737,7 @@ begin
     lbEpisodeDesc.OnDrawItem := @DoDrawItemlbEpisodeDesc;
   guiState := TGuiState.Create(podcastForm);
   guiState.initCaptions();
-  fileSelectionMediator.readingRss2(podcastForm, 0);
+  fileSelectionMediator.readingRss(podcastForm, 0);
   clbEpisodeFiles.Clear;
   lbEpisodeTitle.Clear;
   lbEpisodeDesc.Clear;

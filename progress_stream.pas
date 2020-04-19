@@ -4,12 +4,8 @@ unit progress_stream;
 
 interface
 
-
-
-
 uses
-
-  {$IfDef ALLOW_DEBUG_SERVER}
+   {$IfDef ALLOW_DEBUG_SERVER}
     //debug_server,         // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
   Classes, SysUtils,
@@ -21,20 +17,16 @@ uses
   LazFileUtils;
 
 type
-
   TOnWriteStream = procedure(Sender: TObject; APos: int64; fileNumber: integer) of object;
-
-    TOnFailedReadEpisode = procedure(Sender: TObject; mediaUrl: string) of object;
-     TOnFailedReadPodcast = procedure(Sender: TObject; mediaUrl: string) of object;
-
+  TOnFailedReadEpisode = procedure(Sender: TObject; mediaUrl: string) of object;
+  TOnFailedReadPodcast = procedure(Sender: TObject; mediaUrl: string) of object;
 
   TProgressStream = class(TFileStream)
   private
     FFileNumber: integer;
     FOnWriteStream: TOnWriteStream;
   public
-    constructor Create(tempPathname: string; fileNumber: integer;
-      formCallback: TOnWriteStream);
+    constructor Create(tempPathname: string; fileNumber: integer;  DoOnWriteStream: TOnWriteStream);
     destructor Destroy; override;
     function Write(const Buffer; Count: longint): longint; override;
     function Read(var Buffer; Count: longint): longint; override;
@@ -45,12 +37,11 @@ type
 
 implementation
 
-constructor TProgressStream.Create(tempPathname: string; fileNumber: integer;
-  formCallback: TOnWriteStream);
+constructor TProgressStream.Create(tempPathname: string; fileNumber: integer; DoOnWriteStream: TOnWriteStream);
 begin
   inherited Create(tempPathname, fmCreate);
   FFileNumber := fileNumber;
-  OnWriteStream := formCallback;
+  OnWriteStream := DoOnWriteStream;
 end;
 
 destructor TProgressStream.Destroy;

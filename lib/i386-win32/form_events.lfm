@@ -1,8 +1,10 @@
 object podcastForm: TpodcastForm
-  Left = 696
+  Left = 397
   Height = 630
-  Top = 192
+  Top = 135
   Width = 1000
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'Podcast Downloader - 123,456,789 bytes read'
   ClientHeight = 610
   ClientWidth = 1000

@@ -74,10 +74,6 @@ begin
   Result := failed_files;
 end;
 
-
-
-
-//  https://forum.lazarus.freepascal.org/index.php?topic=30878.0
 procedure consoleClearScreen(fill_char: char);
 var
   console_coord: COORD;
@@ -120,9 +116,6 @@ begin
   Result := trimmed_str;
 end;
 
-
-
-
 function consoleWaitForUpperKey(show_cancelled: boolean): string;
 var
   key_event: TKeyEvent;
@@ -149,9 +142,6 @@ begin
   uppercase_key := UpperCase(key_str);
   Result := uppercase_key;
 end;
-
-
-
 
 end.
 

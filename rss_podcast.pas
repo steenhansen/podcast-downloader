@@ -47,8 +47,8 @@ type
 
 
   protected
-    function getOnlinePodcast(episode_index: integer; formCallback: TOnWriteStream;DoOnFailedReadEpisode:TOnFailedReadEpisode): string;
-    function readLocalPodcast(episode_index: integer; formCallback: TOnWriteStream;program_path: string): string;
+    function getOnlinePodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream;DoOnFailedReadEpisode:TOnFailedReadEpisode): string;
+    function readLocalPodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream;program_path: string): string;
 
 
 
@@ -67,13 +67,13 @@ type
     function setCheckClick(itemNumber: integer; isChecked: boolean): int64;
     function filterCheckboxes(theFilter: string; mark_download: boolean): TBooleanArray;
     function amountToDownload(): int64;
-    function readPodcast(url_or_file, program_path: string; formCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast):integer;
+    function readPodcast(url_or_file, program_path: string; DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast):integer;
     function getDescription(): string;
     function getTitle(): string;
     function getSuccesses(): integer;
     function numberEpisodes(): integer;
     function anEpisodeOfPodcast(episode_index: integer): TXmlEpisode;
-    function downloadChosen(formCallback: TOnWriteStream; DoOnFailedReadEpisode:TOnFailedReadEpisode; url_or_file, the_save_directory, program_path: string): TStringList;
+    function downloadChosen(DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode:TOnFailedReadEpisode; url_or_file, the_save_directory, program_path: string): TStringList;
          procedure markAllDownload();
   end;
 
@@ -335,8 +335,7 @@ end;
 
 
 
-  // getOnlineEpisode
-function TRssPodcast.getOnlinePodcast(episode_index: integer; formCallback: TOnWriteStream; DoOnFailedReadEpisode:TOnFailedReadEpisode): string;
+function TRssPodcast.getOnlinePodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode:TOnFailedReadEpisode): string;
 var
   filename, curUrl: string;
   an_episode: TXmlEpisode;
@@ -347,7 +346,7 @@ begin
   filename := an_episode.theEpisodeFilename;
   FMediaWillBeDownloaded[episode_index] := False;
   try
-    downloadAnEpisode(curUrl, FSaveDirectory, filename, episode_index, formCallback, DoOnFailedReadEpisode);
+    downloadAnEpisode(curUrl, FSaveDirectory, filename, episode_index, DoOnWriteStream, DoOnFailedReadEpisode);
     FSuccessfuls := FSuccessfuls + 1;
   except
     on E: ECancelException do
@@ -357,8 +356,7 @@ begin
   end;
 end;
 
-// readLocalEpisode
-function TRssPodcast.readLocalPodcast(episode_index: integer; formCallback: TOnWriteStream; program_path: string): string;
+function TRssPodcast.readLocalPodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream; program_path: string): string;
 var
   filename, curUrl: string;
   an_episode: TXmlEpisode;
@@ -375,7 +373,7 @@ begin
     did_write_to_file := localCopyAnEpisode(curUrl, FSaveDirectory, fileName, program_path);
     if did_write_to_file then
       begin
-         formCallback(nil, fileSize, episode_index);       // THIS WILL SET FAtLeastOneFile    CORRECTLY
+         DoOnWriteStream(nil, fileSize, episode_index);       // THIS WILL SET FAtLeastOneFile    CORRECTLY
          FSuccessfuls := FSuccessfuls + 1;
       end
   except
@@ -402,16 +400,14 @@ end;
 
 
 
- 
 
-function TRssPodcast.downloadChosen(formCallback: TOnWriteStream; DoOnFailedReadEpisode:TOnFailedReadEpisode; url_or_file, the_save_directory, program_path: string): TStringList;
+function TRssPodcast.downloadChosen(DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode:TOnFailedReadEpisode; url_or_file, the_save_directory, program_path: string): TStringList;
 var
   episode_index: integer;
   curUrl, failUrl: string;
   an_episode: TXmlEpisode;
   failed_episodes: TStringList;
 begin
-  //try
   failed_episodes := TStringList.Create();
   try
     makeEpisodeDirectory(url_or_file, the_save_directory, FPodcastXmlText);
@@ -423,13 +419,12 @@ begin
       begin
         curUrl := an_episode.theEpisodeUrl();
         if isOnlinePodcast(curUrl) then
-          failUrl := getOnlinePodcast(episode_index, formCallback,DoOnFailedReadEpisode)
+          failUrl := getOnlinePodcast(episode_index, DoOnWriteStream,DoOnFailedReadEpisode)
         else
-          failUrl := readLocalPodcast(episode_index, formCallback, program_path);
+          failUrl := readLocalPodcast(episode_index, DoOnWriteStream, program_path);
         if failUrl <> '' then
           failed_episodes.Add(curUrl);
       end;
-     // podcastForm.Caption := 'Downloading ' + intToStr(episode_index+1) + '/' + intToStr(FNumberItems);
     end;
   except
     on E: ECancelException do
@@ -443,7 +438,7 @@ end;
 
 
 
-     function TRssPodcast.readPodcast(url_or_file, program_path: string; formCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast):integer;
+     function TRssPodcast.readPodcast(url_or_file, program_path: string; DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast):integer;
 var
   episode_index: integer;
   myXmlRec: TXmlEpisode;
@@ -451,7 +446,7 @@ var
   podcastIntro, xmlItem, commentedXml: string;
 begin
   inherited Create;
-  commentedXml := urlOrTestFile(url_or_file, program_path, formCallback, DoOnFailedReadPodcast);
+  commentedXml := urlOrTestFile(url_or_file, program_path, DoOnWriteStream, DoOnFailedReadPodcast);
   FPodcastXmlText := deleteComments(commentedXml);
   podcastIntro := getRssTitleDesc(FPodcastXmlText);
   ItemStrs := getEpisodeItems(FPodcastXmlText);

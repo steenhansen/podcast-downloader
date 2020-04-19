@@ -4,8 +4,6 @@ unit download_stream;
 
 interface
 
-
-
 uses
 
   {$IFDEF ALLOW_GUI_STATE}
@@ -19,9 +17,8 @@ uses
   progress_stream;
 
 const
-  HTTP_TIMEOUT = 1000;    // default 1000 , note has a backoff, 1000,2000,3000,4000,5000mSec
-
-  HTTP_RETRIES = 5;          // default 5
+  HTTP_TIMEOUT = 1000;    //  note has a backoff, 1000,2000,3000,4000,5000mSec
+  HTTP_RETRIES = 5;
   DOWNLOAD_BUFFER_SIZE = fphttpclient.ReadBufLen;
 
 type
@@ -29,19 +26,18 @@ type
   TDownloadStream = class(TProgressStream)
   private
   public
-    constructor Create(tempPathname: string; fileNumber: integer; formCallback: TOnWriteStream);
+    constructor Create(tempPathname: string; fileNumber: integer; DoOnWriteStream: TOnWriteStream);
     destructor Destroy; override;
   published
   end;
 
-
 procedure downloadAnEpisode(mediaUrl, the_save_directory, fileName: string; fileNumber: integer;
-  onWriteCallback: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode);
-
-function urlOrTestFile(url_or_file, program_path: string; onWriteCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast): string;
-procedure downloadThePodcast(mediaUrl, the_save_directory, filename: string; onWriteCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast);
-
-function tryReadMediaFile2(mediaUrl, tempPathname: string; fileNumber: integer; onWriteCallback: TOnWriteStream;
+  DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode);
+function urlOrTestFile(url_or_file, program_path: string; DoOnWriteStream: TOnWriteStream;
+  DoOnFailedReadPodcast: TOnFailedReadPodcast): string;
+procedure downloadThePodcast(mediaUrl, the_save_directory, filename: string; DoOnWriteStream: TOnWriteStream;
+  DoOnFailedReadPodcast: TOnFailedReadPodcast);
+function getInternetEpisode(mediaUrl, tempPathname: string; fileNumber: integer; DoOnWriteStream: TOnWriteStream;
   DoOnFailedReadEpisode: TOnFailedReadEpisode): boolean;
 
 implementation
@@ -50,9 +46,9 @@ uses
   dirs_files,
   consts_types;
 
-constructor TDownloadStream.Create(tempPathname: string; fileNumber: integer; formCallback: TOnWriteStream);
+constructor TDownloadStream.Create(tempPathname: string; fileNumber: integer; DoOnWriteStream: TOnWriteStream);
 begin
-  inherited Create(tempPathname, fileNumber, formCallback);
+  inherited Create(tempPathname, fileNumber, DoOnWriteStream);
 end;
 
 destructor TDownloadStream.Destroy;
@@ -65,7 +61,6 @@ begin
   SetString(Result, PAnsiChar(M.Memory), M.Size);
 end;
 
-
 function makeHttpConnection(): TFPHTTPClient;
 var
   mediaHttp: TFPHTTPClient;
@@ -76,9 +71,6 @@ begin
   mediaHttp.IOTimeout := HTTP_TIMEOUT;
   Result := mediaHttp;
 end;
-
-
-
 
 function nowAsFileNamable(): string;
 var
@@ -91,30 +83,22 @@ begin
   todayDash := StringReplace(todayStr, DATE_SLASH, '-', [rfReplaceAll, rfIgnoreCase]);
   timeDash := StringReplace(timeStr, ':', '-', [rfReplaceAll, rfIgnoreCase]);
   Result := todayDash + '_' + timeDash;
-
 end;
 
-
-
-
-procedure downloadThePodcast(mediaUrl, the_save_directory, filename: string; onWriteCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast);
+procedure downloadThePodcast(mediaUrl, the_save_directory, filename: string; DoOnWriteStream: TOnWriteStream;
+  DoOnFailedReadPodcast: TOnFailedReadPodcast);
 var
   real_name: string;
-   downloaded_fine: boolean;
+  downloaded_fine: boolean;
 begin
-        {$IFDEF ALLOW_GUI_STATE}
+  {$IFDEF ALLOW_GUI_STATE}
   mouseConnectToUrl();
-      {$ENDIF}
+  {$ENDIF}
   real_name := the_save_directory + PathDelim + filename;
-
-      //   DoOnFailedReadPodcast to show that it wasn't like there with showmessage??
-  downloaded_fine := tryReadMediaFile2(mediaUrl, real_name, 49, onWriteCallback, DoOnFailedReadPodcast);
-  if NOT downloaded_fine then
+  downloaded_fine := getInternetEpisode(mediaUrl, real_name, 49, DoOnWriteStream, DoOnFailedReadPodcast);
+  if not downloaded_fine then
     raise Exception.Create(fileName);
 end;
-
-
-
 
 function readTextFile(real_name: string): string;
 var
@@ -134,10 +118,7 @@ begin
   Result := txt;
 end;
 
-
-
-
-function tryReadMediaFile2(mediaUrl, tempPathname: string; fileNumber: integer; onWriteCallback: TOnWriteStream;
+function getInternetEpisode(mediaUrl, tempPathname: string; fileNumber: integer; DoOnWriteStream: TOnWriteStream;
   DoOnFailedReadEpisode: TOnFailedReadEpisode): boolean;
 var
   urlStream: TDownloadStream;
@@ -148,7 +129,7 @@ var
   procedure startConnect();
   begin
     InitSSLInterface();
-    urlStream := TDownloadStream.Create(tempPathname, fileNumber, onWriteCallback);
+    urlStream := TDownloadStream.Create(tempPathname, fileNumber, DoOnWriteStream);
     mediaHttp := makeHttpConnection();
     numTrys := 0;
     isDone := False;
@@ -160,18 +141,18 @@ var
     urlStream.Free;
   end;
 
-  function readTheFile():boolean;
+  function readTheFile(): boolean;
   var
-    io_time_out:integer;
+    io_time_out: integer;
   begin
     io_time_out := (numTrys + 1) * HTTP_TIMEOUT;             // 1000mSec, 2000mSec, 3000mSec
     mediaHttp.IOTimeout := io_time_out;
     mediaHttp.HTTPMethod('GET', mediaUrl, urlStream, [200]);
     isDone := True;
-    Result:=isDone;
+    Result := isDone;
   end;
 
-  function giveUpOnFile():boolean;
+  function giveUpOnFile(): boolean;
   begin
     numTrys := numTrys + 1;
     if numTrys = HTTP_RETRIES then
@@ -185,23 +166,23 @@ var
     Result := isDone;
   end;
 
-  function multipleReadAttempts():boolean;
+  function multipleReadAttempts(): boolean;
   begin
-      repeat
-        try
-          isDone :=readTheFile();
-          Result := True;
-        except
-          on E: ECancelException do
-            raise;
-          on E: Exception do
-          begin
-           isDone := giveUpOnFile();
-           Result := False;
-          end;
+    repeat
+      try
+        isDone := readTheFile();
+        Result := True;
+      except
+        on E: ECancelException do
+          raise;
+        on E: Exception do
+        begin
+          isDone := giveUpOnFile();
+          Result := False;
         end;
-      until isDone;
-   end;
+      end;
+    until isDone;
+  end;
 
 begin
   try
@@ -213,33 +194,33 @@ begin
         raise;
     end;
   finally
-     finishFile();
+    finishFile();
   end;
 end;
 
 procedure downloadAnEpisode(mediaUrl, the_save_directory, fileName: string; fileNumber: integer;
-  onWriteCallback: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode);
+  DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode);
 var
   tempPathname: string;
   realPathname: string;
-   download_fine:boolean;
+  download_fine: boolean;
 begin
   try
     realPathname := the_save_directory + PathDelim + fileName;
     if not FileExists(realPathname) then
     begin
       tempPathname := the_save_directory + PathDelim + '_partial_' + fileName;
-      download_fine := false;
+      download_fine := False;
       try
       {$IFDEF ALLOW_GUI_STATE}
         mouseConnectToUrl();
       {$ENDIF}
-       download_fine := tryReadMediaFile2(mediaUrl, tempPathname, fileNumber, onWriteCallback, DoOnFailedReadEpisode);
+        download_fine := getInternetEpisode(mediaUrl, tempPathname, fileNumber, DoOnWriteStream, DoOnFailedReadEpisode);
       except
         on E: ECancelException do
           raise;
       end;
-      if NOT download_fine then
+      if not download_fine then
         raise Exception.Create(fileName);
     end;
   finally
@@ -252,13 +233,13 @@ begin
   end;
 end;
 
-function readToFile(episodeUrl, filename: string; onWriteCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast): string;
+function readToFile(episodeUrl, filename: string; DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast: TOnFailedReadPodcast): string;
 var
   temp_folder, real_name, txt, protocoledUrl: string;
 begin
   temp_folder := GetTempDir(True);
   protocoledUrl := getUrlProtocol(episodeUrl);
-  downloadThePodcast(protocoledUrl, temp_folder, filename, onWriteCallback, DoOnFailedReadPodcast);
+  downloadThePodcast(protocoledUrl, temp_folder, filename, DoOnWriteStream, DoOnFailedReadPodcast);
   real_name := temp_folder + PathDelim + filename;
   txt := readTextFile(real_name);
   deletefile(real_name);
@@ -271,17 +252,18 @@ var
   xmlData, all_path: string;
 begin
   try
-  stream := TMemoryStream.Create;
-  all_path := program_path + trimmedPath;
-  stream.LoadFromFile(all_path);
-  xmlData := MemoryStreamToString2(stream);
-  Result := xmlData;
+    stream := TMemoryStream.Create;
+    all_path := program_path + trimmedPath;
+    stream.LoadFromFile(all_path);
+    xmlData := MemoryStreamToString2(stream);
+    Result := xmlData;
   finally
     FreeAndNil(stream);
   end;
 end;
 
-function urlOrTestFile(url_or_file, program_path: string; onWriteCallback: TOnWriteStream; DoOnFailedReadPodcast:TOnFailedReadPodcast): string;
+function urlOrTestFile(url_or_file, program_path: string; DoOnWriteStream: TOnWriteStream;
+  DoOnFailedReadPodcast: TOnFailedReadPodcast): string;
 var
   trimmedPath, filename: string;
   dateTimeStr: string;
@@ -291,33 +273,10 @@ begin
   begin
     dateTimeStr := nowAsFileNamable();
     filename := RSS_TEMP_FILE + dateTimeStr;
-
-    Result := readToFile(trimmedPath, filename, onWriteCallback, DoOnFailedReadPodcast);
+    Result := readToFile(trimmedPath, filename, DoOnWriteStream, DoOnFailedReadPodcast);
   end
   else
     Result := readToMemory(trimmedPath, program_path);
 end;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end.

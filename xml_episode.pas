@@ -9,42 +9,20 @@ interface
 uses
 
   {$IfDef ALLOW_DEBUG_SERVER}
-   // debug_server,                     // Can use SendDebug('my debug message') from dbugintf
+  // debug_server,                     // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
   strUtils, HTTPDefs, Classes, SysUtils, regexpr,
-
- consts_types;
-
+  consts_types;
 
 const
 
- DESC_CDATA_REGEX = '<description[^>]*>(.*)</description>';
- TITLE_CDATA_REGEX = '<title[^>]*>(.*)</title>';
+  DESC_CDATA_REGEX = '<description[^>]*>(.*)</description>';
+  TITLE_CDATA_REGEX = '<title[^>]*>(.*)</title>';
 
 function eraseStr(mainStr, strToErase: string): string;
-   function removeCDataHtmlElem(cdata_string: string): string;
-
-
-
-
-
-
-
-
+function removeCDataHtmlElem(cdata_string: string): string;
 function getTheDesc(descriptionElement: string): string;
 function getPodcastTitle(descriptionElement: string): string;
-
-
-
-
-
-
-
-
-
-
-
-
 function urlOfEpisode(enclosureElement: string): string;
 function filenameOfEpisode(enclosureElement: string): string;
 function bytesOfEpisode(enclosureElement: string): integer;
@@ -54,7 +32,7 @@ type
 
   TXmlEpisode = class(TObject)
   private
-    FEpisodeTitle:string;
+    FEpisodeTitle: string;
     FDescEpisode: string;
     FUrlEpisode: string;
     FFilenameEpisode: string;
@@ -70,12 +48,12 @@ type
     function isValidDownload(): boolean;
     function theEpisodeFilename(): string;
     function theEpisodeTitle(): string;
-     function theEpisodeDescription(): string;
+    function theEpisodeDescription(): string;
   published
 
   end;
 
-   TXmlEpisodes = array of TXmlEpisode;
+  TXmlEpisodes = array of TXmlEpisode;
 
 function htmlCharEntities(no_html: string): string;
 
@@ -83,9 +61,6 @@ const
   CASE_INSENSITIVE = True;
 
 implementation
-
-
-
 
 function eraseStr(mainStr, strToErase: string): string;
 var
@@ -97,45 +72,39 @@ end;
 
 function removeCDataHtmlElem(cdata_string: string): string;
 var
-no_cdata_elems: string;
+  no_cdata_elems: string;
 begin
-no_cdata_elems := eraseStr(cdata_string, '<![CDATA[');
-no_cdata_elems := eraseStr(no_cdata_elems, ']]>');
-no_cdata_elems := AdjustLineBreaks(no_cdata_elems, tlbsCRLF);
-no_cdata_elems := StringReplace(no_cdata_elems, LINE_ENDING, ' ', [rfReplaceAll]);
-no_cdata_elems := ReplaceRegExpr('<[^>]*>', no_cdata_elems, '', False);
-no_cdata_elems := ReplaceRegExpr('&lt;[^&]*&gt;', no_cdata_elems, '', False);
-Result := no_cdata_elems;
+  no_cdata_elems := eraseStr(cdata_string, '<![CDATA[');
+  no_cdata_elems := eraseStr(no_cdata_elems, ']]>');
+  no_cdata_elems := AdjustLineBreaks(no_cdata_elems, tlbsCRLF);
+  no_cdata_elems := StringReplace(no_cdata_elems, LINE_ENDING, ' ', [rfReplaceAll]);
+  no_cdata_elems := ReplaceRegExpr('<[^>]*>', no_cdata_elems, '', False);
+  no_cdata_elems := ReplaceRegExpr('&lt;[^&]*&gt;', no_cdata_elems, '', False);
+  Result := no_cdata_elems;
 end;
-
-
-
 
 function getNoHtml(descriptionElement, title_desc_regex: string): string;
 var
-  just_desc, no_entities, no_html_desc              : string;
-   RegexObj: TRegExpr;
+  just_desc, no_entities, no_html_desc: string;
+  RegexObj: TRegExpr;
 begin
-   try
-
+  try
     RegexObj := TRegExpr.Create(title_desc_regex);
-     RegExprModifierI := CASE_INSENSITIVE;
-     RegexObj.Exec(descriptionElement);
-
-               just_desc := RegexObj.Match[1];
-                no_html_desc :=removeCDataHtmlElem(just_desc);
-  no_entities := htmlCharEntities(no_html_desc);
-  Result := no_entities;
-   finally
+    RegExprModifierI := CASE_INSENSITIVE;
+    RegexObj.Exec(descriptionElement);
+    just_desc := RegexObj.Match[1];
+    no_html_desc := removeCDataHtmlElem(just_desc);
+    no_entities := htmlCharEntities(no_html_desc);
+    Result := no_entities;
+  finally
     RegexObj.Free
   end;
 
 end;
 
-
 function getTheDesc(descriptionElement: string): string;
 var
-   desc_episode:string;
+  desc_episode: string;
 begin
   desc_episode := getNoHtml(descriptionElement, DESC_CDATA_REGEX);
   Result := desc_episode;
@@ -143,7 +112,7 @@ end;
 
 function getPodcastTitle(descriptionElement: string): string;
 var
-   desc_episode:string;
+  desc_episode: string;
 begin
   desc_episode := getNoHtml(descriptionElement, TITLE_CDATA_REGEX);
   Result := desc_episode;
@@ -153,33 +122,20 @@ constructor TXmlEpisode.Create(itemString: string);
 var
   enclosureParts: string;
 begin
-  FEpisodeTitle :=  getPodcastTitle(itemString);
+  FEpisodeTitle := getPodcastTitle(itemString);
   FDescEpisode := getTheDesc(itemString);
   enclosureParts := enclosureOfEpisode(itemString);
   FValidDownload := False;
   FBytesEpisode := 0;
- // if enclosureParts <> '' then
- // begin
-    FUrlEpisode := urlOfEpisode(enclosureParts);
-    //if FUrlEpisode <> '' then                         // heist bug
-    //begin
-      FFilenameEpisode := filenameOfEpisode(enclosureParts);
-      if FFilenameEpisode <> '' then
-      begin
-        FBytesEpisode := bytesOfEpisode(enclosureParts);
-        FSearchTextEpisode := FFilenameEpisode + ' ' + FEpisodeTitle +' ' + FDescEpisode;
-        FValidDownload := True;
-      end;
-    //end
-  //end;
+  FUrlEpisode := urlOfEpisode(enclosureParts);
+  FFilenameEpisode := filenameOfEpisode(enclosureParts);
+  if FFilenameEpisode <> '' then
+  begin
+    FBytesEpisode := bytesOfEpisode(enclosureParts);
+    FSearchTextEpisode := FFilenameEpisode + ' ' + FEpisodeTitle + ' ' + FDescEpisode;
+    FValidDownload := True;
+  end;
 end;
-
-
-
-
-
-
-
 
 function TXmlEpisode.containsSearch(searchStr: string): boolean;
 var
@@ -195,12 +151,6 @@ begin
     hasStr := False;
   Result := hasStr;
 end;
-
-
-
-
-
-
 
 function filenameOfEpisode(enclosureElement: string): string;
 var
@@ -224,7 +174,6 @@ begin
     end;
   Result := fileName;
 end;
-
 
 function urlOfEpisode(enclosureElement: string): string;
 var
@@ -261,10 +210,10 @@ begin
       RegExprModifierI := CASE_INSENSITIVE;
       RegexObj.Exec(enclosureElement);
       byteLength := RegexObj.Match[1];
-      if byteLength='' then
-        numberBytes:=0
+      if byteLength = '' then
+        numberBytes := 0
       else
-          numberBytes := StrToInt(byteLength);
+        numberBytes := StrToInt(byteLength);
       Result := numberBytes;
     except
       Result := 0;
@@ -294,15 +243,11 @@ begin
   end;
 end;
 
-
-
-
 function htmlCharEntities(no_html: string): string;
 
   procedure replaceAll(html_text, normal_text: string);
   begin
-    no_html := StringReplace(no_html, html_text, normal_text,
-      [rfReplaceAll, rfIgnoreCase]);
+    no_html := StringReplace(no_html, html_text, normal_text, [rfReplaceAll, rfIgnoreCase]);
   end;
 
 begin
@@ -311,23 +256,16 @@ begin
 
   replaceAll('&ndash;', '-');
   replaceAll('&#8211;', '-');
-
-
-   replaceAll('&mdash;', '-');
+  replaceAll('&mdash;', '-');
   replaceAll('&#8212;', '-');
-
-
-
-
-
 
   replaceAll('&lt;', '<');
   replaceAll('&#60;', '<');
-    replaceAll('&#060;', '<');
+  replaceAll('&#060;', '<');
 
   replaceAll('&gt;', '>');
   replaceAll('&#62;', '>');
-    replaceAll('&#062;', '>');
+  replaceAll('&#062;', '>');
 
   replaceAll('&amp;', '&');
   replaceAll('&#38;', '&');
@@ -335,23 +273,19 @@ begin
 
   replaceAll('&quot;', '"');
   replaceAll('&#34;', '"');
-   replaceAll('&#034;', '"');
+  replaceAll('&#034;', '"');
   replaceAll('&#8220;', '"');
   replaceAll('&#8221;', '"');
 
   replaceAll('&apos;', '''');
   replaceAll('&#39;', '''');
-    replaceAll('&#039;', '''');   // Nasa Pictures need this
+  replaceAll('&#039;', '''');   // Nasa Pictures need this
   replaceAll('&#8217;', '''');
-    replaceAll('&#8216;', '''');
+  replaceAll('&#8216;', '''');
+  replaceAll('&lsquo;', '''');
+  replaceAll('&rsquo;', '''');
 
-
-     replaceAll('&lsquo;', '''');
-      replaceAll('&rsquo;', '''');
-
-
-
-  replaceAll('&cent;', '¢');
+   replaceAll('&cent;', '¢');
   replaceAll('&#162;', '¢');
 
   replaceAll('&pound;', '£');
@@ -392,7 +326,6 @@ begin
   Result := FBytesEpisode;
 end;
 
-
 function TXmlEpisode.theEpisodeTitle(): string;
 begin
   Result := FEpisodeTitle;
@@ -403,18 +336,15 @@ begin
   Result := FFilenameEpisode;
 end;
 
-  function TXmlEpisode.theEpisodeDescription(): string;
+function TXmlEpisode.theEpisodeDescription(): string;
 begin
   Result := FDescEpisode;
 end;
-
 
 function TXmlEpisode.theEpisodeUrl(): string;
 begin
   Result := FUrlEpisode;
 end;
-
-
 
 
 end.

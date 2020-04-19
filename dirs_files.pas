@@ -7,11 +7,9 @@ interface
 uses
 
   {$IfDef ALLOW_DEBUG_SERVER}
-    //debug_server,                       // Can use SendDebug('my debug message') from dbugintf
+  //debug_server,                       // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
   Classes, SysUtils, RegExpr, strUtils, LazFileUtils, Math;
-
-
 
 function isOnlinePodcast(url_or_file: string): boolean;
 function fileDirName(url_or_file: string): string;
@@ -24,11 +22,7 @@ function mbFileSize(fileByteSize: integer): string;
 implementation
 
 uses
-   consts_types;
-
-
-
-
+  consts_types;
 
 function getUrlProtocol(url: string): string;
 var
@@ -41,7 +35,6 @@ begin
   end
   else
     Result := url;
-
 end;
 
 function isOnlinePodcast(url_or_file: string): boolean;
@@ -54,13 +47,11 @@ begin
     Result := True
   else
     Result := False;
-
 end;
 
 function fileDirName(url_or_file: string): string;
 var
   rssUrlHttp, rssUrlPlain, dirFileName: string;
-  //RegexObj: TRegExpr;
 begin
   if isOnlinePodcast(url_or_file) then
   begin
@@ -75,17 +66,15 @@ begin
   Result := dirFileName;
 end;
 
-
 function deskDirName(rssUrl: string): string;
 var
   urlNoQuest: string;
   trimmedPath, dirFileName, desktopPath, dirName: string;
 begin
   urlNoQuest := ReplaceRegExpr('\?.*', rssUrl, '', False);
-  //  https://s.ch9.ms/Events/MIX/MIX11/RSS/mp4high?WT.mc_id=-blog-scottha
   trimmedPath := Trim(urlNoQuest);
   dirFileName := fileDirName(trimmedPath);
-  desktopPath := AppendPathDelim(GetUserDir + 'Desktop');                                                //   qu*bert AppendPathDelim(GetUserDir + 'Desktop');
+  desktopPath := AppendPathDelim(GetUserDir + 'Desktop');
   dirName := desktopPath + dirFileName + PathDelim;
   Result := dirName;
 end;
@@ -95,7 +84,7 @@ var
   filePath, xmlFileName: string;
 begin
   xmlFileName := '_' + fileDirName(rssUrl) + '.xml';
-  filePath := chosenDir + PathDelim  + xmlFileName;
+  filePath := chosenDir + PathDelim + xmlFileName;
   Result := filePath;
 end;
 
@@ -118,8 +107,7 @@ begin
     i := 0;
     while fileByteSize > Power(1024, i + 1) do
       Inc(i);
-    mbSize := FormatFloat('000.00', fileByteSize / IntPower(1024, i)) +
-      ' ' + Description[i];
+    mbSize := FormatFloat('000.00', fileByteSize / IntPower(1024, i)) + ' ' + Description[i];
     Result := mbSize;
   end;
 end;
