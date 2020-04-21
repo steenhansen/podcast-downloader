@@ -22,8 +22,7 @@ begin
   InitKeyBoard();
   repeat
     try
-      console_lines := readAPodcast();                                                      // not a test
-      //   console_lines :=readAPodcast('https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss');  // a test
+      console_lines := readAPodcast();
     except
       quit_character := consoleWaitForUpperKey(SHOW_CANCELLED_CONSOL);
     end;

@@ -7,13 +7,16 @@ uses
   //debug_server,
 
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Buttons, CheckLst, Menus, ActnList, regexpr, LazFileUtils, lazlogger, BCMDButton, Types,
+  Buttons, CheckLst, Menus, ActnList, ComCtrls, regexpr, LazFileUtils, lazlogger, BCMDButton, Types,
 
   gui_state,
   selection_mediator,
   checks_descriptions;
 
 type
+
+  { TPodcastForm }
+
   TPodcastForm = class(TForm)
     clbEpisodeFiles: TCheckListBox;
     gbEpisodesToDownload: TGroupBox;
@@ -23,13 +26,16 @@ type
     memFailedFiles: TMemo;
     menuAudio: TMenuItem;
     menuBostonGlobe: TMenuItem;
-    MenuHeist: TMenuItem;
+    menuHeist: TMenuItem;
+    MenuItem1: TMenuItem;
+    menuSffPodcast: TMenuItem;
+    menuRsdClick: TMenuItem;
     menuJoeRogan: TMenuItem;
     menuThisAmericanLife: TMenuItem;
     menuPhpRoundTable: TMenuItem;
     btnDownloadChecked: TBCMDButton;
     btnCancel: TBCMDButton;
-    BtnReadRss: TButton;
+    btnReadRss: TButton;
     btnDirectoryChange: TButton;
     btnDownloadAll: TButton;
     btnDownloadFiltered: TButton;
@@ -60,13 +66,13 @@ type
     SelectDirectoryDialog1: TSelectDirectoryDialog;
     splFirst: TSplitter;
     splSecond: TSplitter;
-    StaticText1: TStaticText;
+    upDownFiltered: TUpDown;
 
     procedure btnCancelMouseEnter(Sender: TObject);
     procedure btnCancelMouseLeave(Sender: TObject);
     procedure btnDownloadCheckedMouseEnter(Sender: TObject);
     procedure btnDownloadCheckedMouseLeave(Sender: TObject);
-    procedure BtnReadRssClick(Sender: TObject);
+    procedure btnReadRssClick(Sender: TObject);
     procedure btnStopClick(Sender: TObject);
     procedure btnDownloadAllClick(Sender: TObject);
     procedure clbEpisodeFilesItemClick(Sender: TObject; Index: integer);
@@ -83,8 +89,10 @@ type
     procedure lbEpisodeDescClick(Sender: TObject);
     procedure lbEpisodeDescSelectionChange(Sender: TObject; User: boolean);
     procedure channelNineClick(Sender: TObject);
+    procedure menuSffPodcastClick(Sender: TObject);
+    procedure menuRsdClickClick(Sender: TObject);
     procedure menuSmithsonianPhotosClick(Sender: TObject);
-    procedure MenuHeistClick(Sender: TObject);
+    procedure menuHeistClick(Sender: TObject);
     procedure menuTedTalkClick(Sender: TObject);
     procedure menuJoeRoganClick(Sender: TObject);
     procedure menuThisAmericanLifeClick(Sender: TObject);
@@ -98,7 +106,11 @@ type
     procedure DoOnFailedReadPodcast(Sender: TObject; mediaUrl: string);
     procedure splFirstMoved(Sender: TObject);
     procedure splSecondMoved(Sender: TObject);
+    procedure upDownFilteredClick(Sender: TObject; Button: TUDBtnType);
   private
+    FStateOfGui: TGuiState;
+      FViewSearchMatch, FViewSearchCount: integer;
+        FStartStopIO: string;
   public
     EndProc:
     procedure of object;
@@ -111,17 +123,16 @@ type
   end;
 
 var
-  podcastForm: TPodcastForm;                              ////GGGGlobal names
-  fileSelectionMediator: TSelectionMediator;       ///GGGG
-  guiState: TGuiState;
-  g_view_search_match: integer;
+  g_podcast_form: TPodcastForm;
+  g_selection_mediator: TSelectionMediator;
+
+
 
 
 implementation
 
 uses
   process_data,
-  rss_podcast,
   consts_types;
 
 {$R *.lfm}
@@ -145,7 +156,7 @@ end;
 procedure TPodcastForm.edRssUrlChange(Sender: TObject);
 begin
 
-  guiState.beforeAfterUrl(edRssUrl.Text);
+  FStateOfGui.beforeAfterUrl(edRssUrl.Text);
 end;
 
 procedure TPodcastForm.selectDirBtn(Sender: TObject);
@@ -158,57 +169,74 @@ end;
 procedure TPodcastForm.channelNineClick(Sender: TObject);
 begin
   edRssUrl.Text := 'https://s.ch9.ms/Events/MIX/MIX11/RSS/mp4high';
-  BtnReadRss.Click();
+  btnReadRss.Click();
+
+end;
+
+procedure TPodcastForm.menuSffPodcastClick(Sender: TObject);
+begin
+           edRssUrl.Text := 'https://sffaudio.herokuapp.com/podcast/rss';
+  btnReadRss.Click();
+
+
+end;
+
+procedure TPodcastForm.menuRsdClickClick(Sender: TObject);
+begin
+
+
+          edRssUrl.Text := 'https://sffaudio.herokuapp.com/rsd/rss';
+  btnReadRss.Click();
 
 end;
 
 procedure TPodcastForm.menuSmithsonianPhotosClick(Sender: TObject);
 begin
   edRssUrl.Text := 'https://www.smithsonianmag.com/rss/photos/';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
-procedure TPodcastForm.MenuHeistClick(Sender: TObject);
+procedure TPodcastForm.menuHeistClick(Sender: TObject);
 begin
   edRssUrl.Text := 'https://heistpodcast.libsyn.com/rss';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
 procedure TPodcastForm.menuTedTalkClick(Sender: TObject);
 begin
   edRssUrl.Text := 'http://feeds.feedburner.com/TEDTalks_video';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
 procedure TPodcastForm.menuJoeRoganClick(Sender: TObject);
 begin
   edRssUrl.Text := 'http://joeroganexp.joerogan.libsynpro.com/rss';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 
 end;
 
 procedure TPodcastForm.menuThisAmericanLifeClick(Sender: TObject);
 begin
   edRssUrl.Text := 'https://ia801605.us.archive.org/25/items/tefc16_gmail_Tal/tal.xml';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
 procedure TPodcastForm.menuPhpRoundTableClick(Sender: TObject);
 begin
   edRssUrl.Text := 'http://feeds.feedburner.com/PhpRoundtable';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
 procedure TPodcastForm.menuNasaClick(Sender: TObject);
 begin
   edRssUrl.Text := 'https://www.nasa.gov/rss/dyn/lg_image_of_the_day.rss';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
 procedure TPodcastForm.menuSffAudioClick(Sender: TObject);
 begin
   edRssUrl.Text := 'https://sffaudio.herokuapp.com/pdf/rss';
-  BtnReadRss.Click();
+  btnReadRss.Click();
 end;
 
 procedure TPodcastForm.DoScrollclbEpisodeFiles(Sender: TObject);
@@ -232,14 +260,14 @@ end;
 procedure TPodcastForm.btnDownloadAllClick(Sender: TObject);
 begin
   process_b_all();
-  guiState.setState(GUI_ONE_CHECKMARK_5);
+  FStateOfGui.setState(GUI_ONE_CHECKMARK_5);
 end;
 
 procedure TPodcastForm.btnDownloadNoneClick(Sender: TObject);
 begin
 
   process_b_none();
-  guiState.setState(GUI_AFTER_RSS_PROCESSED_4);
+  FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4);
 end;
 
 procedure TPodcastForm.edtCopyableExampleClick(Sender: TObject);
@@ -247,29 +275,29 @@ begin
   edtCopyableExample.SelectAll;
 end;
 
-procedure TPodcastForm.BtnReadRssClick(Sender: TObject);
+procedure TPodcastForm.btnReadRssClick(Sender: TObject);
 var
   rss_url_404_mess, not_rss_podcast_file: string;
   number_episodes: integer;
 begin
-  G_start_stop := '';
+  FStartStopIO := '';
   edtTextFilter.Text := '';
-  guiState.setState(GUI_WHILE_PARSING_RSS_3);
+  FStateOfGui.setState(GUI_WHILE_PARSING_RSS_3);
   try
     number_episodes := process_a_podcast(edRssUrl.Text);
     if number_episodes = 0 then
     begin
       not_rss_podcast_file := 'The URL ' + edRssUrl.Text + ' has no podcast episodes.';
-      MessageDlgEx(not_rss_podcast_file, mtInformation, [mbOK], podcastForm);
-      guiState.setState(GUI_AFTER_A_URL_2);
+      MessageDlgEx(not_rss_podcast_file, mtInformation, [mbOK], g_podcast_form);
+      FStateOfGui.setState(GUI_AFTER_A_URL_2);
     end
     else
-      guiState.setState(GUI_AFTER_RSS_PROCESSED_4);
+      FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4);
   except
-    FreeAndNil(fileSelectionMediator);
-    guiState.setState(GUI_AFTER_A_URL_2);
+    FreeAndNil(g_selection_mediator);
+    FStateOfGui.setState(GUI_AFTER_A_URL_2);
     rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' doesn''t respond.';
-    MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], podcastForm);
+    MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], g_podcast_form);
   end;
 end;
 
@@ -277,15 +305,15 @@ procedure TPodcastForm.clbEpisodeFilesItemClick(Sender: TObject; Index: integer)
 var
   curState, checkedCount: integer;
 begin
-  curState := guiState.getState();
+  curState := FStateOfGui.getState();
   if curState < GUI_WHILE_DOWNLOADING_6 then
   begin
     process_b_choices(Index);
-    checkedCount := fileSelectionMediator.checkedCount(clbEpisodeFiles);
+    checkedCount := g_selection_mediator.checkedCount(clbEpisodeFiles);
     if checkedCount = 0 then
-      guiState.setState(GUI_AFTER_RSS_PROCESSED_4)
+      FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4)
     else
-      guiState.setState(GUI_ONE_CHECKMARK_5);
+      FStateOfGui.setState(GUI_ONE_CHECKMARK_5);
   end
   else
     clbEpisodeFiles.Checked[Index] := not clbEpisodeFiles.Checked[Index];
@@ -328,11 +356,13 @@ begin
       splSecond.left := splSecond.left + 32;
 end;
 
+
+
 procedure TPodcastForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 {$push}{$warn 5024 off}// CloseAction not used
 begin
-  guiState.Free();
-  FreeAndNil(fileSelectionMediator);
+  FStateOfGui.Free();
+  FreeAndNil(g_selection_mediator);
 end;
 
  {$pop}
@@ -367,16 +397,17 @@ begin
     urlToRead := edRssUrl.Text;
     saveDir := edtSaveDirectory.Text;
     clbEpisodeFiles.ClearSelection();
-    guiState.setState(GUI_WHILE_DOWNLOADING_6);
+    FStateOfGui.setState(GUI_WHILE_DOWNLOADING_6);
     failsAndSuccesses := process_c_episodes(urlToRead, saveDir);
     succesfulDownloads := failsAndSuccesses.successCount;
     failedDownloads := failsAndSuccesses.failedCount;
-    finishMess := guiState.finishedMess(succesfulDownloads, failedDownloads);
-    guiState.setState(GUI_AFTER_FINISHED_7);
-    MessageDlgEx(finishMess, mtInformation, [mbOK], podcastForm);
+    finishMess := FStateOfGui.finishedMess(succesfulDownloads, failedDownloads);
+    FStateOfGui.setState(GUI_AFTER_FINISHED_7);
+    MessageDlgEx(finishMess, mtInformation, [mbOK], g_podcast_form);
   finally
-    guiState.setState(GUI_BEFORE_A_URL_1);
-    FreeAndNil(fileSelectionMediator);
+    FStateOfGui.setState(GUI_BEFORE_A_URL_1);            //GUI_BEFORE_A_URL_1);
+    FStateOfGui.setState(GUI_AFTER_A_URL_2);            //GUI_BEFORE_A_URL_1);
+    FreeAndNil(g_selection_mediator);
   end;
 end;
 
@@ -384,19 +415,20 @@ procedure TPodcastForm.btnStopClick(Sender: TObject);
 var
   gui_state: integer;
 begin
-  G_start_stop := GUI_CANCEL_BUTTON_QUIT;
-  gui_state := guiState.getState();
+  FStartStopIO := GUI_CANCEL_BUTTON_QUIT;
+  gui_state := FStateOfGui.getState();
   if (gui_state = GUI_AFTER_RSS_PROCESSED_4) or (gui_state = GUI_ONE_CHECKMARK_5) then
   begin
-    guiState.setState(GUI_BEFORE_A_URL_1);
-    FreeAndNil(fileSelectionMediator);
+    FStateOfGui.setState(GUI_BEFORE_A_URL_1);
+        FStateOfGui.setState(GUI_AFTER_A_URL_2);            //GUI_BEFORE_A_URL_1);
+    FreeAndNil(g_selection_mediator);
   end;
 end;
 
 procedure TPodcastForm.FormKeyPress(Sender: TObject; var Key: char);
 begin
   if Key = ESCAPE_KEY then
-    G_start_stop := GUI_ESCAPE_KEY_QUIT;
+    FStartStopIO := GUI_ESCAPE_KEY_QUIT;
 end;
 
 procedure TPodcastForm.DoDrawItemclbEpisodeFiles(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
@@ -429,7 +461,7 @@ begin
     if lbEpisodeDesc.Selected[episode_index] then
     begin
       display_number := lbEpisodeDesc.Items.Count - episode_index;
-      fileSelectionMediator.displayDescription(episode_index, display_number);
+      g_selection_mediator.displayDescription(episode_index, display_number);
     end;
 end;
 
@@ -444,9 +476,9 @@ end;
 procedure TPodcastForm.DoOnReadPodcast(Sender: TObject; APosition: int64; fileNumber: integer);
 {$push}{$warn 5024 off}// fileNumber not used
 begin
-  if G_start_stop <> '' then
-    raise ECancelException.Create(READ_EXCEPTION_PODCAST + EXCEPTION_SPACE + G_start_stop);
-  fileSelectionMediator.readingRss(podcastForm, APosition);
+  if FStartStopIO <> '' then
+    raise ECancelException.Create(READ_EXCEPTION_PODCAST + EXCEPTION_SPACE + FStartStopIO);
+  g_selection_mediator.readingRss(g_podcast_form, APosition);
   Application.ProcessMessages;
 end;
 {$pop}
@@ -462,9 +494,9 @@ procedure TPodcastForm.DoOnWriteEpisode(Sender: TObject; APosition: int64; fileN
 var
   num_files: integer;
 begin
-  if G_start_stop <> '' then
-    raise ECancelException.Create(WRITE_EXCEPTION_EPISODE + EXCEPTION_SPACE + G_start_stop);
-  fileSelectionMediator.readingMediaFile(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, fileNumber, APosition);
+  if FStartStopIO <> '' then
+    raise ECancelException.Create(WRITE_EXCEPTION_EPISODE + EXCEPTION_SPACE + FStartStopIO);
+  g_selection_mediator.readingMediaFile(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, fileNumber, APosition);
   num_files := clbEpisodeFiles.Count;
   lblDownloadingXofY.Caption := 'Downloading ' + IntToStr(fileNumber + 1) + '/' + IntToStr(num_files);
   Application.ProcessMessages;
@@ -485,50 +517,68 @@ begin
   clbEpisodeFiles.OnDrawItem := @DoDrawItemclbEpisodeFiles;
   lbEpisodeTitle.OnDrawItem := @DoDrawItemlbEpisodeTitle;
   lbEpisodeDesc.OnDrawItem := @DoDrawItemlbEpisodeDesc;
-  guiState := TGuiState.Create(podcastForm);
-  guiState.initCaptions();
-  fileSelectionMediator.readingRss(podcastForm, 0);
+  FStateOfGui := TGuiState.Create(g_podcast_form);
+  FStateOfGui.initCaptions();
+  g_selection_mediator.readingRss(g_podcast_form, 0);
   clbEpisodeFiles.Clear;
   lbEpisodeTitle.Clear;
   lbEpisodeDesc.Clear;
 end;
 
-procedure TPodcastForm.edtTextFilterChange(Sender: TObject);
+
+
+procedure TPodcastForm.FormActivate(Sender: TObject);
 begin
-  fileSelectionMediator.showFilterMatch(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, edtTextFilter, btnDownloadFiltered);
-  g_view_search_match := 0;
+  g_selection_mediator := nil;
+  //  FStateOfGui.setState(GUI_BEFORE_A_URL_1);
+  FStateOfGui.setState(GUI_AFTER_A_URL_2);
 end;
+
+
+
 
 procedure TPodcastForm.btnDownloadFilteredClick(Sender: TObject);
 var
   checkedFileCount: integer;
   checked_and_total_size: TCheckedAndTotalSize;
   search_text: string;
-  top_episode_search_index: integer;
 begin
   search_text := edtTextFilter.Text;
   checked_and_total_size := process_b_filter(search_text);
   checkedFileCount := checked_and_total_size.checkedFileCount;
   if checkedFileCount = 0 then
-    guiState.setState(GUI_AFTER_RSS_PROCESSED_4)
+    FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4)
   else
-    guiState.setState(GUI_ONE_CHECKMARK_5);
-  top_episode_search_index := process_b_index_of_filter(search_text, g_view_search_match);
+    FStateOfGui.setState(GUI_ONE_CHECKMARK_5);
+end;
+
+procedure TPodcastForm.upDownFilteredClick(Sender: TObject; Button: TUDBtnType);
+var
+  search_text: string;
+ top_episode_search_index: integer;
+begin
+   search_text := edtTextFilter.Text;
+  top_episode_search_index := process_b_index_of_filter(search_text, FViewSearchMatch);
   clbEpisodeFiles.TopIndex := top_episode_search_index;
   lbEpisodeDesc.TopIndex := top_episode_search_index;
   lbEpisodeTitle.TopIndex := top_episode_search_index;
-  if g_view_search_match = checkedFileCount then
-    g_view_search_match := 0
+  if Button =btPrev then
+    if FViewSearchMatch = FViewSearchCount then
+      FViewSearchMatch := 0
+    else
+      FViewSearchMatch := FViewSearchMatch + 1
   else
-    g_view_search_match := g_view_search_match + 1;
+    if FViewSearchMatch = 0 then
+      FViewSearchMatch := FViewSearchCount
+    else
+      FViewSearchMatch := FViewSearchMatch - 1;
 end;
 
-procedure TPodcastForm.FormActivate(Sender: TObject);
+ procedure TPodcastForm.edtTextFilterChange(Sender: TObject);
 begin
-  fileSelectionMediator := nil;
-  //  guiState.setState(GUI_BEFORE_A_URL_1);
-  guiState.setState(GUI_AFTER_A_URL_2);
+ FViewSearchCount := g_selection_mediator.showFilterMatch(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, edtTextFilter, btnDownloadFiltered);
+ FViewSearchMatch := 0;
+ FStateOfGui.searchButtons();
 end;
-
 
 end.

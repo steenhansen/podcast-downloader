@@ -20,16 +20,13 @@ function process_b_all(): integer;
 function process_b_none(): integer;
 function process_b_choices(index: integer; are_testing: boolean = False): integer;
 function process_b_filter(filteredText: string): TCheckedAndTotalSize;
-
 function process_b_index_of_filter(search_text: string; ith_search_index: integer): integer;
-
-
 function process_c_episodes(podcast_file, saveDir: string): TFailsAndSuccesses;
 
 implementation
 
 uses
-  rss_podcast, selection_mediator,
+  selection_mediator,
   dirs_files,
   form_events;
 
@@ -38,14 +35,14 @@ var
   number_episodes: integer;
   totalFileSize: integer;
 begin
-  with PodcastForm do
+  with g_podcast_form do
   begin
-    if fileSelectionMediator <> nil then
-      fileSelectionMediator.Free();
-    fileSelectionMediator := TSelectionMediator.Create(podcast_file);
-    number_episodes := fileSelectionMediator.readRssFile(edtSaveDirectory, podcastForm, lblPodcastDescription,
+    if g_selection_mediator <> nil then
+      g_selection_mediator.Free();
+    g_selection_mediator := TSelectionMediator.Create(podcast_file);
+    number_episodes := g_selection_mediator.readRssFile(edtSaveDirectory, g_podcast_form, lblPodcastDescription,
       @DoOnReadPodcast, @DoOnFailedReadPodcast);
-    totalFileSize := fileSelectionMediator.makeCheckList(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, btnDownloadAll);
+    totalFileSize := g_selection_mediator.makeCheckList(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, btnDownloadAll);
   end;
   if totalFileSize > 0 then
     Result := totalFileSize
@@ -59,10 +56,10 @@ function process_b_none(): integer;
 var
   fileSizeChecked: integer;
 begin
-  with PodcastForm do
+  with g_podcast_form do
   begin
-    fileSelectionMediator.checkedNoneOfThem(clbEpisodeFiles, lbEpisodeDesc);
-    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
+    g_selection_mediator.checkedNoneOfThem(clbEpisodeFiles, lbEpisodeDesc);
+    fileSizeChecked := g_selection_mediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
   end;
   Result := fileSizeChecked;
 end;
@@ -73,11 +70,11 @@ function process_b_choices(index: integer; are_testing: boolean = False): intege
 var
   totalFileSize: integer;
 begin
-  with PodcastForm do
+  with g_podcast_form do
   begin
     if are_testing then
       clbEpisodeFiles.Checked[Index] := not clbEpisodeFiles.Checked[Index];
-    totalFileSize := fileSelectionMediator.clickedBoxNew(clbEpisodeFiles, lbEpisodeDesc, Index, btnDownloadChecked);
+    totalFileSize := g_selection_mediator.clickedBoxNew(clbEpisodeFiles, lbEpisodeDesc, Index, btnDownloadChecked);
   end;
   Result := totalFileSize;
 end;
@@ -88,9 +85,9 @@ var
 begin
   if saveDir = '' then
     saveDir := deskDirName(podcast_file);
-  with PodcastForm do
+  with g_podcast_form do
   begin
-    failsAndSuccesses := fileSelectionMediator.startDownloading(lbEpisodeDesc, @DoOnWriteEpisode, @DoOnFailedReadEpisode, podcast_file, saveDir);
+    failsAndSuccesses := g_selection_mediator.startDownloading(lbEpisodeDesc, @DoOnWriteEpisode, @DoOnFailedReadEpisode, podcast_file, saveDir);
   end;
   Result := failsAndSuccesses;
 end;
@@ -103,10 +100,10 @@ var
   fileSizeChecked, checkedFileCount: integer;
   checked_and_total_size: TCheckedAndTotalSize;
 begin
-  with PodcastForm do
+  with g_podcast_form do
   begin
-    checkedFileCount := fileSelectionMediator.addFilteredToDownload(filteredText, clbEpisodeFiles);
-    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
+    checkedFileCount := g_selection_mediator.addFilteredToDownload(filteredText, clbEpisodeFiles);
+    fileSizeChecked := g_selection_mediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
   end;
   checked_and_total_size.checkedFileCount := checkedFileCount;
   checked_and_total_size.fileSizeChecked := fileSizeChecked;
@@ -118,7 +115,7 @@ function process_b_index_of_filter(search_text: string; ith_search_index: intege
 var
   index_of_filter: integer;
 begin
-  index_of_filter := fileSelectionMediator.getSearchIndex(search_text, ith_search_index);
+  index_of_filter := g_selection_mediator.getSearchIndex(search_text, ith_search_index);
   Result := index_of_filter;
 end;
 
@@ -126,10 +123,10 @@ end;
 var
   fileSizeChecked: integer;
 begin
-  with PodcastForm do
+  with g_podcast_form do
   begin
-    fileSelectionMediator.checkedAllOfThem(clbEpisodeFiles, lbEpisodeDesc);
-    fileSizeChecked := fileSelectionMediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
+    g_selection_mediator.checkedAllOfThem(clbEpisodeFiles, lbEpisodeDesc);
+    fileSizeChecked := g_selection_mediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
   end;
   Result := fileSizeChecked;
 end;

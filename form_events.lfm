@@ -1,9 +1,9 @@
 object podcastForm: TpodcastForm
-  Left = 623
+  Left = 434
   Height = 630
-  Top = 229
+  Top = 300
   Width = 1000
-  BorderIcons = [biSystemMenu]
+  BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Podcast Downloader - 123,456,789 bytes read'
   ClientHeight = 610
@@ -117,7 +117,7 @@ object podcastForm: TpodcastForm
       TabOrder = 0
       Text = 'http://feeds.serialpodcast.org/serialpodcast'
     end
-    object BtnReadRss: TButton
+    object btnReadRss: TButton
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
       Left = 544
@@ -125,7 +125,7 @@ object podcastForm: TpodcastForm
       Top = -4
       Width = 138
       Caption = 'Read Podcast Feed'
-      OnClick = BtnReadRssClick
+      OnClick = btnReadRssClick
       TabOrder = 1
     end
     object edRssUrl: TEdit
@@ -160,28 +160,30 @@ object podcastForm: TpodcastForm
       Left = 8
       Height = 23
       Top = 0
-      Width = 176
+      Width = 256
       AutoSize = False
       AutoSelect = False
       OnChange = edtTextFilterChange
       TabOrder = 0
     end
     object btnDownloadFiltered: TButton
-      Left = 192
+      Left = 296
       Height = 25
-      Top = 0
+      Top = -2
       Width = 248
       Caption = 'Add 12345 Episodes Matching Search Text'
       Color = clInfoBk
       OnClick = btnDownloadFilteredClick
       TabOrder = 1
     end
-    object StaticText1: TStaticText
-      Left = 444
-      Height = 31
-      Top = -2
-      Width = 113
-      Caption = 'Click to View Next'#13#10'Match in Grid Below'
+    object upDownFiltered: TUpDown
+      Left = 272
+      Height = 25
+      Top = -1
+      Width = 17
+      Min = 0
+      OnClick = upDownFilteredClick
+      Position = 0
       TabOrder = 2
     end
   end
@@ -360,7 +362,7 @@ object podcastForm: TpodcastForm
       Left = 517
       Height = 239
       Top = 0
-      Width = 460
+      Width = 459
       Align = alCustom
       Anchors = [akTop, akLeft, akRight, akBottom]
       BorderStyle = bsNone
@@ -426,6 +428,10 @@ object podcastForm: TpodcastForm
       end
       object menuAudio: TMenuItem
         Caption = 'Audio Podcasts'
+        object menuSffPodcast: TMenuItem
+          Caption = 'SFFaudio Podcast'
+          OnClick = menuSffPodcastClick
+        end
         object menuJoeRogan: TMenuItem
           Caption = 'All of ''The Joe Rogan Experience'''
           OnClick = menuJoeRoganClick
@@ -438,10 +444,17 @@ object podcastForm: TpodcastForm
           Caption = 'PHP Roundtable'
           OnClick = menuPhpRoundTableClick
         end
-        object MenuHeist: TMenuItem
+        object menuHeist: TMenuItem
           Caption = 'Heist Podcast'
-          OnClick = MenuHeistClick
+          OnClick = menuHeistClick
         end
+        object menuRsdClick: TMenuItem
+          Caption = 'Reading Short and Deep - SFFaudio'
+          OnClick = menuRsdClickClick
+        end
+      end
+      object MenuItem1: TMenuItem
+        Caption = 'MenuItem1'
       end
     end
   end

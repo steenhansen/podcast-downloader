@@ -32,13 +32,13 @@ uses
 
 procedure T_fast_e2e_local_online.SetUp;
 begin
-  podcastForm.Show();
+  g_podcast_form.Show();
 end;
 
 
 procedure T_fast_e2e_local_online.Teardown;
 begin
-  podcastForm.Hide();
+  g_podcast_form.Hide();
 end;
 
 

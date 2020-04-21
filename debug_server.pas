@@ -21,26 +21,8 @@ interface
 uses
   Classes, SysUtils ;
 
-   type
-
-  // http://www.sourceformat.com/coding-standard-delphi-econos.htm#Components_Prefixes_Standard
-
-
-
-
-  { TPodcastForm }
-
-  TBob = class(TObject) ;
-
-
-
-
 procedure _d(s1: string; i1: integer; i2: integer; i3: integer);
-
-
-    procedure _d(s1:string; i1: integer; s2,s3,s4: string);
-
-
+procedure _d(s1:string; i1: integer; s2,s3,s4: string);
 
 procedure _d(debug_message: string);
 procedure _d(debug_message: string; string_value: string);
@@ -48,12 +30,8 @@ procedure _d(debug_message: string; string_value: string);
 procedure _d(debug_message: string; integer_value: integer);
 procedure _d(integer_value: integer; debug_message: string );
 
-
 procedure _d(str1: string; int1: integer; int2: integer);
-
 procedure _d(m1: string; i1: integer; m2: string; i2: integer; m3: string; i3: integer);
-
-
 
 implementation
 
@@ -67,17 +45,11 @@ uses
    stop_compilation_instruction('Comment out all "use debug_server" to compile 1 or 2 or 3.');
 {$EndIf}
 
-
-
-
-
 //  _d('s1', 1, 2, 3);
 procedure _d(s1: string; i1: integer; i2: integer; i3: integer);
 begin
   SendDebug('[[' +s1 + '::' + IntToStr(i1) + '::' + IntToStr(i2)+ '::' + IntToStr(i3)+ ']]');
 end;
-
-
 
 procedure _d(s1:string; i1: integer; s2,s3,s4: string );
 begin
@@ -87,20 +59,11 @@ begin
   end;
 end;
 
-
-
-
-
-
-
-
-
 //  _d('str');
 procedure _d(debug_message: string);
 begin
   SendDebug(debug_message);
 end;
-
 
 //  _d('str', 'str');
 procedure _d(debug_message: string; string_value: string);
@@ -126,12 +89,6 @@ begin
   SendDebug(str1 + '::' + IntToStr(int1) + '::' + IntToStr(int2));
 end;
 
-
-
-
-
-
-
 procedure _d(m1: string; i1: integer; m2: string; i2: integer);
 begin
   SendDebug(m1 + IntToStr(i1) + '::' + m2 + IntToStr(i2));
@@ -142,8 +99,6 @@ procedure _d(m1: string; i1: integer; m2: string; i2: integer; m3: string; i3: i
 begin
   SendDebug(m1 + IntToStr(i1) + '::' + m2 + IntToStr(i2) + '::' + m3 + IntToStr(i3));
 end;
-
-
 
 end.
 

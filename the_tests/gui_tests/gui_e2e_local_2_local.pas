@@ -32,13 +32,13 @@ uses
 
 procedure TTestCaseE2ELocal2Local.SetUp;
 begin
-  podcastForm.Show();
+  g_podcast_form.Show();
 end;
 
 
 procedure TTestCaseE2ELocal2Local.Teardown;
 begin
-  podcastForm.Hide();
+  g_podcast_form.Hide();
 end;
 
 procedure TTestCaseE2ELocal2Local.process_test_0_e2e_local_to_local_click_3rd;

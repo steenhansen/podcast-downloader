@@ -17,7 +17,7 @@ begin
   Application.Title:='gui_test_runner';
   Application.Initialize;
   Application.CreateForm(TGuiTestRunner, TestRunner);
-  Application.CreateForm(TPodcastForm, podcastForm);
+  Application.CreateForm(TPodcastForm, g_podcast_form);
   Application.CreateForm(TfrmTestDirListDifference, frmTestDirListDifference);
   Application.Run;
 end.

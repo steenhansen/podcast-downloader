@@ -24,9 +24,6 @@ const
   START_CDATA = '<![CDATA[';
   END_CDATA = ']]>';
 
-var
-  G_start_stop: string;
-
 type
   TBooleanArray = array of boolean;
 

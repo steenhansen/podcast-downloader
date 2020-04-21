@@ -10,7 +10,7 @@ uses
 {$ENDIF}
 
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls,
-  Buttons, regexpr, LazFileUtils, lazlogger,
+  Buttons, regexpr, LazFileUtils, lazlogger, ComCtrls,
 
   BCMDButton,
   checks_descriptions  ;
@@ -37,21 +37,23 @@ type
   private
     FForm: TForm;
     FState: integer;
-    FEdURL: TEdit;
-    FBtnReadRss: TButton;
+    FedRssUrl: TEdit;
+    FbtnReadRss: TButton;
     FlblPodcastDescription: TLabel;
-    FEpisodeFiles: TCheckListBox;
-     FEpisodeTitle: TListBox;
-    FEpisodeDesc: TListBox;
-    FFailedFiles: TMemo;
-    FbtnStop: TBCMDButton;
-    Ffilter1: TEdit;
-    FdownloadFiltered: TButton;
+    FclbEpisodeFiles: TCheckListBox;
+     FlbEpisodeTitle: TListBox;
+    FlbEpisodeDesc: TListBox;
+    FmemFailedFiles: TMemo;
+    FbtnCancel: TBCMDButton;
+    FedtTextFilter: TEdit;
+    FbtnDownloadFiltered: TButton;
+    FupDownFiltered:TUpDown;
+
     FbtnDownloadAll: TButton;
-    FdownloadNone: TButton;
+    FbtnDownloadNone: TButton;
     FedtSaveDirectory: TEdit;
-    FButton2: TButton;
-    FdownloadBtn: TBCMDButton;
+    FbtnDirectoryChange: TButton;
+    FbtnDownloadChecked: TBCMDButton;
        FlblDownloadingXofY: TLabel;
     procedure beforeAUrl_1();
     procedure afterAUrl_2();
@@ -61,16 +63,17 @@ type
     procedure whileDownloading_6();
     procedure afterFinished_7();
   public
-    constructor Create(podcastForm: TForm);
+    constructor Create(g_podcast_form: TForm);
     procedure initCaptions();
     destructor Destroy; override;
-    procedure setState(the_guiState: integer);
+    procedure setState(the_state_of_gui: integer);
     function getState(): integer;
      procedure enableGui(theControl: TControl);
     procedure disableGui(theControl: TControl);
      procedure beforeAfterUrl(url_value: string);
     function finishedMess(succesfulDownloads, failedCount: integer): string;
-  published
+    procedure searchButtons();
+ // published
   end;
 
 procedure mouseConnectToUrl();
@@ -110,39 +113,40 @@ begin
   Screen.Cursor :=POINTER_4_DEFAULT_STOP_PARSE_EPISODES;
 end;
 
-constructor TGuiState.Create(podcastForm: TForm);
+constructor TGuiState.Create(g_podcast_form: TForm);
 begin
   inherited Create;
-  FForm := podcastForm;
+  FForm := g_podcast_form;
   FState := 0;
-    with PodcastForm do
+  with g_podcast_form do
   begin
-    FEdURL := TEdit(FindComponent('edRssUrl'));
-    FBtnReadRss := TButton(FindComponent('BtnReadRss'));
+    FedRssUrl := TEdit(FindComponent('edRssUrl'));
+    FbtnReadRss := TButton(FindComponent('btnReadRss'));
     FlblPodcastDescription := TLabel(FindComponent('lblPodcastDescription'));
-    FEpisodeFiles := TCheckListBox(FindComponent('clbEpisodeFiles'));
-         FEpisodeDesc := TListBox(FindComponent('lbEpisodeDesc'));
-    FEpisodeTitle := TListBox(FindComponent('lbEpisodeTitle'));
-      FFailedFiles := TMemo(FindComponent('memFailedFiles'));
-    FbtnStop := TBCMDButton(FindComponent('btnCancel'));
-    Ffilter1 := TEdit(FindComponent('edtTextFilter'));
-    FdownloadFiltered := TButton(FindComponent('btnDownloadFiltered'));
+    FclbEpisodeFiles := TCheckListBox(FindComponent('clbEpisodeFiles'));
+    FlbEpisodeDesc := TListBox(FindComponent('lbEpisodeDesc'));
+    FlbEpisodeTitle := TListBox(FindComponent('lbEpisodeTitle'));
+    FmemFailedFiles := TMemo(FindComponent('memFailedFiles'));
+    FbtnCancel := TBCMDButton(FindComponent('btnCancel'));
+    FedtTextFilter := TEdit(FindComponent('edtTextFilter'));
+                 FbtnDownloadFiltered := TButton(FindComponent('btnDownloadFiltered'));
+                 FupDownFiltered := TUpDown(FindComponent('upDownFiltered'));
     FbtnDownloadAll := TButton(FindComponent('btnDownloadAll'));
-    FdownloadNone := TButton(FindComponent('btnDownloadNone'));
+    FbtnDownloadNone := TButton(FindComponent('btnDownloadNone'));
     FedtSaveDirectory := TEdit(FindComponent('edtSaveDirectory'));
-    FButton2 := TButton(FindComponent('btnDirectoryChange'));
-    FdownloadBtn := TBCMDButton(FindComponent('btnDownloadChecked'));
-         FlblDownloadingXofY := TLabel(FindComponent('lblDownloadingXofY'));
+    FbtnDirectoryChange := TButton(FindComponent('btnDirectoryChange'));
+    FbtnDownloadChecked := TBCMDButton(FindComponent('btnDownloadChecked'));
+    FlblDownloadingXofY := TLabel(FindComponent('lblDownloadingXofY'));
   end;
 end;
 
 procedure TGuiState.initCaptions();
 begin
-  FdownloadFiltered.Caption := 'Add Episodes Matching Search Text';
+  FbtnDownloadFiltered.Caption := 'Add Episodes Matching Search Text';
   FlblPodcastDescription.Caption := '';
   FbtnDownloadAll.Caption := 'Select All Episodes for Download';
-  FdownloadBtn.Caption := downloadCaption(0, 0);
-  FbtnStop.Caption := 'Cancel';
+  FbtnDownloadChecked.Caption := downloadCaption(0, 0);
+  FbtnCancel.Caption := 'Cancel';
 end;
 
 destructor TGuiState.Destroy;
@@ -167,81 +171,96 @@ end;
 
 procedure TGuiState.beforeAUrl_1();
 begin
-  FEpisodeFiles.Clear;
-  FEpisodeTitle.Clear;
-  FEpisodeDesc.Clear;
-   Ffilter1.Clear;
-     enableGui(FEdURL);
-  FEdURL.SetFocus;
-     FdownloadBtn.Caption := downloadCaption(0, 0);
-   disableGui(FBtnReadRss);
-  disableGui(FbtnStop);
-  disableGui(Ffilter1);
-  disableGui(FdownloadFiltered);
+  FclbEpisodeFiles.Clear;
+  FlbEpisodeTitle.Clear;
+  FlbEpisodeDesc.Clear;
+   FedtTextFilter.Clear;
+     enableGui(FedRssUrl);
+  FedRssUrl.SetFocus;
+     FbtnDownloadChecked.Caption := downloadCaption(0, 0);
+   disableGui(FbtnReadRss);
+  disableGui(FbtnCancel);
+  disableGui(FedtTextFilter);
+
+  disableGui(FbtnDownloadFiltered);
+  disableGui(FupDownFiltered);
+
+
   disableGui(FbtnDownloadAll);
-  disableGui(FdownloadNone);
+  disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
-  disableGui(FButton2);
-  disableGui(FdownloadBtn);
-   disableGui(FEpisodeFiles);
-  disableGui(FEpisodeDesc);
-  enableGui(FFailedFiles);
+  disableGui(FbtnDirectoryChange);
+  disableGui(FbtnDownloadChecked);
+   disableGui(FclbEpisodeFiles);
+  disableGui(FlbEpisodeDesc);
+  //enableGui(FmemFailedFiles);
     FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.afterAUrl_2();
 begin
              mouseStopParseEpisodes();
-  enableGui(FEdURL);
-  enableGui(FBtnReadRss);
-  disableGui(FbtnStop);
-  disableGui(Ffilter1);
-  disableGui(FdownloadFiltered);
+  enableGui(FedRssUrl);
+  enableGui(FbtnReadRss);
+
+  disableGui(FbtnCancel);
+  disableGui(FedtTextFilter);
+
+
+  disableGui(FbtnDownloadFiltered);
+    disableGui(FupDownFiltered);
+
   disableGui(FbtnDownloadAll);
-  disableGui(FdownloadNone);
+  disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
-  disableGui(FButton2);
-  disableGui(FdownloadBtn);
-   disableGui(FEpisodeFiles);
-  disableGui(FEpisodeDesc);
-  disableGui(FFailedFiles);
+  disableGui(FbtnDirectoryChange);
+  disableGui(FbtnDownloadChecked);
+   disableGui(FclbEpisodeFiles);
+  disableGui(FlbEpisodeDesc);
+//  disableGui(FmemFailedFiles);
     FlblDownloadingXofY.Visible:=false;
-    FFailedFiles.Clear();
+    FmemFailedFiles.Clear();
 end;
 
 procedure TGuiState.whileParsingRss_3();
 begin
-   disableGui(FEdURL);
-  disableGui(FBtnReadRss);
-  enableGui(FbtnStop);
-  disableGui(Ffilter1);
-  disableGui(FdownloadFiltered);
+   disableGui(FedRssUrl);
+  disableGui(FbtnReadRss);
+  enableGui(FbtnCancel);
+  disableGui(FedtTextFilter);
+
+  disableGui(FbtnDownloadFiltered);
+    disableGui(FupDownFiltered);
+
   disableGui(FbtnDownloadAll);
-  disableGui(FdownloadNone);
+  disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
-  disableGui(FButton2);
-  disableGui(FdownloadBtn);
-   disableGui(FEpisodeFiles);
-  disableGui(FEpisodeDesc);
-  disableGui(FFailedFiles);
+  disableGui(FbtnDirectoryChange);
+  disableGui(FbtnDownloadChecked);
+   disableGui(FclbEpisodeFiles);
+  disableGui(FlbEpisodeDesc);
+ // disableGui(FmemFailedFiles);
     FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.afterRssProcessed_4();
 begin
-  disableGui(FEdURL);
-  disableGui(FBtnReadRss);
-  enableGui(FbtnStop);
-   enableGui(Ffilter1);
-  enableGui(FdownloadFiltered);
+  disableGui(FedRssUrl);
+  disableGui(FbtnReadRss);
+  enableGui(FbtnCancel);
+   enableGui(FedtTextFilter);
+
+     disableGui(FbtnDownloadFiltered);
+     disableGui(FupDownFiltered);
+
   enableGui(FbtnDownloadAll);
-  enableGui(FdownloadNone);
+  enableGui(FbtnDownloadNone);
   enableGui(FedtSaveDirectory);
-  enableGui(FButton2);
-  disableGui(FdownloadBtn);
-  enableGui(FEpisodeFiles);
-  enableGui(FEpisodeDesc);
-  disableGui(FFailedFiles);
+  enableGui(FbtnDirectoryChange);
+  disableGui(FbtnDownloadChecked);
+  enableGui(FclbEpisodeFiles);
+  enableGui(FlbEpisodeDesc);
+  //disableGui(FmemFailedFiles);
     FlblDownloadingXofY.Visible:=false;
 end;
 
@@ -249,63 +268,76 @@ end;
 procedure TGuiState.afterOneCheck_5();
 begin
 
-  disableGui(FEdURL);
-  disableGui(FBtnReadRss);
-  enableGui(FbtnStop);
-  enableGui(Ffilter1);
-  enableGui(FdownloadFiltered);
+  disableGui(FedRssUrl);
+  disableGui(FbtnReadRss);
+  enableGui(FbtnCancel);
+  enableGui(FedtTextFilter);
+
+ // enableGui(FbtnDownloadFiltered);
+    //   enableGui(FupDownFiltered);
+
   enableGui(FbtnDownloadAll);
-  enableGui(FdownloadNone);
+  enableGui(FbtnDownloadNone);
   enableGui(FedtSaveDirectory);
-  enableGui(FButton2);
-  enableGui(FdownloadBtn);
-   enableGui(FEpisodeFiles);
-  enableGui(FEpisodeDesc);
-  disableGui(FFailedFiles);
+  enableGui(FbtnDirectoryChange);
+  enableGui(FbtnDownloadChecked);
+   enableGui(FclbEpisodeFiles);
+  enableGui(FlbEpisodeDesc);
+ // disableGui(FmemFailedFiles);
     FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.whileDownloading_6();
 begin
-  disableGui(FEdURL);
-  disableGui(FBtnReadRss);
-  enableGui(FbtnStop);
-  disableGui(Ffilter1);
-  disableGui(FdownloadFiltered);
+  disableGui(FedRssUrl);
+  disableGui(FbtnReadRss);
+  enableGui(FbtnCancel);
+  disableGui(FedtTextFilter);
+
+  disableGui(FbtnDownloadFiltered);
+       disableGui(FupDownFiltered);
+
   disableGui(FbtnDownloadAll);
-  disableGui(FdownloadNone);
+  disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
-  disableGui(FButton2);
-  disableGui(FdownloadBtn);
-   enableGui(FEpisodeFiles);
-  enableGui(FEpisodeDesc);
-  disableGui(FFailedFiles);
+  disableGui(FbtnDirectoryChange);
+  disableGui(FbtnDownloadChecked);
+   enableGui(FclbEpisodeFiles);
+  enableGui(FlbEpisodeDesc);
+  //disableGui(FmemFailedFiles);
     FlblDownloadingXofY.Visible:=true;
 end;
 
 procedure TGuiState.afterFinished_7();
 begin
-  disableGui(FEdURL);
-  disableGui(FBtnReadRss);
-  disableGui(FbtnStop);
-  disableGui(Ffilter1);
-  disableGui(FdownloadFiltered);
+  disableGui(FedRssUrl);
+
+ //// disableGui(FbtnReadRss);
+      enableGui(FbtnReadRss);   // so can quickly redo
+
+
+  disableGui(FbtnCancel);
+  disableGui(FedtTextFilter);
+
+  disableGui(FbtnDownloadFiltered);
+    disableGui(FupDownFiltered);
+
   disableGui(FbtnDownloadAll);
-  disableGui(FdownloadNone);
+  disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
-  disableGui(FButton2);
-  disableGui(FdownloadBtn);
-   disableGui(FEpisodeFiles);
-  disableGui(FEpisodeDesc);
-  disableGui(FFailedFiles);
+  disableGui(FbtnDirectoryChange);
+  disableGui(FbtnDownloadChecked);
+   disableGui(FclbEpisodeFiles);
+  disableGui(FlbEpisodeDesc);
+ // disableGui(FmemFailedFiles);
      FlblDownloadingXofY.Visible:=false;
      mouseStopParseEpisodes();
 end;
 
-procedure TGuiState.setState(the_guiState: integer);
+procedure TGuiState.setState(the_state_of_gui: integer);
 begin
-  FState := the_guiState;
-  case the_guiState of
+  FState := the_state_of_gui;
+  case the_state_of_gui of
     GUI_BEFORE_A_URL_1: beforeAUrl_1();
     GUI_AFTER_A_URL_2: afterAUrl_2();
     GUI_WHILE_PARSING_RSS_3: whileParsingRss_3();
@@ -314,7 +346,7 @@ begin
     GUI_WHILE_DOWNLOADING_6: whileDownloading_6();
     GUI_AFTER_FINISHED_7: afterFinished_7();
     else
-      ShowMessage('guiState unknown' + IntToStr(the_guiState));
+      ShowMessage('state_of_gui unknown' + IntToStr(the_state_of_gui));
   end;
 end;
 
@@ -347,6 +379,27 @@ begin
                        'in ' + FedtSaveDirectory.Text  + LINE_ENDING ;
      end;
   Result := finishMess;
+end;
+
+
+procedure TGuiState.searchButtons();
+var
+//  trimmed_filter: string;
+  filter_text: string;
+begin
+//  trimmed_filter := Trim( FedtTextFilter.Text);
+   filter_text := FedtTextFilter.Text;
+  if filter_text.Length =0 then
+  begin
+     FbtnDownloadFiltered.Enabled := false;
+     FupDownFiltered.Enabled := false;
+  end
+  else
+  begin
+    FbtnDownloadFiltered.Enabled := true;
+    FupDownFiltered.Enabled := true;
+  end;
+
 end;
 
 end.

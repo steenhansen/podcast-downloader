@@ -26,6 +26,6 @@ begin
   Application.Title:='Podcast-Downloader';
   Application.Scaled := True;
   Application.Initialize;
-  Application.CreateForm(TPodcastForm, podcastForm);
+  Application.CreateForm(TPodcastForm, g_podcast_form);
   Application.Run;
 end.
