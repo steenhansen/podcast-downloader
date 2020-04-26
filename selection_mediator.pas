@@ -41,8 +41,8 @@ type
     function clickedBoxNew(fileList: TCheckListBox; lbEpisodeDesc: TListBox; itemNumber: integer;
       btnDownloadChecked: TBCMDButton): integer;
     procedure checkedNoneOfThem(clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox);
-    function startDownloading(lbEpisodeDesc: TListBox; DoOnWriteStream: TOnWriteStream;
-      DoOnFailedReadEpisode: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
+    function startDownloading(lbEpisodeDesc: TListBox; DoOnWriteEpisode_3: TOnWriteStream;
+      DoOnFailedReadEpisode_2: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
     function checkedCount(clbEpisodeFiles: TCheckListBox): integer;
     function addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox): integer;
     function showFilterMatch(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
@@ -51,12 +51,14 @@ type
       itemNumber: integer; fileSize: int64);
     procedure readingRss(g_podcast_form: TForm; fileSize: int64);
     function readRssFile(edtSaveDirectory: TEdit; g_podcast_form: TForm; lblPodcastDescription: TLabel;
-      DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast: TOnFailedReadPodcast): integer;
+      DoOnWriteEpisode_3: TOnWriteStream; DoOnFailedReadPodcast_2: TOnFailedReadPodcast): integer;
     function calcDownload(fileList: TCheckListBox; btnDownloadChecked: TBCMDButton): integer;
     function makeCheckList(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
       btnDownloadAll: TButton): integer;
     procedure displayDescription(episode_index, display_number: integer);
     function getSearchIndex(search_text: string; ith_search_index: integer): integer;
+    function getSuccesses(): integer;
+    function getWantedDownloads(): integer;
   published
   end;
 
@@ -125,8 +127,6 @@ begin
   end;
 end;
 
-
-
 function TSelectionMediator.addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox): integer;
 var
   itemStates: TBooleanArray;
@@ -192,8 +192,6 @@ begin
   lbEpisodeDesc.items.Objects[itemNumber] := newObj;
   Result := totalFileSize;
 end;
-
-
 
 procedure TSelectionMediator.readingMediaFile(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox;
   lbEpisodeDesc: TListBox; itemNumber: integer; fileSize: int64);
@@ -325,8 +323,8 @@ begin
   ShowMessage(entire_message);
 end;
 
-function TSelectionMediator.startDownloading(lbEpisodeDesc: TListBox; DoOnWriteStream: TOnWriteStream;
-  DoOnFailedReadEpisode: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
+function TSelectionMediator.startDownloading(lbEpisodeDesc: TListBox; DoOnWriteEpisode_3: TOnWriteStream;
+  DoOnFailedReadEpisode_2: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
 var
   a: integer;
   failedFiles: TStringList;
@@ -344,7 +342,7 @@ begin
         lbEpisodeDesc.items.Objects[a] := newObj;
       end;
       program_path := ExtractFilePath(Application.ExeName);
-      failedFiles := FrssPodcast.downloadChosen(DoOnWriteStream, DoOnFailedReadEpisode, urlToRead, saveDir, program_path);
+      failedFiles := FrssPodcast.downloadChosen(DoOnWriteEpisode_3, DoOnFailedReadEpisode_2, urlToRead, saveDir, program_path);
       failsAndSuccesses.failedCount := failedFiles.Count;
       failsAndSuccesses.successCount := FrssPodcast.getSuccesses();
     except
@@ -358,7 +356,7 @@ begin
 end;
 
 function TSelectionMediator.readRssFile(edtSaveDirectory: TEdit; g_podcast_form: TForm; lblPodcastDescription: TLabel;
-  DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast: TOnFailedReadPodcast): integer;
+  DoOnWriteEpisode_3: TOnWriteStream; DoOnFailedReadPodcast_2: TOnFailedReadPodcast): integer;
 var
   desktopDirPath: string;
   podcastTitle, podcastDescription: string;
@@ -367,7 +365,7 @@ var
 begin
   program_path := ExtractFilePath(Application.ExeName);
   FrssPodcast := TRssPodcast.Create();
-  number_episodes := FrssPodcast.readPodcast(Furl_or_file, program_path, DoOnWriteStream, DoOnFailedReadPodcast);
+  number_episodes := FrssPodcast.readPodcast(Furl_or_file, program_path, DoOnWriteEpisode_3, DoOnFailedReadPodcast_2);
   podcastDescription := FrssPodcast.getDescription();
   desktopDirPath := deskDirName(Furl_or_file);
   edtSaveDirectory.Text := desktopDirPath;
@@ -376,8 +374,6 @@ begin
   lblPodcastDescription.Caption := podcastDescription;
   Result := number_episodes;
 end;
-
-
 
 function TSelectionMediator.getSearchIndex(search_text: string; ith_search_index: integer): integer;
 var
@@ -415,6 +411,16 @@ begin
     new_bits := encodeWillDownload(old_bits);
     lbEpisodeDesc.items.Objects[i] := new_bits;
   end;
+end;
+
+function TSelectionMediator.getSuccesses(): integer;
+begin
+  Result := FrssPodcast.getSuccesses();
+end;
+
+function TSelectionMediator.getWantedDownloads(): integer;
+begin
+  Result := FrssPodcast.getWantedDownloads();
 end;
 
 end.

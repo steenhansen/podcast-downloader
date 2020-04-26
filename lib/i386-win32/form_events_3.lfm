@@ -1,0 +1,204 @@
+inherited EventsForm3: TEventsForm3
+  Left = 467
+  Height = 601
+  Top = 269
+  Caption = 'events_form_3'
+  ClientHeight = 581
+  inherited downloadBtnPanel: TPanel
+    Left = 999
+    Top = 222
+  end
+  inherited cancelBtnPanel: TPanel
+    Left = 999
+    Top = 337
+  end
+  inherited lblDownloadingXofY: TLabel
+    Left = 1008
+    Top = 312
+  end
+  inherited gbFailedEpisodes: TGroupBox
+    Left = 1008
+    Top = 456
+  end
+  inherited gbSelectDirectory: TGroupBox
+    Left = 1008
+    Top = 400
+  end
+  object gbEpisodesToDownload: TGroupBox[7]
+    Left = 8
+    Height = 264
+    Top = 160
+    Width = 984
+    Caption = 'Check Episodes to Download'
+    ClientHeight = 244
+    ClientWidth = 980
+    TabOrder = 6
+    object clbEpisodeFiles: TCheckListBox
+      AnchorSideLeft.Side = asrCenter
+      AnchorSideRight.Control = splFirst
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 2
+      Height = 239
+      Top = 0
+      Width = 354
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderStyle = bsNone
+      ExtendedSelect = False
+      Items.Strings = (
+        'Episode 1'
+      )
+      ItemHeight = 17
+      OnItemClick = clbEpisodeFilesItemClick_3
+      ParentBidiMode = False
+      Style = lbOwnerDrawFixed
+      TabOrder = 0
+      Data = {
+        0100000000
+      }
+    end
+    object lbEpisodeTitle: TListBox
+      AnchorSideLeft.Control = splFirst
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideRight.Control = splSecond
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 356
+      Height = 239
+      Top = 0
+      Width = 161
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderStyle = bsNone
+      DoubleBuffered = False
+      Items.Strings = (
+        'Heist Podcast - Episode 67 - Weapons, Beautiful Women and Fast Cars'
+      )
+      ItemHeight = 17
+      ParentBidiMode = False
+      ParentDoubleBuffered = False
+      Style = lbOwnerDrawFixed
+      TabOrder = 1
+    end
+    object splFirst: TSplitter
+      AnchorSideBottom.Side = asrBottom
+      Left = 340
+      Height = 239
+      Top = 0
+      Width = 16
+      Align = alCustom
+      Anchors = [akTop, akBottom]
+      AutoSnap = False
+      Beveled = True
+      Color = clBtnShadow
+      OnMoved = splFirstMoved_3
+      ParentColor = False
+      ResizeStyle = rsPattern
+    end
+    object splSecond: TSplitter
+      AnchorSideBottom.Side = asrBottom
+      Left = 501
+      Height = 239
+      Top = 0
+      Width = 16
+      Align = alCustom
+      Anchors = [akTop, akBottom]
+      AutoSnap = False
+      Beveled = True
+      Color = clBtnShadow
+      OnMoved = splSecondMoved_3
+      ParentColor = False
+      ResizeStyle = rsPattern
+    end
+    object lbEpisodeDesc: TListBox
+      AnchorSideLeft.Control = splSecond
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideBottom.Side = asrBottom
+      Left = 517
+      Height = 239
+      Top = 0
+      Width = 459
+      Align = alCustom
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderStyle = bsNone
+      DoubleBuffered = False
+      Items.Strings = (
+        '123.56MB - Episode 1 Description'
+      )
+      ItemHeight = 17
+      OnClick = lbEpisodeDescClick_3
+      OnSelectionChange = lbEpisodeDescSelectionChange_3
+      ParentBidiMode = False
+      ParentDoubleBuffered = False
+      Style = lbOwnerDrawFixed
+      TabOrder = 4
+    end
+  end
+  object btnDownloadNone: TButton[8]
+    Left = 800
+    Height = 25
+    Top = 120
+    Width = 192
+    Caption = 'Select No Episodes for Download'
+    OnClick = btnDownloadNoneClick_3
+    TabOrder = 7
+  end
+  object btnDownloadAll: TButton[9]
+    Left = 576
+    Height = 25
+    Top = 120
+    Width = 216
+    Caption = 'Select All 12345 Episodes for Download'
+    OnClick = btnDownloadAllClick_3
+    TabOrder = 8
+  end
+  object grTextFilter: TGroupBox[10]
+    Left = 8
+    Height = 49
+    Top = 104
+    Width = 560
+    Caption = 'Search for Text'
+    ClientHeight = 29
+    ClientWidth = 556
+    TabOrder = 9
+    object edtTextFilter: TEdit
+      Left = 8
+      Height = 23
+      Top = 0
+      Width = 256
+      AutoSize = False
+      AutoSelect = False
+      OnChange = edtTextFilterChange_3
+      TabOrder = 0
+    end
+    object btnDownloadFiltered: TButton
+      Left = 296
+      Height = 25
+      Top = -2
+      Width = 248
+      Caption = 'Add 12345 Episodes Matching Search Text'
+      Color = clInfoBk
+      OnClick = btnDownloadFilteredClick_3
+      TabOrder = 1
+    end
+    object upDownFiltered: TUpDown
+      Left = 272
+      Height = 25
+      Top = -1
+      Width = 17
+      Min = 0
+      OnClick = upDownFilteredClick_3
+      Position = 0
+      TabOrder = 2
+    end
+  end
+  inherited MainMenu1: TMainMenu[11]
+    left = 1016
+    top = 136
+  end
+  inherited SelectDirectoryDialog1: TSelectDirectoryDialog[12]
+    left = 1016
+    top = 16
+  end
+end

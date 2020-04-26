@@ -6,10 +6,10 @@ interface
 
 uses
    {$IfDef ALLOW_DEBUG_SERVER}
-    //debug_server,         // Can use SendDebug('my debug message') from dbugintf
+  //debug_server,         // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
   Classes, SysUtils,
-   LazLoggerBase,
+  LazLoggerBase,
   LazLoggerDummy,
   LazLogger,
   openssl,
@@ -26,7 +26,7 @@ type
     FFileNumber: integer;
     FOnWriteStream: TOnWriteStream;
   public
-    constructor Create(tempPathname: string; fileNumber: integer;  DoOnWriteStream: TOnWriteStream);
+    constructor Create(tempPathname: string; fileNumber: integer; DoOnWriteEpisode_3: TOnWriteStream);
     destructor Destroy; override;
     function Write(const Buffer; Count: longint): longint; override;
     function Read(var Buffer; Count: longint): longint; override;
@@ -37,11 +37,11 @@ type
 
 implementation
 
-constructor TProgressStream.Create(tempPathname: string; fileNumber: integer; DoOnWriteStream: TOnWriteStream);
+constructor TProgressStream.Create(tempPathname: string; fileNumber: integer; DoOnWriteEpisode_3: TOnWriteStream);
 begin
   inherited Create(tempPathname, fmCreate);
   FFileNumber := fileNumber;
-  OnWriteStream := DoOnWriteStream;
+  OnWriteStream := DoOnWriteEpisode_3;
 end;
 
 destructor TProgressStream.Destroy;
@@ -65,8 +65,6 @@ function TProgressStream.Seek(Offset: longint; Origin: word): longint;
 begin
   Result := inherited Seek(Offset, Origin);
 end;
-
-
 
 
 end.

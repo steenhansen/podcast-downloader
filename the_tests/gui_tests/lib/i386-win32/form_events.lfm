@@ -1,4 +1,4 @@
-object podcastForm: TpodcastForm
+object PodcastForm4: TPodcastForm4
   Left = 434
   Height = 630
   Top = 300

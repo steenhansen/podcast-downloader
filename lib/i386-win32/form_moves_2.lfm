@@ -1,0 +1,154 @@
+inherited MovesForm2: TMovesForm2
+  Left = 317
+  Height = 489
+  Top = 262
+  Width = 1444
+  Caption = 'cancel_form_2'
+  ClientHeight = 469
+  ClientWidth = 1444
+  inherited gbPodcastFeed: TGroupBox
+    Left = 999
+    Top = 80
+  end
+  inherited gbPodcastDescription: TGroupBox
+    Left = 999
+    Top = 200
+    TabOrder = 3
+  end
+  object downloadBtnPanel: TPanel[2]
+    Left = 8
+    Height = 66
+    Top = 24
+    Width = 146
+    BevelColor = 39680
+    Caption = 'downloadBtnPanel'
+    ClientHeight = 66
+    ClientWidth = 146
+    TabOrder = 1
+    object btnDownloadChecked: TBCMDButton
+      Left = 1
+      Height = 64
+      Top = 1
+      Width = 144
+      StyleNormal.Color = 14803425
+      StyleNormal.TextColor = 39680
+      StyleHover.Color = 16511461
+      StyleHover.TextColor = 39680
+      StyleActive.Color = clSkyBlue
+      StyleActive.TextColor = clBlack
+      StyleDisabled.Color = 13421772
+      StyleDisabled.TextColor = 9474192
+      TextAutoSize = True
+      TextProportional = False
+      TextProportionalRatio = 0.5
+      Align = alClient
+      Caption = 'Download Checked'
+      Color = clMenuHighlight
+      Font.Style = [fsBold]
+      OnClick = downloadCheckedEpisodes_2
+      OnMouseEnter = btnDownloadCheckedMouseEnter_2
+      OnMouseLeave = btnDownloadCheckedMouseLeave_2
+      ParentFont = False
+      ParentShowHint = False
+    end
+  end
+  object cancelBtnPanel: TPanel[3]
+    Left = 8
+    Height = 50
+    Top = 100
+    Width = 146
+    BevelColor = 192
+    Caption = 'cancelBtnPanel'
+    ClientHeight = 50
+    ClientWidth = 146
+    TabOrder = 2
+    object btnCancel: TBCMDButton
+      Left = 1
+      Height = 48
+      Top = 1
+      Width = 144
+      StyleNormal.Color = 14803425
+      StyleNormal.TextColor = 192
+      StyleHover.Color = 16511461
+      StyleHover.TextColor = 192
+      StyleActive.Color = 13027014
+      StyleActive.TextColor = clBlack
+      StyleDisabled.Color = 13421772
+      StyleDisabled.TextColor = 9474192
+      TextAutoSize = True
+      TextProportional = False
+      TextProportionalRatio = 0.5
+      Align = alClient
+      Caption = 'Cancel'
+      Font.Style = [fsBold]
+      OnClick = btnStopClick_2
+      OnMouseEnter = btnCancelMouseEnter_2
+      OnMouseLeave = btnCancelMouseLeave_2
+      ParentFont = False
+      ParentShowHint = False
+    end
+  end
+  object lblDownloadingXofY: TLabel[4]
+    Left = 16
+    Height = 15
+    Top = 180
+    Width = 109
+    Caption = 'lblDownloadingXofY'
+    ParentColor = False
+  end
+  object gbFailedEpisodes: TGroupBox[5]
+    Left = 8
+    Height = 104
+    Top = 240
+    Width = 656
+    Caption = 'Failed Episodes'
+    ClientHeight = 84
+    ClientWidth = 652
+    TabOrder = 4
+    object memFailedFiles: TMemo
+      Left = 0
+      Height = 84
+      Top = 0
+      Width = 652
+      Align = alClient
+      ReadOnly = True
+      TabOrder = 0
+    end
+  end
+  object gbSelectDirectory: TGroupBox[6]
+    Left = 16
+    Height = 49
+    Top = 392
+    Width = 984
+    Caption = 'Save to Directory'
+    ClientHeight = 29
+    ClientWidth = 980
+    TabOrder = 5
+    object edtSaveDirectory: TEdit
+      Left = 8
+      Height = 23
+      Top = 0
+      Width = 696
+      Enabled = False
+      TabOrder = 0
+    end
+    object btnDirectoryChange: TButton
+      Left = 760
+      Height = 25
+      Top = -2
+      Width = 216
+      Caption = 'Select Different Directory to Save to'
+      OnClick = selectDirBtn_2
+      TabOrder = 1
+    end
+  end
+  inherited MainMenu1: TMainMenu[7]
+    left = 1024
+    top = 32
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog[8]
+    InitialDir = 'desktop'
+    left = 724
+    top = 100
+  end
+end

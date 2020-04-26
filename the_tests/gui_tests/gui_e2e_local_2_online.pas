@@ -19,12 +19,14 @@ type
     procedure process_test_5_e2e_local_to_online_anecdote();
     procedure process_test_6_e2e_local_to_online_all();
     procedure process_test_7_e2e_local_to_online_none();
+
+    procedure process_test_11_e2e_local_to_online_same();
   end;
 
 implementation
 
 uses
-  form_events,
+  form_podcast_4,
   gui_support,
   test_support,
   process_data,
@@ -166,16 +168,39 @@ end;
 
 
 
+procedure T_fast_e2e_local_online.process_test_11_e2e_local_to_online_same();
+var
+  xmlFile, outputPath, memActualText, memExpectedText: string;
+  failsAndSuccesses: TFailsAndSuccesses;
+  allPossibleFileSize, fileSizeChecked, numberSuccess, numberFailed: integer;
+begin
+  xmlFile := xmlFileName('test_11_e2e_local_to_online_same');
+  outputPath := outputPathName('test_11_e2e_local_to_online_same');
+  clearOutputDir(outputPath);
+
+  allPossibleFileSize := process_a_podcast(xmlFile);
+  fileSizeChecked := process_b_all();
+  failsAndSuccesses := process_c_episodes(xmlFile, outputPath);
+
+
+
+  numberSuccess := failsAndSuccesses.successCount;
+  numberFailed := failsAndSuccesses.failedCount;
+  memActualText := filesWithSizes(outputPath);
+  memExpectedText := '_rss_test_11_e2e_local_to_online_same.xml~~2615' + LINE_ENDING +
+    'ToTHEBOWERS1829ByEdgarAllanPoe.1.pdf~~11140' + LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.2.pdf~~11140' +
+    LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140' + LINE_ENDING;
+  AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
+  AssertEquals('Bytes of checked files', 34832, fileSizeChecked);
+  AssertEquals('Number successful files', 3, numberSuccess);
+  AssertEquals('Number failed files', 0, numberFailed);
+  guiDirectory(memExpectedText, memActualText, 'TTestCaseE2ELocal.process_test_11_e2e_local_to_online_same');
+end;
+
+
+
+
 initialization
 
   RegisterTest(T_fast_e2e_local_online);
 end.
-
-
-
-
-
-
-
-
-

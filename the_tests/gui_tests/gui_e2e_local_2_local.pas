@@ -19,6 +19,9 @@ type
     procedure process_test_1_e2e_local_to_local_anecdote;
     procedure process_test_2_e2e_local_to_local_all();
     procedure process_test_3_e2e_local_to_local_none();
+
+    procedure process_test_10_e2e_local_to_local_same();
+
   end;
 
 implementation
@@ -26,7 +29,7 @@ implementation
 uses
   gui_support,
   test_support,
-  form_events,
+  form_podcast_4,
   process_data,
   consts_types;
 
@@ -155,15 +158,36 @@ end;
 
 
 
+
+procedure TTestCaseE2ELocal2Local.process_test_10_e2e_local_to_local_same();
+var
+  xmlFile, outputPath, memActualText, memExpectedText: string;
+  failsAndSuccesses: TFailsAndSuccesses;
+  allPossibleFileSize, fileSizeChecked, numberSuccess, numberFailed: integer;
+begin
+  xmlFile := xmlFileName('test_10_e2e_local_to_local_same');
+  outputPath := outputPathName('test_10_e2e_local_to_local_same');
+  clearOutputDir(outputPath);
+  allPossibleFileSize := process_a_podcast(xmlFile);
+
+  fileSizeChecked := process_b_all();
+
+  failsAndSuccesses := process_c_episodes(xmlFile, outputPath);
+  numberSuccess := failsAndSuccesses.successCount;
+  numberFailed := failsAndSuccesses.failedCount;
+  memActualText := filesWithSizes(outputPath);
+  memExpectedText := '_rss_test_10_e2e_local_to_local_same.xml~~2493' + LINE_ENDING + 'same_name.1.pdf~~11431' +
+    LINE_ENDING + 'same_name.2.pdf~~11431' + LINE_ENDING + 'same_name.pdf~~11431' + LINE_ENDING;
+  AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
+  AssertEquals('Bytes of checked files', 34832, fileSizeChecked);
+  AssertEquals('Number successful files', 3, numberSuccess);
+  AssertEquals('Number failed files', 0, numberFailed);
+  guiDirectory(memExpectedText, memActualText, 'TTestCaseE2ELocal.process_test_10_e2e_local_to_local_same');
+end;
+
+
+
 initialization
 
   RegisterTest(TTestCaseE2ELocal2Local);
 end.
-
-
-
-
-
-
-
-

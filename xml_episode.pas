@@ -285,7 +285,7 @@ begin
   replaceAll('&lsquo;', '''');
   replaceAll('&rsquo;', '''');
 
-   replaceAll('&cent;', '¢');
+  replaceAll('&cent;', '¢');
   replaceAll('&#162;', '¢');
 
   replaceAll('&pound;', '£');

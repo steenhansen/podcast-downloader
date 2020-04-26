@@ -111,7 +111,8 @@ procedure TTestCaseXmlEpisode.theEntities();
 var
   html_entities, clean_text: string;
 begin
-  html_entities := '&lt;&nbsp;&#60;&#160;&gt;&#62;&amp;&#38;&quot;&#34;&#8220;&#8221;&apos;&#39;&#8217;&cent;&#162;&pound;&#163;&yen;&#165;&euro;&#8364;&copy;&#169;&reg;&#174;';
+  html_entities :=
+    '&lt;&nbsp;&#60;&#160;&gt;&#62;&amp;&#38;&quot;&#34;&#8220;&#8221;&apos;&#39;&#8217;&cent;&#162;&pound;&#163;&yen;&#165;&euro;&#8364;&copy;&#169;&reg;&#174;';
   clean_text := htmlCharEntities(html_entities);
   assertEquals('ignore html gets', '< < >>&&""""''''''¢¢££¥¥€€©©®®', clean_text);
 end;
@@ -145,8 +146,3 @@ initialization
   RegisterTest(TTestCaseXmlEpisode);
 
 end.
-
-
-
-
-

@@ -6,7 +6,7 @@ interface
 
 uses
   {$IfDef ALLOW_DEBUG_SERVER}
-    //debug_server,           // Can use SendDebug('my debug message') from dbugintf
+  //debug_server,           // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
   Classes, SysUtils;
 
@@ -178,42 +178,3 @@ begin
 end;
 
 end.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

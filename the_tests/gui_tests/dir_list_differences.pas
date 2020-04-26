@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms,
  {$IfDef ALLOW_DEBUG_SERVER}
-    debug_server,                    // Can use SendDebug('my debug message') from dbugintf
+  debug_server,                    // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
 
   Controls, Graphics, Dialogs, StdCtrls;
@@ -35,4 +35,3 @@ implementation
 {$R *.lfm}
 
 end.
-

@@ -8,13 +8,7 @@ unit debug_server;
   - use debug_server
   - SendDebug('my debug message') from dbugintf to log messages in debugserver.exe}
 
-
 {$mode objfpc}{$H+}
-
-
-
-
-
 
 interface
 

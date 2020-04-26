@@ -1,0 +1,86 @@
+inherited PodcastForm4: TPodcastForm4
+  Left = 425
+  Height = 588
+  Top = 175
+  Width = 1000
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Podcast Downloader - 123,456,789 bytes read'
+  ClientHeight = 568
+  ClientWidth = 1000
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  inherited gbPodcastFeed: TGroupBox
+    Left = 8
+    Top = 6
+    TabOrder = 5
+    inherited edtCopyableExample: TEdit
+      OnClick = edtCopyableExampleClick_1
+    end
+    inherited btnReadRss: TButton
+      OnClick = btnReadRssClick_1
+    end
+    inherited edRssUrl: TEdit
+      OnChange = edRssUrlChange_1
+      OnClick = edRssUrlChange_1
+    end
+  end
+  inherited gbPodcastDescription: TGroupBox
+    Left = 8
+    Top = 55
+  end
+  inherited downloadBtnPanel: TPanel
+    Left = 8
+    Top = 490
+  end
+  inherited cancelBtnPanel: TPanel
+    Left = 170
+    Top = 490
+    TabOrder = 8
+  end
+  inherited lblDownloadingXofY: TLabel
+    Left = 170
+    Top = 544
+  end
+  inherited gbFailedEpisodes: TGroupBox
+    Left = 333
+    Height = 79
+    Top = 480
+    ClientHeight = 59
+    inherited memFailedFiles: TMemo
+      Height = 59
+    end
+  end
+  inherited gbSelectDirectory: TGroupBox
+    Left = 8
+    Top = 430
+    TabOrder = 0
+  end
+  inherited gbEpisodesToDownload: TGroupBox
+    TabOrder = 2
+    inherited clbEpisodeFiles: TCheckListBox
+      Data = {
+        0100000000
+      }
+    end
+  end
+  inherited btnDownloadNone: TButton
+    TabOrder = 6
+  end
+  inherited btnDownloadAll: TButton
+    TabOrder = 7
+  end
+  
+  inherited MainMenu1: TMainMenu
+    left = 555
+    top = 136
+  end
+  inherited SelectDirectoryDialog1: TSelectDirectoryDialog
+    left = 555
+    top = 16
+  end
+ 
+  
+end

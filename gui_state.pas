@@ -24,14 +24,14 @@ const
   GUI_WHILE_DOWNLOADING_6 = 6;
   GUI_AFTER_FINISHED_7 = 7;
 
-POINTER_1_HOURGLASS_START_READ_PODCAST = crHourGlass;
-   POINTER_2_DEFAULT_READING_PODCAST =  crDefault;
-
-   POINTER_3_HOURGLASS_START_PARSE_EPISODES = crHourGlass;
-   POINTER_4_DEFAULT_STOP_PARSE_EPISODES =  crDefault;
+  POINTER_1_HOURGLASS_START_READ_PODCAST = crHourGlass;
+  POINTER_2_DEFAULT_READING_PODCAST =  crDefault;
+  POINTER_3_HOURGLASS_START_PARSE_EPISODES = crHourGlass;
+  POINTER_4_DEFAULT_STOP_PARSE_EPISODES =  crDefault;
+  POINTER_5_HOURGLASS_START_NEW_SAVE_DIR = crHourGlass;
+  POINTER_6_DEFAULT_STOP_CHOOSE_SAVE_DIR =  crDefault;
 
 type
-
 
   TGuiState = class(TObject)
   private
@@ -48,13 +48,12 @@ type
     FedtTextFilter: TEdit;
     FbtnDownloadFiltered: TButton;
     FupDownFiltered:TUpDown;
-
     FbtnDownloadAll: TButton;
     FbtnDownloadNone: TButton;
     FedtSaveDirectory: TEdit;
     FbtnDirectoryChange: TButton;
     FbtnDownloadChecked: TBCMDButton;
-       FlblDownloadingXofY: TLabel;
+    FlblDownloadingXofY: TLabel;
     procedure beforeAUrl_1();
     procedure afterAUrl_2();
     procedure whileParsingRss_3();
@@ -68,18 +67,18 @@ type
     destructor Destroy; override;
     procedure setState(the_state_of_gui: integer);
     function getState(): integer;
-     procedure enableGui(theControl: TControl);
+    procedure enableGui(theControl: TControl);
     procedure disableGui(theControl: TControl);
-     procedure beforeAfterUrl(url_value: string);
+    procedure beforeAfterUrl(url_value: string);
     function finishedMess(succesfulDownloads, failedCount: integer): string;
     procedure searchButtons();
- // published
   end;
 
 procedure mouseConnectToUrl();
 procedure mouseReadingUrl();
 procedure mouseStartParseEpisodes();
 procedure mouseStopParseEpisodes();
+ function MessageDlgEx(const AMsg: string; ADlgType: TMsgDlgType; AButtons: TMsgDlgButtons; AParent: TForm): TModalResult;
 
 implementation
 
@@ -129,8 +128,8 @@ begin
     FmemFailedFiles := TMemo(FindComponent('memFailedFiles'));
     FbtnCancel := TBCMDButton(FindComponent('btnCancel'));
     FedtTextFilter := TEdit(FindComponent('edtTextFilter'));
-                 FbtnDownloadFiltered := TButton(FindComponent('btnDownloadFiltered'));
-                 FupDownFiltered := TUpDown(FindComponent('upDownFiltered'));
+    FbtnDownloadFiltered := TButton(FindComponent('btnDownloadFiltered'));
+    FupDownFiltered := TUpDown(FindComponent('upDownFiltered'));
     FbtnDownloadAll := TButton(FindComponent('btnDownloadAll'));
     FbtnDownloadNone := TButton(FindComponent('btnDownloadNone'));
     FedtSaveDirectory := TEdit(FindComponent('edtSaveDirectory'));
@@ -171,76 +170,69 @@ end;
 
 procedure TGuiState.beforeAUrl_1();
 begin
-  FclbEpisodeFiles.Clear;
-  FlbEpisodeTitle.Clear;
-  FlbEpisodeDesc.Clear;
-   FedtTextFilter.Clear;
-     enableGui(FedRssUrl);
-  FedRssUrl.SetFocus;
-     FbtnDownloadChecked.Caption := downloadCaption(0, 0);
-   disableGui(FbtnReadRss);
+  enableGui(FedRssUrl);
+  disableGui(FbtnReadRss);
   disableGui(FbtnCancel);
   disableGui(FedtTextFilter);
-
   disableGui(FbtnDownloadFiltered);
   disableGui(FupDownFiltered);
-
-
   disableGui(FbtnDownloadAll);
   disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
   disableGui(FbtnDirectoryChange);
   disableGui(FbtnDownloadChecked);
-   disableGui(FclbEpisodeFiles);
+  disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
-  //enableGui(FmemFailedFiles);
-    FlblDownloadingXofY.Visible:=false;
+
+  FclbEpisodeFiles.Clear;
+  FlbEpisodeTitle.Clear;
+  FlbEpisodeDesc.Clear;
+  FedtTextFilter.Clear;
+  FedRssUrl.SetFocus;
+  FbtnDownloadChecked.Caption := downloadCaption(0, 0);
+  FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.afterAUrl_2();
 begin
-             mouseStopParseEpisodes();
   enableGui(FedRssUrl);
   enableGui(FbtnReadRss);
-
   disableGui(FbtnCancel);
   disableGui(FedtTextFilter);
-
-
   disableGui(FbtnDownloadFiltered);
-    disableGui(FupDownFiltered);
-
+  disableGui(FupDownFiltered);
   disableGui(FbtnDownloadAll);
   disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
   disableGui(FbtnDirectoryChange);
   disableGui(FbtnDownloadChecked);
-   disableGui(FclbEpisodeFiles);
+  disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
-//  disableGui(FmemFailedFiles);
-    FlblDownloadingXofY.Visible:=false;
-    FmemFailedFiles.Clear();
+
+  mouseStopParseEpisodes();
+  FlblDownloadingXofY.Visible:=false;
+  FmemFailedFiles.Clear();
 end;
 
 procedure TGuiState.whileParsingRss_3();
 begin
-   disableGui(FedRssUrl);
+    FedtTextFilter.Text := '';
+
+  disableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   disableGui(FedtTextFilter);
-
   disableGui(FbtnDownloadFiltered);
-    disableGui(FupDownFiltered);
-
+  disableGui(FupDownFiltered);
   disableGui(FbtnDownloadAll);
   disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
   disableGui(FbtnDirectoryChange);
   disableGui(FbtnDownloadChecked);
-   disableGui(FclbEpisodeFiles);
+  disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
- // disableGui(FmemFailedFiles);
-    FlblDownloadingXofY.Visible:=false;
+
+  FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.afterRssProcessed_4();
@@ -248,11 +240,9 @@ begin
   disableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
-   enableGui(FedtTextFilter);
-
-     disableGui(FbtnDownloadFiltered);
-     disableGui(FupDownFiltered);
-
+  enableGui(FedtTextFilter);
+  disableGui(FbtnDownloadFiltered);
+  disableGui(FupDownFiltered);
   enableGui(FbtnDownloadAll);
   enableGui(FbtnDownloadNone);
   enableGui(FedtSaveDirectory);
@@ -260,31 +250,25 @@ begin
   disableGui(FbtnDownloadChecked);
   enableGui(FclbEpisodeFiles);
   enableGui(FlbEpisodeDesc);
-  //disableGui(FmemFailedFiles);
-    FlblDownloadingXofY.Visible:=false;
-end;
 
+  FlblDownloadingXofY.Visible:=false;
+end;
 
 procedure TGuiState.afterOneCheck_5();
 begin
-
   disableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   enableGui(FedtTextFilter);
-
- // enableGui(FbtnDownloadFiltered);
-    //   enableGui(FupDownFiltered);
-
   enableGui(FbtnDownloadAll);
   enableGui(FbtnDownloadNone);
   enableGui(FedtSaveDirectory);
   enableGui(FbtnDirectoryChange);
   enableGui(FbtnDownloadChecked);
-   enableGui(FclbEpisodeFiles);
+  enableGui(FclbEpisodeFiles);
   enableGui(FlbEpisodeDesc);
- // disableGui(FmemFailedFiles);
-    FlblDownloadingXofY.Visible:=false;
+
+  FlblDownloadingXofY.Visible:=false;
 end;
 
 procedure TGuiState.whileDownloading_6();
@@ -293,45 +277,37 @@ begin
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   disableGui(FedtTextFilter);
-
   disableGui(FbtnDownloadFiltered);
-       disableGui(FupDownFiltered);
-
+  disableGui(FupDownFiltered);
   disableGui(FbtnDownloadAll);
   disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
   disableGui(FbtnDirectoryChange);
   disableGui(FbtnDownloadChecked);
-   enableGui(FclbEpisodeFiles);
+  enableGui(FclbEpisodeFiles);
   enableGui(FlbEpisodeDesc);
-  //disableGui(FmemFailedFiles);
-    FlblDownloadingXofY.Visible:=true;
+
+  FlblDownloadingXofY.Visible:=true;
 end;
 
 procedure TGuiState.afterFinished_7();
 begin
   disableGui(FedRssUrl);
-
- //// disableGui(FbtnReadRss);
-      enableGui(FbtnReadRss);   // so can quickly redo
-
-
+  enableGui(FbtnReadRss);
   disableGui(FbtnCancel);
   disableGui(FedtTextFilter);
-
   disableGui(FbtnDownloadFiltered);
-    disableGui(FupDownFiltered);
-
+  disableGui(FupDownFiltered);
   disableGui(FbtnDownloadAll);
   disableGui(FbtnDownloadNone);
   disableGui(FedtSaveDirectory);
   disableGui(FbtnDirectoryChange);
   disableGui(FbtnDownloadChecked);
-   disableGui(FclbEpisodeFiles);
+  disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
- // disableGui(FmemFailedFiles);
-     FlblDownloadingXofY.Visible:=false;
-     mouseStopParseEpisodes();
+
+  FlblDownloadingXofY.Visible:=false;
+  mouseStopParseEpisodes();
 end;
 
 procedure TGuiState.setState(the_state_of_gui: integer);
@@ -381,13 +357,10 @@ begin
   Result := finishMess;
 end;
 
-
 procedure TGuiState.searchButtons();
 var
-//  trimmed_filter: string;
   filter_text: string;
 begin
-//  trimmed_filter := Trim( FedtTextFilter.Text);
    filter_text := FedtTextFilter.Text;
   if filter_text.Length =0 then
   begin
@@ -399,7 +372,22 @@ begin
     FbtnDownloadFiltered.Enabled := true;
     FupDownFiltered.Enabled := true;
   end;
+end;
 
+function MessageDlgEx(const AMsg: string; ADlgType: TMsgDlgType; AButtons: TMsgDlgButtons; AParent: TForm): TModalResult;
+var
+  MsgFrm: TForm;
+begin
+  MsgFrm := CreateMessageDialog(AMsg, ADlgType, AButtons);
+  try
+    MsgFrm.Position := poDefaultSizeOnly;
+    MsgFrm.FormStyle := fsSystemStayOnTop;
+    MsgFrm.Left := AParent.Left + (AParent.Width - MsgFrm.Width) div 2;
+    MsgFrm.Top := AParent.Top + (AParent.Height - MsgFrm.Height) div 2;
+    Result := MsgFrm.ShowModal;
+  finally
+    MsgFrm.Free
+  end;
 end;
 
 end.

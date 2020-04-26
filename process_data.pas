@@ -1,7 +1,5 @@
 unit process_data;
 
-
-
 {$mode objfpc}{$H+}
 
 interface
@@ -28,7 +26,7 @@ implementation
 uses
   selection_mediator,
   dirs_files,
-  form_events;
+  form_podcast_4;
 
 function process_a_podcast(podcast_file: string): integer;
 var
@@ -41,7 +39,7 @@ begin
       g_selection_mediator.Free();
     g_selection_mediator := TSelectionMediator.Create(podcast_file);
     number_episodes := g_selection_mediator.readRssFile(edtSaveDirectory, g_podcast_form, lblPodcastDescription,
-      @DoOnReadPodcast, @DoOnFailedReadPodcast);
+      @DoOnReadPodcast_2, @DoOnFailedReadPodcast_2);
     totalFileSize := g_selection_mediator.makeCheckList(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc, btnDownloadAll);
   end;
   if totalFileSize > 0 then
@@ -49,8 +47,6 @@ begin
   else
     Result := number_episodes;         // Since sffAudio PDFs have no file size we must do this hack.
 end;
-
-
 
 function process_b_none(): integer;
 var
@@ -63,8 +59,6 @@ begin
   end;
   Result := fileSizeChecked;
 end;
-
-
 
 function process_b_choices(index: integer; are_testing: boolean = False): integer;
 var
@@ -87,13 +81,11 @@ begin
     saveDir := deskDirName(podcast_file);
   with g_podcast_form do
   begin
-    failsAndSuccesses := g_selection_mediator.startDownloading(lbEpisodeDesc, @DoOnWriteEpisode, @DoOnFailedReadEpisode, podcast_file, saveDir);
+    failsAndSuccesses := g_selection_mediator.startDownloading(lbEpisodeDesc, @DoOnWriteEpisode_3,
+      @DoOnFailedReadEpisode_2, podcast_file, saveDir);
   end;
   Result := failsAndSuccesses;
 end;
-
-
-
 
 function process_b_filter(filteredText: string): TCheckedAndTotalSize;
 var
@@ -110,7 +102,6 @@ begin
   Result := checked_and_total_size;
 end;
 
-
 function process_b_index_of_filter(search_text: string; ith_search_index: integer): integer;
 var
   index_of_filter: integer;
@@ -119,7 +110,7 @@ begin
   Result := index_of_filter;
 end;
 
-   function process_b_all(): integer;
+function process_b_all(): integer;
 var
   fileSizeChecked: integer;
 begin
@@ -130,6 +121,5 @@ begin
   end;
   Result := fileSizeChecked;
 end;
-
 
 end.

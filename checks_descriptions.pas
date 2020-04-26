@@ -196,7 +196,7 @@ begin
     Font.Color := clBlack;
     Brush.Color := listBoxBackGround(index, filterMatch);
     FillRect(ARect);
-    TextOut(ARect.Left +EPISODE_TITLE_INDENT, ARect.Top, theItem);
+    TextOut(ARect.Left + EPISODE_TITLE_INDENT, ARect.Top, theItem);
   end;
 end;
 

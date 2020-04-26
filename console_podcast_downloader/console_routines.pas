@@ -26,7 +26,7 @@ var
   screen_buf_info: TConsoleScreenBufferInfo;
   extra_blanks, chopped_str: string;
 begin
-  {$warn 5057 off}  // screen_buf_info not initialized
+  {$warn 5057 off}// screen_buf_info not initialized
   GetConsoleScreenBufferInfo(console_handle, screen_buf_info);
   {$warn 5057 on}
   num_cols := screen_buf_info.SRWINDOW.Right;
@@ -88,7 +88,7 @@ begin
   SetConsoleCursorPosition(console_handle, console_coord);
   if console_handle = INVALID_HANDLE_VALUE then
     RaiseLastOSError();
-    {$warn 5057 off}    // screen_buf_info not initialized
+    {$warn 5057 off}// screen_buf_info not initialized
   GetConsoleScreenBufferInfo(console_handle, screen_buf_info);
     {$warn 5057 on}
   num_cols := screen_buf_info.SRWINDOW.Right;
@@ -112,7 +112,7 @@ begin
   SetConsoleCursorPosition(console_handle, console_coord);
   chopped_str := fitScreenWidth(console_handle, row_str);
   Write(chopped_str);
-  trimmed_str:= Trim(chopped_str);
+  trimmed_str := Trim(chopped_str);
   Result := trimmed_str;
 end;
 
@@ -144,18 +144,3 @@ begin
 end;
 
 end.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,7 +12,7 @@ uses
   {$IfDef ALLOW_DEBUG_SERVER}
   //debug_server,                  // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
-  Classes, SysUtils, RegExpr, HTTPDefs,
+  Classes, SysUtils, RegExpr, HTTPDefs, lazstringutils,
   LazFileUtils,
   xml_episode,
   progress_stream;
@@ -34,12 +34,15 @@ type
     FXmlEpisodes: TXmlEpisodes;
     FMediaWillBeDownloaded: TBooleanArray;
     FSuccessfuls: integer;
+    FNumToDownload: integer;
     FPodcastTitle: string;
     FPodcastDescription: string;
     FSaveDirectory: string;
+    FFileNames: TStringList;
   protected
-    function getOnlinePodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode): string;
-    function readLocalPodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream; program_path: string): string;
+    function getOnlinePodcast(episode_index: integer; DoOnWriteEpisode_3: TOnWriteStream;
+      DoOnFailedReadEpisode_2: TOnFailedReadEpisode): string;
+    function readLocalPodcast(episode_index: integer; DoOnWriteEpisode_3: TOnWriteStream; program_path: string): string;
     function numChecked(): integer;
     procedure makeEpisodeDirectory(url_or_file, the_save_directory, xmlData: string);
   public
@@ -49,23 +52,23 @@ type
     function setCheckClick(itemNumber: integer; isChecked: boolean): int64;
     function filterCheckboxes(theFilter: string; mark_download: boolean): TBooleanArray;
     function amountToDownload(): int64;
-    function readPodcast(url_or_file, program_path: string; DoOnWriteStream: TOnWriteStream; DoOnFailedReadPodcast: TOnFailedReadPodcast): integer;
+    function readPodcast(url_or_file, program_path: string; DoOnWriteEpisode_3: TOnWriteStream;
+      DoOnFailedReadPodcast_2: TOnFailedReadPodcast): integer;
     function getDescription(): string;
     function getTitle(): string;
     function getSuccesses(): integer;
     function numberEpisodes(): integer;
     function anEpisodeOfPodcast(episode_index: integer): TXmlEpisode;
-    function downloadChosen(DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode; url_or_file, the_save_directory, program_path: string): TStringList;
+    function downloadChosen(DoOnWriteEpisode_3: TOnWriteStream; DoOnFailedReadEpisode_2: TOnFailedReadEpisode;
+      url_or_file, the_save_directory, program_path: string): TStringList;
     procedure markAllDownload();
-
+    function identicalNamesFix(filename: string; episode_index: integer): string;
     function getIthOfSearch(search_text: string; ith_search_index: integer): integer;
+    function getWantedDownloads(): integer;
   end;
-
 
 function deleteComments(itemNode: string): string;
 function lineBreakStringList(line_break: string; xml_text: string = ''): TStringList;
-
-
 
 implementation
 
@@ -84,8 +87,6 @@ begin
   Result := episode_filename;
 end;
 
-
-
 function lineBreakStringList(line_break: string; xml_text: string = ''): TStringList;
 var
   MyStringList: TStringList;
@@ -103,9 +104,6 @@ begin
   inherited Create;
 end;
 
-
-
-
 function getEpisodeItems(xmlFile: string): TStringList;
 var
   MyStringList: TStringList;
@@ -114,7 +112,6 @@ begin
   MyStringList.Delete(0);
   Result := MyStringList;
 end;
-
 
 function getRssTitleDesc(xmlFile: string): string;
 var
@@ -130,21 +127,15 @@ begin
   end;
 end;
 
-
-
-
 function TRssPodcast.getTitle(): string;
 begin
-
   Result := FPodcastTitle;
 end;
 
 function TRssPodcast.getDescription(): string;
 begin
-
   Result := FPodcastDescription;
 end;
-
 
 procedure TRssPodcast.makeEpisodeDirectory(url_or_file, the_save_directory, xmlData: string);
 var
@@ -159,9 +150,6 @@ begin
   WriteLn(F, xmlData);
   CloseFile(F);
 end;
-
-
-
 
 function TRssPodcast.numChecked(): integer;
 var
@@ -178,8 +166,6 @@ begin
   Result := checkCount;
 end;
 
-
-
 function TRssPodcast.getSuccesses(): integer;
 begin
   Result := FSuccessfuls;
@@ -190,8 +176,6 @@ begin
   FMediaWillBeDownloaded[itemNumber] := isChecked;
   Result := amountToDownload();
 end;
-
-
 
 function localCopyAnEpisode(local_relative_episode_path, the_save_directory, fileName, program_path: string): boolean;
 var
@@ -226,16 +210,10 @@ begin
   Result := the_episode;
 end;
 
-
-
-
 function TRssPodcast.numberEpisodes(): integer;
 begin
   Result := FNumberItems;
 end;
-
-
-
 
 function TRssPodcast.filterCheckboxes(theFilter: string; mark_download: boolean): TBooleanArray;
 var
@@ -255,8 +233,6 @@ begin
   end;
   Result := itemStates;
 end;
-
-
 
 {
  </image>
@@ -297,74 +273,111 @@ begin
   Result := accum;
 end;
 
-
-
-
-function TRssPodcast.getOnlinePodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream;
-  DoOnFailedReadEpisode: TOnFailedReadEpisode): string;
-var
-  filename, curUrl: string;
-  an_episode: TXmlEpisode;
-begin
-  Result := '';
-  an_episode := FXmlEpisodes[episode_index];
-  curUrl := an_episode.theEpisodeUrl();
-  filename := an_episode.theEpisodeFilename;
-  FMediaWillBeDownloaded[episode_index] := False;
-  try
-    downloadAnEpisode(curUrl, FSaveDirectory, filename, episode_index, DoOnWriteStream, DoOnFailedReadEpisode);
-    FSuccessfuls := FSuccessfuls + 1;
-  except
-    on E: ECancelException do
-      raise;
-    else
-      Result := curUrl;
-  end;
-end;
-
-function TRssPodcast.readLocalPodcast(episode_index: integer; DoOnWriteStream: TOnWriteStream; program_path: string): string;
-var
-  filename, curUrl: string;
-  an_episode: TXmlEpisode;
-  fileSize: integer;
-  did_write_to_file: boolean;
-begin
-  Result := '';
-  an_episode := FXmlEpisodes[episode_index];
-  filename := an_episode.theEpisodeFilename;
-  FMediaWillBeDownloaded[episode_index] := False;
-  try
-    fileSize := an_episode.bytesInEpisode();
-    curUrl := an_episode.theEpisodeUrl();
-    did_write_to_file := localCopyAnEpisode(curUrl, FSaveDirectory, fileName, program_path);
-    if did_write_to_file then
-    begin
-      DoOnWriteStream(nil, fileSize, episode_index);       // THIS WILL SET FAtLeastOneFile    CORRECTLY
-      FSuccessfuls := FSuccessfuls + 1;
-    end
-  except
-    Result := curUrl;
-  end;
-end;
-
-
-
 procedure TRssPodcast.markAllDownload();
 var
   episode_index: integer;
-
 begin
-
   for episode_index := 0 to FNumberItems - 1 do
   begin
     FMediaWillBeDownloaded[episode_index] := True;
   end;
 end;
 
+function TRssPodcast.readPodcast(url_or_file, program_path: string; DoOnWriteEpisode_3: TOnWriteStream;
+  DoOnFailedReadPodcast_2: TOnFailedReadPodcast): integer;
+var
+  episode_index: integer;
+  myXmlRec: TXmlEpisode;
+  itemStrs: TStringList;
+  podcastIntro, xmlItem, commentedXml: string;
+begin
+  inherited Create;
+  commentedXml := urlOrTestFile(url_or_file, program_path, DoOnWriteEpisode_3, DoOnFailedReadPodcast_2);
+  FPodcastXmlText := deleteComments(commentedXml);
+  podcastIntro := getRssTitleDesc(FPodcastXmlText);
+  ItemStrs := getEpisodeItems(FPodcastXmlText);
+  FPodcastTitle := getPodcastTitle(podcastIntro);
+  FPodcastDescription := getTheDesc(podcastIntro);
+  FNumberItems := ItemStrs.Count;
+  SetLength(FXmlEpisodes, FNumberItems);
+  SetLength(FMediaWillBeDownloaded, FNumberItems);
+  {$IFDEF ALLOW_GUI_STATE}
+  mouseStartParseEpisodes();
+  {$ENDIF}
+  FFileNames := TStringList.Create();
+  for episode_index := 0 to FNumberItems - 1 do
+  begin
+    xmlItem := itemStrs[episode_index];
+    myXmlRec := TXmlEpisode.Create(xmlItem);
+    FXmlEpisodes[episode_index] := myXmlRec;
+    FMediaWillBeDownloaded[episode_index] := False;
+  end;
+  {$IFDEF ALLOW_GUI_STATE}
+  mouseStopParseEpisodes();
+  {$ENDIF}
+  itemStrs.Free();
+  Result := FNumberItems;
+end;
 
+destructor TRssPodcast.Destroy;
+var
+  episode_index: integer;
+  myXmlRec: TXmlEpisode;
+begin
+  FFileNames.Free();
+  for episode_index := 0 to FNumberItems - 1 do
+  begin
+    myXmlRec := FXmlEpisodes[episode_index];
+    myXmlRec.Free();
+  end;
+  inherited Destroy;
+end;
 
+function TRssPodcast.getIthOfSearch(search_text: string; ith_search_index: integer): integer;
+var
+  episode_index, ith_scan_index: integer;
+  myXmlRec: TXmlEpisode;
+begin
+  Result := 0;
+  ith_scan_index := 0;
+  for episode_index := 0 to FNumberItems - 1 do
+  begin
+    myXmlRec := FXmlEpisodes[episode_index];
+    if myXmlRec.containsSearch(search_text) then
+    begin
+      if ith_scan_index = ith_search_index then
+        Result := episode_index;
+      ith_scan_index := ith_scan_index + 1;
+    end;
+  end;
+end;
 
-function TRssPodcast.downloadChosen(DoOnWriteStream: TOnWriteStream; DoOnFailedReadEpisode: TOnFailedReadEpisode;
+function TRssPodcast.identicalNamesFix(filename: string; episode_index: integer): string;
+var
+  filename_pieces: TStrings;
+  add_number_pos: integer;
+  extra_extension_num, non_dup_filename: string;
+begin
+  non_dup_filename := filename;
+  filename_pieces := nil;
+  try
+    if FFileNames.IndexOf(filename) <> -1 then
+    begin
+      filename_pieces := SplitString(filename, '.');
+      filename_pieces.LineBreak := '.';
+      add_number_pos := filename_pieces.Count - 1;
+      extra_extension_num := IntToStr(episode_index);
+      filename_pieces.insert(add_number_pos, extra_extension_num);
+      non_dup_filename := filename_pieces.Text;
+    end;
+  finally
+    Result := non_dup_filename;
+    FFileNames.Add(non_dup_filename);
+    filename_pieces.Free();
+  end;
+end;
+
+function TRssPodcast.downloadChosen(DoOnWriteEpisode_3: TOnWriteStream; DoOnFailedReadEpisode_2: TOnFailedReadEpisode;
   url_or_file, the_save_directory, program_path: string): TStringList;
 var
   episode_index: integer;
@@ -383,9 +396,9 @@ begin
       begin
         curUrl := an_episode.theEpisodeUrl();
         if isOnlinePodcast(curUrl) then
-          failUrl := getOnlinePodcast(episode_index, DoOnWriteStream, DoOnFailedReadEpisode)
+          failUrl := getOnlinePodcast(episode_index, DoOnWriteEpisode_3, DoOnFailedReadEpisode_2)
         else
-          failUrl := readLocalPodcast(episode_index, DoOnWriteStream, program_path);
+          failUrl := readLocalPodcast(episode_index, DoOnWriteEpisode_3, program_path);
         if failUrl <> '' then
           failed_episodes.Add(curUrl);
       end;
@@ -400,78 +413,7 @@ begin
   Result := failed_episodes;
 end;
 
-
-
-function TRssPodcast.readPodcast(url_or_file, program_path: string; DoOnWriteStream: TOnWriteStream;
-  DoOnFailedReadPodcast: TOnFailedReadPodcast): integer;
-var
-  episode_index: integer;
-  myXmlRec: TXmlEpisode;
-  itemStrs: TStringList;
-  podcastIntro, xmlItem, commentedXml: string;
-begin
-  inherited Create;
-  commentedXml := urlOrTestFile(url_or_file, program_path, DoOnWriteStream, DoOnFailedReadPodcast);
-  FPodcastXmlText := deleteComments(commentedXml);
-  podcastIntro := getRssTitleDesc(FPodcastXmlText);
-  ItemStrs := getEpisodeItems(FPodcastXmlText);
-  FPodcastTitle := getPodcastTitle(podcastIntro);
-  FPodcastDescription := getTheDesc(podcastIntro);
-  FNumberItems := ItemStrs.Count;
-  SetLength(FXmlEpisodes, FNumberItems);
-  SetLength(FMediaWillBeDownloaded, FNumberItems);
-  {$IFDEF ALLOW_GUI_STATE}
-  mouseStartParseEpisodes();
-
-{$ENDIF}
-  for episode_index := 0 to FNumberItems - 1 do
-  begin
-    xmlItem := itemStrs[episode_index];
-    myXmlRec := TXmlEpisode.Create(xmlItem);
-    FXmlEpisodes[episode_index] := myXmlRec;
-    FMediaWillBeDownloaded[episode_index] := False;
-  end;
-  {$IFDEF ALLOW_GUI_STATE}
-  mouseStopParseEpisodes();
-{$ENDIF}
-  itemStrs.Free();
-  Result := FNumberItems;
-end;
-
-destructor TRssPodcast.Destroy;
-var
-  episode_index: integer;
-  myXmlRec: TXmlEpisode;
-begin
-  for episode_index := 0 to FNumberItems - 1 do
-  begin
-    myXmlRec := FXmlEpisodes[episode_index];
-    myXmlRec.Free();
-  end;
-  inherited Destroy;
-end;
-
-
-function TRssPodcast.getIthOfSearch(search_text: string; ith_search_index: integer): integer;
-var
-  episode_index, ith_scan_index: integer;
-  myXmlRec: TXmlEpisode;
-begin
-  Result :=0;
-  ith_scan_index := 0;
-  for episode_index := 0 to FNumberItems - 1 do
-  begin
-    myXmlRec := FXmlEpisodes[episode_index];
-    if myXmlRec.containsSearch(search_text) then
-    begin
-      if ith_scan_index = ith_search_index then
-        Result := episode_index;
-      ith_scan_index := ith_scan_index + 1;
-    end;
-  end;
-end;
-
-   function TRssPodcast.amountToDownload(): int64;
+function TRssPodcast.amountToDownload(): int64;
 var
   a, fileSize: integer;
   downloadAmount: int64;
@@ -479,6 +421,7 @@ var
   xmlRec: TXmlEpisode;
 begin
   downloadAmount := 0;
+  FNumToDownload := 0;
   for a := 0 to FNumberItems - 1 do
   begin
     toDownload := FMediaWillBeDownloaded[a];
@@ -487,10 +430,64 @@ begin
       xmlRec := FXmlEpisodes[a];
       fileSize := xmlRec.bytesInEpisode();
       downloadAmount := downloadAmount + fileSize;
+      FNumToDownload := FNumToDownload + 1;
     end;
   end;
   Result := downloadAmount;
 end;
 
+function TRssPodcast.getWantedDownloads(): integer;
+begin
+  Result := FNumToDownload;
+end;
+
+function TRssPodcast.getOnlinePodcast(episode_index: integer; DoOnWriteEpisode_3: TOnWriteStream;
+  DoOnFailedReadEpisode_2: TOnFailedReadEpisode): string;
+var
+  filename, non_dup_filename, curUrl: string;
+  an_episode: TXmlEpisode;
+begin
+  Result := '';
+  an_episode := FXmlEpisodes[episode_index];
+  curUrl := an_episode.theEpisodeUrl();
+  filename := an_episode.theEpisodeFilename;
+  non_dup_filename := identicalNamesFix(filename, episode_index);
+  FMediaWillBeDownloaded[episode_index] := False;
+  try
+    downloadAnEpisode(curUrl, FSaveDirectory, non_dup_filename, episode_index, DoOnWriteEpisode_3, DoOnFailedReadEpisode_2);
+    FSuccessfuls := FSuccessfuls + 1;
+  except
+    on E: ECancelException do
+      raise;
+    else
+      Result := curUrl;
+  end;
+end;
+
+function TRssPodcast.readLocalPodcast(episode_index: integer; DoOnWriteEpisode_3: TOnWriteStream; program_path: string): string;
+var
+  filename, non_dup_filename, curUrl: string;
+  an_episode: TXmlEpisode;
+  fileSize: integer;
+  did_write_to_file: boolean;
+begin
+  Result := '';
+  an_episode := FXmlEpisodes[episode_index];
+  filename := an_episode.theEpisodeFilename;
+  non_dup_filename := identicalNamesFix(filename, episode_index);
+  FMediaWillBeDownloaded[episode_index] := False;
+  try
+    fileSize := an_episode.bytesInEpisode();
+    curUrl := an_episode.theEpisodeUrl();
+    did_write_to_file := localCopyAnEpisode(curUrl, FSaveDirectory, non_dup_filename, program_path);
+    if did_write_to_file then
+    begin
+      DoOnWriteEpisode_3(nil, fileSize, episode_index);       // THIS WILL SET FAtLeastOneFile    CORRECTLY
+      FSuccessfuls := FSuccessfuls + 1;
+    end
+  except
+    Result := curUrl;
+  end;
+end;
 
 end.

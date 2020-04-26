@@ -84,7 +84,7 @@
       </Unit7>
       <Unit8>
         <Filename Value="form_events.pas"/>
-        <ComponentName Value="podcastForm"/>
+        <ComponentName Value="PodcastForm4"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>

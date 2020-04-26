@@ -10,23 +10,24 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
         <CursorPos Y="18"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="test_local.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="19"/>
-        <CursorPos Y="28"/>
-        <UsageCount Value="117"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="61"/>
+        <CursorPos X="5" Y="80"/>
+        <UsageCount Value="118"/>
+        <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\..\dirs_files.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\..\console_podcast_downloader\console_backup.pas"/>
@@ -41,7 +42,7 @@
           <TopLine Value="216"/>
           <CursorPos X="21" Y="230"/>
         </ExtraEditor1>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -50,7 +51,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos Y="31"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
       </Unit4>
       <Unit5>
         <Filename Value="..\..\xml_episode.pas"/>
@@ -59,16 +60,16 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="59" Y="44"/>
-        <UsageCount Value="117"/>
+        <UsageCount Value="118"/>
       </Unit5>
       <Unit6>
         <Filename Value="test_internet.pas"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="3"/>
-        <TopLine Value="105"/>
-        <CursorPos X="36" Y="38"/>
-        <UsageCount Value="46"/>
+        <TopLine Value="49"/>
+        <CursorPos X="5" Y="68"/>
+        <UsageCount Value="47"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -196,7 +197,7 @@
       <Unit25>
         <Filename Value="..\..\debug_server.pas"/>
         <CursorPos X="41" Y="29"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit25>
       <Unit26>
@@ -207,7 +208,16 @@
         <UsageCount Value="10"/>
       </Unit26>
     </Units>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="2" HistoryIndex="1">
+      <Position1>
+        <Filename Value="test_internet.pas"/>
+        <Caret Line="38" Column="36" TopLine="105"/>
+      </Position1>
+      <Position2>
+        <Filename Value="test_local.pas"/>
+        <Caret Line="80" Column="5" TopLine="61"/>
+      </Position2>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="1" ActiveMode="default">
