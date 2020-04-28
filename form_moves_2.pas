@@ -31,6 +31,7 @@ type
     procedure btnCancelMouseEnter_2(Sender: TObject);
     procedure btnCancelMouseLeave_2(Sender: TObject);
     procedure btnStopClick_2(Sender: TObject);
+    procedure gbSelectDirectoryClick(Sender: TObject);
     procedure selectDirBtn_2(Sender: TObject);
     procedure DoOnFailedReadEpisode_2(Sender: TObject; mediaUrl: string);
     procedure DoOnReadPodcast_2(Sender: TObject; APosition: int64; fileNumber: integer);
@@ -87,6 +88,11 @@ begin
     FStateOfGui.setState(GUI_AFTER_A_URL_2);
     FreeAndNil(g_selection_mediator);
   end;
+end;
+
+procedure TMovesForm2.gbSelectDirectoryClick(Sender: TObject);
+begin
+
 end;
 
 procedure TMovesForm2.selectDirBtn_2(Sender: TObject);

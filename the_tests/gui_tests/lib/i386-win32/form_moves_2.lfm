@@ -1,24 +1,24 @@
 inherited MovesForm2: TMovesForm2
-  Left = 317
-  Height = 489
-  Top = 262
+  Left = 5
+  Height = 187
+  Top = 287
   Width = 1444
   Caption = 'cancel_form_2'
-  ClientHeight = 469
+  ClientHeight = 167
   ClientWidth = 1444
   inherited gbPodcastFeed: TGroupBox
-    Left = 999
-    Top = 80
+    Left = 1000
+    Top = 1
   end
   inherited gbPodcastDescription: TGroupBox
-    Left = 999
-    Top = 200
+    Left = 1000
+    Top = 80
     TabOrder = 3
   end
   object downloadBtnPanel: TPanel[2]
-    Left = 8
+    Left = 672
     Height = 66
-    Top = 24
+    Top = 56
     Width = 146
     BevelColor = 39680
     Caption = 'downloadBtnPanel'
@@ -53,9 +53,9 @@ inherited MovesForm2: TMovesForm2
     end
   end
   object cancelBtnPanel: TPanel[3]
-    Left = 8
+    Left = 824
     Height = 50
-    Top = 100
+    Top = 57
     Width = 146
     BevelColor = 192
     Caption = 'cancelBtnPanel'
@@ -89,9 +89,9 @@ inherited MovesForm2: TMovesForm2
     end
   end
   object lblDownloadingXofY: TLabel[4]
-    Left = 16
+    Left = 672
     Height = 15
-    Top = 180
+    Top = 128
     Width = 109
     Caption = 'lblDownloadingXofY'
     ParentColor = False
@@ -99,7 +99,7 @@ inherited MovesForm2: TMovesForm2
   object gbFailedEpisodes: TGroupBox[5]
     Left = 8
     Height = 104
-    Top = 240
+    Top = 48
     Width = 656
     Caption = 'Failed Episodes'
     ClientHeight = 84
@@ -116,14 +116,15 @@ inherited MovesForm2: TMovesForm2
     end
   end
   object gbSelectDirectory: TGroupBox[6]
-    Left = 16
+    Left = 8
     Height = 49
-    Top = 392
+    Top = 0
     Width = 984
     Caption = 'Save to Directory'
     ClientHeight = 29
     ClientWidth = 980
     TabOrder = 5
+    OnClick = gbSelectDirectoryClick
     object edtSaveDirectory: TEdit
       Left = 8
       Height = 23
@@ -143,12 +144,12 @@ inherited MovesForm2: TMovesForm2
     end
   end
   inherited MainMenu1: TMainMenu[7]
-    left = 1024
-    top = 32
+    left = 1192
+    top = 40
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog[8]
     InitialDir = 'desktop'
-    left = 724
-    top = 100
+    left = 880
+    top = 112
   end
 end

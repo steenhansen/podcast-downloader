@@ -1,7 +1,7 @@
 inherited PodcastForm4: TPodcastForm4
-  Left = 425
+  Left = 148
   Height = 588
-  Top = 175
+  Top = 32
   Width = 1000
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -59,6 +59,8 @@ inherited PodcastForm4: TPodcastForm4
     TabOrder = 0
   end
   inherited gbEpisodesToDownload: TGroupBox
+    Left = 8
+    Top = 160
     TabOrder = 2
     inherited clbEpisodeFiles: TCheckListBox
       Data = {
@@ -67,20 +69,22 @@ inherited PodcastForm4: TPodcastForm4
     end
   end
   inherited btnDownloadNone: TButton
+    Top = 120
     TabOrder = 6
   end
   inherited btnDownloadAll: TButton
+    Top = 120
     TabOrder = 7
   end
-  
+  inherited grTextFilter: TGroupBox
+    Top = 104
+  end
   inherited MainMenu1: TMainMenu
-    left = 555
-    top = 136
+    left = 624
+    top = 232
   end
   inherited SelectDirectoryDialog1: TSelectDirectoryDialog
-    left = 555
-    top = 16
+    left = 712
+    top = 248
   end
- 
-  
 end

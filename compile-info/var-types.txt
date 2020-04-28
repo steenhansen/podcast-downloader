@@ -1,0 +1,48 @@
+
+Global GUI Variables:
+	g_podcast_form - the main visible form
+	
+	g_selection_mediator - mediator object between TGuiState and TRssPodcast
+
+Types:
+	TXmlEpisode - an episode within a podcast
+	
+	TRssPodcast - a podcast containing many episodes
+	
+	TGuiState - the states of the gui
+	
+	TSelectionMediator - processes data in GUI
+
+	TProgressStream - write event for displaying progress
+
+	TDownloadStream - download files with HTTP
+
+	TConsolePodcast - screen and keyboard i/o in console program
+
+	ECancelException - 'Esc' was pressed, or 'Cancel' button was pushed
+
+Components:
+	TCheckListBox - onDraw event used, and onScroll added
+
+	TListBox - onDraw event used, and onScroll added
+   
+    TPodcastForm4 = TMenuForm1 + TMovesForm2 + TEventsForm3 to promote
+	                modularity and separate event code from form code
+  
+Console Tests:
+	TMyTestRunner - console test runner
+	
+	TTestLocal - read test files from local directory
+
+	TTestInternet - read test files from Internet
+	
+	
+GUI Tests:	
+	T_fast_e2e_local - read test files from local directory
+	
+	T_slow_e2e_online - read test files from Internet
+	
+	TfrmTestDirListDifference - show differences in expected versus actual test results
+	
+	
+	

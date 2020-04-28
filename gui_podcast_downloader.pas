@@ -17,7 +17,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   progress_stream,
   form_menu_1,
   form_moves_2,
-  form_events_3;
+  form_events_3, xml_episode;
 
 {$R *.res}
 

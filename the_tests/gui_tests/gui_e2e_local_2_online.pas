@@ -10,7 +10,7 @@ uses
 
 type
 
-  T_fast_e2e_local_online = class(TTestCase)
+  T_slow_e2e_online = class(TTestCase)
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -32,20 +32,20 @@ uses
   process_data,
   consts_types;
 
-procedure T_fast_e2e_local_online.SetUp;
+procedure T_slow_e2e_online.SetUp;
 begin
   g_podcast_form.Show();
 end;
 
 
-procedure T_fast_e2e_local_online.Teardown;
+procedure T_slow_e2e_online.Teardown;
 begin
   g_podcast_form.Hide();
 end;
 
 
 
-procedure T_fast_e2e_local_online.process_test_4_e2e_local_to_online_click_3rd();
+procedure T_slow_e2e_online.process_test_4_e2e_local_to_online_click_3rd();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -72,12 +72,12 @@ begin
   AssertEquals('Bytes of checked files', 12261, fileSizeChecked);
   AssertEquals('Number successful files', 1, numberSuccess);
   AssertEquals('Number failed files', 0, numberFailed);
-  guiDirectory(memExpectedText, memActualText, 'T_fast_e2e_local_online.process_test_4_e2e_local_to_online_click_3rd');
+  guiDirectory(memExpectedText, memActualText, 'T_slow_e2e_online.process_test_4_e2e_local_to_online_click_3rd');
 
 end;
 
 
-procedure T_fast_e2e_local_online.process_test_5_e2e_local_to_online_anecdote();
+procedure T_slow_e2e_online.process_test_5_e2e_local_to_online_anecdote();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -110,7 +110,7 @@ end;
 
 
 
-procedure T_fast_e2e_local_online.process_test_6_e2e_local_to_online_all();
+procedure T_slow_e2e_online.process_test_6_e2e_local_to_online_all();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -140,7 +140,7 @@ begin
 end;
 
 
-procedure T_fast_e2e_local_online.process_test_7_e2e_local_to_online_none();
+procedure T_slow_e2e_online.process_test_7_e2e_local_to_online_none();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -168,7 +168,7 @@ end;
 
 
 
-procedure T_fast_e2e_local_online.process_test_11_e2e_local_to_online_same();
+procedure T_slow_e2e_online.process_test_11_e2e_local_to_online_same();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -202,5 +202,5 @@ end;
 
 initialization
 
-  RegisterTest(T_fast_e2e_local_online);
+  RegisterTest(T_slow_e2e_online);
 end.

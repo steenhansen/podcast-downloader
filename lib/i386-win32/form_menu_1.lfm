@@ -1,17 +1,17 @@
 object MenuForm1: TMenuForm1
-  Left = 591
-  Height = 213
-  Top = 158
+  Left = 6
+  Height = 130
+  Top = 123
   Width = 1056
   Caption = 'menu_form_1'
-  ClientHeight = 193
+  ClientHeight = 110
   ClientWidth = 1056
   Menu = MainMenu1
   LCLVersion = '2.0.6.0'
   object gbPodcastFeed: TGroupBox
     Left = 8
     Height = 48
-    Top = 48
+    Top = 0
     Width = 984
     Caption = 'Enter Podcast Feed URL to Download Files From'
     ClientHeight = 28
@@ -62,7 +62,7 @@ object MenuForm1: TMenuForm1
   object gbPodcastDescription: TGroupBox
     Left = 8
     Height = 40
-    Top = 104
+    Top = 48
     Width = 984
     Caption = 'Podcast Description'
     ClientHeight = 20
@@ -78,8 +78,8 @@ object MenuForm1: TMenuForm1
     end
   end
   object MainMenu1: TMainMenu
-    left = 16
-    top = 152
+    left = 368
+    top = 16
     object menuExamples: TMenuItem
       Caption = 'Example Podcasts'
       object menuVideo: TMenuItem

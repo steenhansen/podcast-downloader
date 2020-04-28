@@ -1,33 +1,40 @@
 inherited EventsForm3: TEventsForm3
-  Left = 467
-  Height = 601
-  Top = 269
+  Height = 357
+  Top = 507
   Caption = 'events_form_3'
-  ClientHeight = 581
+  ClientHeight = 337
+  inherited gbPodcastFeed: TGroupBox
+    Left = 1008
+  end
+  inherited gbPodcastDescription: TGroupBox
+    Left = 1008
+    Top = 56
+  end
   inherited downloadBtnPanel: TPanel
-    Left = 999
-    Top = 222
+    Left = 1008
+    Top = 256
   end
   inherited cancelBtnPanel: TPanel
-    Left = 999
-    Top = 337
+    Left = 1168
+    Top = 256
   end
   inherited lblDownloadingXofY: TLabel
-    Left = 1008
+    Left = 1176
     Top = 312
   end
   inherited gbFailedEpisodes: TGroupBox
     Left = 1008
-    Top = 456
+    Top = 144
   end
   inherited gbSelectDirectory: TGroupBox
     Left = 1008
-    Top = 400
+    Top = 96
+    OnClick = nil
   end
   object gbEpisodesToDownload: TGroupBox[7]
-    Left = 8
+    Left = 0
     Height = 264
-    Top = 160
+    Top = 56
     Width = 984
     Caption = 'Check Episodes to Download'
     ClientHeight = 244
@@ -138,7 +145,7 @@ inherited EventsForm3: TEventsForm3
   object btnDownloadNone: TButton[8]
     Left = 800
     Height = 25
-    Top = 120
+    Top = 0
     Width = 192
     Caption = 'Select No Episodes for Download'
     OnClick = btnDownloadNoneClick_3
@@ -147,7 +154,7 @@ inherited EventsForm3: TEventsForm3
   object btnDownloadAll: TButton[9]
     Left = 576
     Height = 25
-    Top = 120
+    Top = 0
     Width = 216
     Caption = 'Select All 12345 Episodes for Download'
     OnClick = btnDownloadAllClick_3
@@ -156,7 +163,7 @@ inherited EventsForm3: TEventsForm3
   object grTextFilter: TGroupBox[10]
     Left = 8
     Height = 49
-    Top = 104
+    Top = 0
     Width = 560
     Caption = 'Search for Text'
     ClientHeight = 29
@@ -194,11 +201,11 @@ inherited EventsForm3: TEventsForm3
     end
   end
   inherited MainMenu1: TMainMenu[11]
-    left = 1016
-    top = 136
+    left = 1360
+    top = 272
   end
   inherited SelectDirectoryDialog1: TSelectDirectoryDialog[12]
-    left = 1016
-    top = 16
+    left = 1360
+    top = 184
   end
 end

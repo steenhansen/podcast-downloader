@@ -10,7 +10,7 @@ uses
 
 type
 
-  TTestCaseE2ELocal2Local = class(TTestCase)
+  T_fast_e2e_local = class(TTestCase)
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -33,18 +33,18 @@ uses
   process_data,
   consts_types;
 
-procedure TTestCaseE2ELocal2Local.SetUp;
+procedure T_fast_e2e_local.SetUp;
 begin
   g_podcast_form.Show();
 end;
 
 
-procedure TTestCaseE2ELocal2Local.Teardown;
+procedure T_fast_e2e_local.Teardown;
 begin
   g_podcast_form.Hide();
 end;
 
-procedure TTestCaseE2ELocal2Local.process_test_0_e2e_local_to_local_click_3rd;
+procedure T_fast_e2e_local.process_test_0_e2e_local_to_local_click_3rd;
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -72,7 +72,7 @@ begin
   guiDirectory(memExpectedText, memActualText, 'TTestCaseE2ELocal.process_test_0_e2e_local_to_local_click_3rd');
 end;
 
-procedure TTestCaseE2ELocal2Local.process_test_1_e2e_local_to_local_anecdote();
+procedure T_fast_e2e_local.process_test_1_e2e_local_to_local_anecdote();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -102,7 +102,7 @@ end;
 
 
 
-procedure TTestCaseE2ELocal2Local.process_test_2_e2e_local_to_local_all();
+procedure T_fast_e2e_local.process_test_2_e2e_local_to_local_all();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -131,7 +131,7 @@ end;
 
 
 
-procedure TTestCaseE2ELocal2Local.process_test_3_e2e_local_to_local_none();
+procedure T_fast_e2e_local.process_test_3_e2e_local_to_local_none();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -159,7 +159,7 @@ end;
 
 
 
-procedure TTestCaseE2ELocal2Local.process_test_10_e2e_local_to_local_same();
+procedure T_fast_e2e_local.process_test_10_e2e_local_to_local_same();
 var
   xmlFile, outputPath, memActualText, memExpectedText: string;
   failsAndSuccesses: TFailsAndSuccesses;
@@ -189,5 +189,5 @@ end;
 
 initialization
 
-  RegisterTest(TTestCaseE2ELocal2Local);
+  RegisterTest(T_fast_e2e_local);
 end.
