@@ -256,6 +256,9 @@ var
   download_fine: boolean;
 begin
   try
+    {$IFDEF ALLOW_GUI_STATE}
+        mouseReadingUrl();   // so get flicker of business when a bunch of files already exist, when checking
+    {$ENDIF}
     realPathname := the_save_directory + PathDelim + fileName;
     if not FileExists(realPathname) then
     begin
@@ -272,6 +275,12 @@ begin
       end;
       if not download_fine then
         raise Exception.Create(fileName);
+    end
+    else
+    begin
+      {$IFDEF ALLOW_GUI_STATE}
+        mouseConnectToUrl();
+      {$ENDIF}
     end;
   finally
     if download_fine then
@@ -280,6 +289,9 @@ begin
         DeleteFile(tempPathname);
         RenameFile(tempPathname, realPathname);
       end;
+    {$IFDEF ALLOW_GUI_STATE}
+            mouseReadingUrl();
+    {$ENDIF}
   end;
 end;
 

@@ -23,7 +23,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
 
 begin
   RequireDerivedFormResource := True;
-  Application.Title := 'Podcast-Downloader';
+  Application.Title:='Podcast-Downloader';
   Application.Scaled := True;
   Application.Initialize;
   Application.CreateForm(TPodcastForm4, g_podcast_form);

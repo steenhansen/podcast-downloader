@@ -211,7 +211,7 @@ begin
 
   mouseStopParseEpisodes();
   FlblDownloadingXofY.Visible:=false;
-  FmemFailedFiles.Clear();
+
 end;
 
 procedure TGuiState.whileParsingRss_3();
@@ -233,6 +233,7 @@ begin
   disableGui(FlbEpisodeDesc);
 
   FlblDownloadingXofY.Visible:=false;
+    FmemFailedFiles.Clear();
 end;
 
 procedure TGuiState.afterRssProcessed_4();

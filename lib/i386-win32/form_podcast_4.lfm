@@ -1,7 +1,7 @@
 inherited PodcastForm4: TPodcastForm4
-  Left = 148
+  Left = 392
   Height = 588
-  Top = 32
+  Top = 134
   Width = 1000
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
