@@ -19,51 +19,48 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="33"/>
-        <CursorPos Y="66"/>
+        <TopLine Value="4"/>
+        <CursorPos X="32" Y="27"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="4"/>
-          <CursorPos X="32" Y="27"/>
+          <TopLine Value="33"/>
+          <CursorPos Y="66"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
       </Unit1>
       <Unit2>
         <Filename Value="download_stream.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="245"/>
-        <CursorPos X="6" Y="278"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="1"/>
+        <TopLine Value="241"/>
+        <CursorPos X="3" Y="251"/>
         <ExtraEditorCount Value="2"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <WindowIndex Value="1"/>
-          <TopLine Value="241"/>
-          <CursorPos X="3" Y="251"/>
+          <TopLine Value="31"/>
+          <CursorPos X="13" Y="49"/>
         </ExtraEditor1>
         <ExtraEditor2>
           <EditorIndex Value="-1"/>
-          <TopLine Value="31"/>
-          <CursorPos X="13" Y="49"/>
+          <TopLine Value="245"/>
+          <CursorPos X="6" Y="278"/>
         </ExtraEditor2>
         <UsageCount Value="205"/>
-        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="rss_podcast.pas"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="443"/>
-        <CursorPos X="22" Y="457"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="6"/>
+        <CursorPos X="3" Y="30"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="6"/>
-          <CursorPos X="3" Y="30"/>
+          <CursorPos X="100" Y="299"/>
         </ExtraEditor1>
         <UsageCount Value="201"/>
-        <Loaded Value="True"/>
       </Unit3>
       <Unit4>
         <Filename Value="selection_mediator.pas"/>
@@ -112,17 +109,16 @@
       <Unit8>
         <Filename Value="gui_state.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="68"/>
-        <CursorPos X="11" Y="78"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="201"/>
+        <CursorPos X="32" Y="236"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="201"/>
-          <CursorPos X="32" Y="236"/>
+          <TopLine Value="68"/>
+          <CursorPos X="11" Y="78"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
-        <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="process_data.pas"/>
@@ -135,10 +131,11 @@
       <Unit10>
         <Filename Value="consts_types.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="50"/>
-        <CursorPos X="19" Y="72"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="4"/>
+        <CursorPos X="27" Y="25"/>
         <UsageCount Value="201"/>
+        <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="progress_stream.pas"/>
@@ -151,7 +148,8 @@
         <Filename Value="debug_server.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos Y="12"/>
+        <TopLine Value="25"/>
+        <CursorPos Y="21"/>
         <UsageCount Value="218"/>
       </Unit12>
       <Unit13>
@@ -161,8 +159,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="13" Y="15"/>
-        <UsageCount Value="78"/>
+        <TopLine Value="166"/>
+        <CursorPos X="17" Y="178"/>
+        <UsageCount Value="83"/>
       </Unit13>
       <Unit14>
         <Filename Value="form_moves_2.pas"/>
@@ -170,10 +169,12 @@
         <ComponentName Value="MovesForm2"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="62"/>
-        <CursorPos X="3" Y="83"/>
-        <UsageCount Value="78"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="50"/>
+        <CursorPos X="51" Y="71"/>
+        <UsageCount Value="83"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit14>
       <Unit15>
         <Filename Value="form_events_3.pas"/>
@@ -182,21 +183,21 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="45"/>
-        <CursorPos Y="55"/>
-        <UsageCount Value="78"/>
+        <TopLine Value="220"/>
+        <CursorPos Y="239"/>
+        <UsageCount Value="83"/>
       </Unit15>
       <Unit16>
         <Filename Value="xml_episode.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="25"/>
-        <CursorPos Y="349"/>
+        <TopLine Value="21"/>
+        <CursorPos X="14" Y="33"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="21"/>
-          <CursorPos X="14" Y="33"/>
+          <TopLine Value="247"/>
+          <CursorPos X="61" Y="266"/>
         </ExtraEditor1>
         <UsageCount Value="200"/>
       </Unit16>
@@ -541,59 +542,39 @@
     <OtherDefines Count="1">
       <Define0 Value="IS_GUI_PROGRAM"/>
     </OtherDefines>
-    <JumpHistory Count="13" HistoryIndex="12">
+    <JumpHistory Count="8" HistoryIndex="7">
       <Position1>
-        <Filename Value="rss_podcast.pas"/>
-        <Caret Line="30" Column="14" TopLine="9"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="16" Column="5"/>
       </Position1>
       <Position2>
-        <Filename Value="gui_state.pas"/>
-        <Caret Line="36" Column="12" TopLine="15"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="31" Column="15"/>
       </Position2>
       <Position3>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="26" Column="27" TopLine="5"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="32" Column="15"/>
       </Position3>
       <Position4>
-        <Filename Value="rss_podcast.pas"/>
-        <Caret Line="30" Column="3" TopLine="6"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="76" Column="51" TopLine="50"/>
       </Position4>
       <Position5>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="49" Column="13" TopLine="28"/>
+        <Filename Value="consts_types.pas"/>
+        <Caret Line="25" Column="27" TopLine="4"/>
       </Position5>
       <Position6>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="132" Column="18" TopLine="111"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="66" Column="34" TopLine="50"/>
       </Position6>
       <Position7>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="49" Column="13" TopLine="31"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="76" Column="32" TopLine="50"/>
       </Position7>
       <Position8>
-        <Filename Value="rss_podcast.pas"/>
-        <Caret Line="457" Column="22" TopLine="443"/>
+        <Filename Value="form_moves_2.pas"/>
+        <Caret Line="66" Column="34" TopLine="50"/>
       </Position8>
-      <Position9>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="34" Column="28" TopLine="15"/>
-      </Position9>
-      <Position10>
-        <Filename Value="gui_state.pas"/>
-        <Caret Line="27" Column="3" TopLine="6"/>
-      </Position10>
-      <Position11>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="288" Column="23" TopLine="257"/>
-      </Position11>
-      <Position12>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="260" Column="110" TopLine="247"/>
-      </Position12>
-      <Position13>
-        <Filename Value="download_stream.pas"/>
-        <Caret Line="296" Column="3" TopLine="263"/>
-      </Position13>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -601,31 +582,23 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <Watches Count="8">
+    <Watches Count="4">
       <Item1>
-        <Expression Value="place"/>
+        <Expression Value="s4"/>
+        <DisplayStyle Value="wdfString"/>
       </Item1>
       <Item2>
-        <Expression Value="itemNode"/>
+        <Expression Value="s5"/>
+        <DisplayStyle Value="wdfString"/>
       </Item2>
       <Item3>
-        <Expression Value="theListBox.Items.Objects"/>
+        <Expression Value="s6"/>
+        <DisplayStyle Value="wdfString"/>
       </Item3>
-      <Item4 ClassAutoCast="True">
-        <Expression Value="theListBox.Items.Objects"/>
+      <Item4>
+        <Expression Value="s7"/>
+        <DisplayStyle Value="wdfString"/>
       </Item4>
-      <Item5>
-        <Expression Value="theListBox.Items"/>
-      </Item5>
-      <Item6>
-        <Expression Value="theListBox"/>
-      </Item6>
-      <Item7>
-        <Expression Value="filestr"/>
-      </Item7>
-      <Item8>
-        <Expression Value="podcastIntro"/>
-      </Item8>
     </Watches>
   </Debugging>
 </CONFIG>

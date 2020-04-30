@@ -1,7 +1,7 @@
 object MenuForm1: TMenuForm1
-  Left = 6
+  Left = 141
   Height = 130
-  Top = 123
+  Top = 130
   Width = 1056
   Caption = 'menu_form_1'
   ClientHeight = 110
@@ -47,6 +47,7 @@ object MenuForm1: TMenuForm1
       Width = 528
       OnChange = edRssUrlChange_1
       OnClick = edRssUrlChange_1
+      OnKeyDown = edRssUrlKeyDown_1
       TabOrder = 2
       Text = 'http://feeds.serialpodcast.org/serialpodcast'
     end

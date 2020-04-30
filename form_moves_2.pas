@@ -68,12 +68,12 @@ end;
 
 procedure TMovesForm2.btnCancelMouseEnter_2(Sender: TObject);
 begin
-  cancelBtnPanel.BevelColor := STOP_RED;
+  cancelBtnPanel.BevelColor := STANDARD_HOVER_EDGE;
 end;
 
 procedure TMovesForm2.btnCancelMouseLeave_2(Sender: TObject);
 begin
-  cancelBtnPanel.BevelColor := STANDARD_HOVER_EDGE;
+  cancelBtnPanel.BevelColor := STOP_RED;
 end;
 
 procedure TMovesForm2.btnStopClick_2(Sender: TObject);

@@ -13,8 +13,8 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   consts_types,
   dirs_files,
   console_routines,
-  console_backup,
-  rss_podcast;
+  console_podcast,
+  rss_podcast, xml_episode, progress_stream;
 
 var
   quit_character, console_lines: string;

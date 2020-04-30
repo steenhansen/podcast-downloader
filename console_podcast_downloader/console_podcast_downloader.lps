@@ -4,55 +4,92 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="33">
+    <Units Count="44">
       <Unit0>
         <Filename Value="console_podcast_downloader.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="37" Y="15"/>
+        <EditorIndex Value="11"/>
+        <CursorPos X="127" Y="7"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <TopLine Value="5"/>
-          <CursorPos Y="52"/>
+          <CursorPos X="41" Y="2"/>
         </ExtraEditor1>
-        <UsageCount Value="122"/>
+        <UsageCount Value="132"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="console_backup.pas"/>
+        <Filename Value="console_podcast.pas"/>
         <IsPartOfProject Value="True"/>
-        <TopLine Value="243"/>
-        <CursorPos X="65" Y="271"/>
-        <UsageCount Value="30"/>
+        <TopLine Value="4"/>
+        <CursorPos X="56" Y="21"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="console_routines.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="10"/>
+        <TopLine Value="43"/>
         <CursorPos Y="145"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\rss_podcast.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="416"/>
-        <CursorPos Y="434"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="46"/>
+        <CursorPos X="7" Y="78"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
+        <Filename Value="..\download_stream.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="76" Y="19"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\progress_stream.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="10"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\dirs_files.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\xml_episode.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="28"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\consts_types.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+      </Unit8>
+      <Unit9>
         <Filename Value="..\debug_server.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="49"/>
         <CursorPos Y="80"/>
-        <UsageCount Value="20"/>
-      </Unit4>
-      <Unit5>
+        <UsageCount Value="19"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="rss_podcast.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
@@ -65,23 +102,23 @@
           <TopLine Value="228"/>
           <CursorPos X="10" Y="247"/>
         </ExtraEditor1>
-        <UsageCount Value="39"/>
-      </Unit5>
-      <Unit6>
+        <UsageCount Value="38"/>
+      </Unit10>
+      <Unit11>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\graph\src\win32\wincrt.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="76"/>
         <CursorPos X="24" Y="100"/>
-        <UsageCount Value="5"/>
-      </Unit6>
-      <Unit7>
+        <UsageCount Value="4"/>
+      </Unit11>
+      <Unit12>
         <Filename Value="download_stream.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="17"/>
         <CursorPos X="16" Y="38"/>
-        <UsageCount Value="50"/>
-      </Unit7>
-      <Unit8>
+        <UsageCount Value="49"/>
+      </Unit12>
+      <Unit13>
         <Filename Value="form_events.pas"/>
         <ComponentName Value="PodcastForm4"/>
         <HasResources Value="True"/>
@@ -89,116 +126,116 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="506"/>
         <CursorPos X="66" Y="511"/>
-        <UsageCount Value="28"/>
-      </Unit8>
-      <Unit9>
+        <UsageCount Value="27"/>
+      </Unit13>
+      <Unit14>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\packages\rtl-console\src\win\keyboard.pp"/>
         <UnitName Value="Keyboard"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="15"/>
-      </Unit9>
-      <Unit10>
+        <UsageCount Value="14"/>
+      </Unit14>
+      <Unit15>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\win\wininc\ascdef.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="254"/>
         <CursorPos X="10" Y="277"/>
-        <UsageCount Value="2"/>
-      </Unit10>
-      <Unit11>
+        <UsageCount Value="1"/>
+      </Unit15>
+      <Unit16>
         <Filename Value="debug_server.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <CursorPos X="11" Y="18"/>
-        <UsageCount Value="39"/>
-      </Unit11>
-      <Unit12>
+        <UsageCount Value="38"/>
+      </Unit16>
+      <Unit17>
         <Filename Value="dirs_files.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="27"/>
-      </Unit12>
-      <Unit13>
+        <UsageCount Value="26"/>
+      </Unit17>
+      <Unit18>
         <Filename Value="project1.lpr"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="55"/>
         <CursorPos X="49" Y="77"/>
-        <UsageCount Value="6"/>
-      </Unit13>
-      <Unit14>
+        <UsageCount Value="5"/>
+      </Unit18>
+      <Unit19>
         <Filename Value="consts_types.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="3" Y="69"/>
-        <UsageCount Value="25"/>
-      </Unit14>
-      <Unit15>
+        <UsageCount Value="24"/>
+      </Unit19>
+      <Unit20>
         <Filename Value="selection_mediator.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="52" Y="122"/>
-        <UsageCount Value="23"/>
-      </Unit15>
-      <Unit16>
+        <UsageCount Value="22"/>
+      </Unit20>
+      <Unit21>
         <Filename Value="_e2e_local_2_local.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="128"/>
         <CursorPos X="83" Y="151"/>
-        <UsageCount Value="4"/>
-      </Unit16>
-      <Unit17>
+        <UsageCount Value="3"/>
+      </Unit21>
+      <Unit22>
         <Filename Value="_unit_xml_episode.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos X="16" Y="48"/>
-        <UsageCount Value="4"/>
-      </Unit17>
-      <Unit18>
+        <UsageCount Value="3"/>
+      </Unit22>
+      <Unit23>
         <Filename Value="_e2e_local_2_online.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="137"/>
         <CursorPos X="84" Y="159"/>
-        <UsageCount Value="4"/>
-      </Unit18>
-      <Unit19>
+        <UsageCount Value="3"/>
+      </Unit23>
+      <Unit24>
         <Filename Value="process_data.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos X="46" Y="41"/>
-        <UsageCount Value="10"/>
-      </Unit19>
-      <Unit20>
+        <UsageCount Value="9"/>
+      </Unit24>
+      <Unit25>
         <Filename Value="__consol_podcast_backup.lpr"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="115"/>
         <CursorPos X="13" Y="138"/>
-        <UsageCount Value="5"/>
-      </Unit20>
-      <Unit21>
+        <UsageCount Value="4"/>
+      </Unit25>
+      <Unit26>
         <Filename Value="progress_stream.pas"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="2" Y="12"/>
-        <UsageCount Value="9"/>
-      </Unit21>
-      <Unit22>
+        <UsageCount Value="8"/>
+      </Unit26>
+      <Unit27>
         <Filename Value="..\slurps - Copy\__consol_podcast_backup.lpr"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="22"/>
         <CursorPos Y="49"/>
-        <UsageCount Value="8"/>
-      </Unit22>
-      <Unit23>
+        <UsageCount Value="7"/>
+      </Unit27>
+      <Unit28>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\win\wininc\struct.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="1021"/>
         <CursorPos X="32" Y="1044"/>
-        <UsageCount Value="28"/>
-      </Unit23>
-      <Unit24>
+        <UsageCount Value="27"/>
+      </Unit28>
+      <Unit29>
         <Filename Value="C:\lazarus\fpc\3.0.4\source\rtl\win32\windows.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
-        <UsageCount Value="15"/>
-      </Unit24>
-      <Unit25>
+        <UsageCount Value="14"/>
+      </Unit29>
+      <Unit30>
         <Filename Value="xml_episode.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="-1"/>
@@ -210,181 +247,116 @@
           <TopLine Value="158"/>
           <CursorPos X="5" Y="149"/>
         </ExtraEditor1>
-        <UsageCount Value="11"/>
-      </Unit25>
-      <Unit26>
-        <Filename Value="..\download_stream.pas"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="66"/>
-        <CursorPos Y="122"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
-      </Unit26>
-      <Unit27>
+      </Unit30>
+      <Unit31>
         <Filename Value="C:\lazarus\lcl\interfaces\win32\interfaces.pp"/>
         <UnitName Value="Interfaces"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit27>
-      <Unit28>
+        <UsageCount Value="9"/>
+      </Unit31>
+      <Unit32>
         <Filename Value="..\gui_state.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="88"/>
         <CursorPos X="41" Y="101"/>
-        <UsageCount Value="10"/>
-      </Unit28>
-      <Unit29>
+        <UsageCount Value="9"/>
+      </Unit32>
+      <Unit33>
         <Filename Value="..\checks_descriptions.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="67"/>
-        <CursorPos X="75" Y="85"/>
-        <UsageCount Value="10"/>
-      </Unit29>
-      <Unit30>
+        <TopLine Value="13"/>
+        <CursorPos X="11" Y="31"/>
+        <UsageCount Value="9"/>
+      </Unit33>
+      <Unit34>
         <Filename Value="..\form_events.pas"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="657"/>
         <CursorPos X="71" Y="686"/>
-        <UsageCount Value="10"/>
-      </Unit30>
-      <Unit31>
+        <UsageCount Value="9"/>
+      </Unit34>
+      <Unit35>
         <Filename Value="..\selection_mediator.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="457"/>
-        <CursorPos X="40" Y="467"/>
-        <UsageCount Value="10"/>
-      </Unit31>
-      <Unit32>
+        <EditorIndex Value="7"/>
+        <CursorPos X="52" Y="14"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
+      </Unit35>
+      <Unit36>
         <Filename Value="..\process_data.pas"/>
         <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="27"/>
-        <CursorPos X="3" Y="48"/>
+        <CursorPos X="18"/>
+        <UsageCount Value="13"/>
+      </Unit36>
+      <Unit37>
+        <Filename Value="..\episode_bits.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="46"/>
+        <UsageCount Value="9"/>
+      </Unit37>
+      <Unit38>
+        <Filename Value="..\form_menu_1.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="15" Y="13"/>
+        <UsageCount Value="9"/>
+      </Unit38>
+      <Unit39>
+        <Filename Value="..\form_moves_2.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="16" Y="13"/>
+        <UsageCount Value="9"/>
+      </Unit39>
+      <Unit40>
+        <Filename Value="..\form_events_3.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="17" Y="14"/>
+        <UsageCount Value="9"/>
+      </Unit40>
+      <Unit41>
+        <Filename Value="..\form_podcast_4.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="16" Y="18"/>
+        <UsageCount Value="9"/>
+      </Unit41>
+      <Unit42>
+        <Filename Value="..\gui_podcast_downloader.pas"/>
+        <EditorIndex Value="9"/>
+        <CursorPos X="74" Y="13"/>
+        <UsageCount Value="13"/>
+        <Loaded Value="True"/>
+      </Unit42>
+      <Unit43>
+        <Filename Value="..\the_tests\test_support.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="8"/>
+        <CursorPos X="18"/>
         <UsageCount Value="10"/>
-      </Unit32>
+        <Loaded Value="True"/>
+      </Unit43>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="5" HistoryIndex="4">
       <Position1>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="121" TopLine="102"/>
-      </Position1>
-      <Position2>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="122" TopLine="102"/>
-      </Position2>
-      <Position3>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="123" TopLine="102"/>
-      </Position3>
-      <Position4>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="124" TopLine="102"/>
-      </Position4>
-      <Position5>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="125" TopLine="102"/>
-      </Position5>
-      <Position6>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="157" TopLine="138"/>
-      </Position6>
-      <Position7>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="158" TopLine="138"/>
-      </Position7>
-      <Position8>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="159" TopLine="138"/>
-      </Position8>
-      <Position9>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="122" TopLine="103"/>
-      </Position9>
-      <Position10>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="123" TopLine="103"/>
-      </Position10>
-      <Position11>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="124" TopLine="103"/>
-      </Position11>
-      <Position12>
-        <Filename Value="..\rss_podcast.pas"/>
-        <Caret Line="408" TopLine="388"/>
-      </Position12>
-      <Position13>
-        <Filename Value="..\rss_podcast.pas"/>
-        <Caret Line="409" TopLine="388"/>
-      </Position13>
-      <Position14>
-        <Filename Value="..\rss_podcast.pas"/>
-        <Caret Line="410" TopLine="388"/>
-      </Position14>
-      <Position15>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="290" TopLine="271"/>
-      </Position15>
-      <Position16>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="291" TopLine="271"/>
-      </Position16>
-      <Position17>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="292" TopLine="271"/>
-      </Position17>
-      <Position18>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="300" TopLine="271"/>
-      </Position18>
-      <Position19>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="122" TopLine="102"/>
-      </Position19>
-      <Position20>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="123" TopLine="102"/>
-      </Position20>
-      <Position21>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="124" TopLine="102"/>
-      </Position21>
-      <Position22>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="125" TopLine="102"/>
-      </Position22>
-      <Position23>
-        <Filename Value="..\rss_podcast.pas"/>
-        <Caret Line="434" TopLine="416"/>
-      </Position23>
-      <Position24>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="157" TopLine="138"/>
-      </Position24>
-      <Position25>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="122" TopLine="102"/>
-      </Position25>
-      <Position26>
-        <Filename Value="..\rss_podcast.pas"/>
-        <Caret Line="434" TopLine="416"/>
-      </Position26>
-      <Position27>
-        <Filename Value="console_backup.pas"/>
-        <Caret Line="157" TopLine="138"/>
-      </Position27>
-      <Position28>
-        <Filename Value="..\download_stream.pas"/>
-        <Caret Line="122" TopLine="102"/>
-      </Position28>
-      <Position29>
         <Filename Value="console_podcast_downloader.pas"/>
         <Caret Line="22" Column="3"/>
-      </Position29>
-      <Position30>
+      </Position1>
+      <Position2>
+        <Filename Value="console_podcast_downloader.pas"/>
+        <Caret Line="9" Column="21"/>
+      </Position2>
+      <Position3>
         <Filename Value="..\rss_podcast.pas"/>
-        <Caret Line="434" TopLine="416"/>
-      </Position30>
+        <Caret Line="434" TopLine="7"/>
+      </Position3>
+      <Position4>
+        <Filename Value="..\rss_podcast.pas"/>
+        <Caret Line="434" TopLine="7"/>
+      </Position4>
+      <Position5>
+        <Filename Value="..\rss_podcast.pas"/>
+        <Caret Line="78" Column="7" TopLine="46"/>
+      </Position5>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

@@ -9,7 +9,7 @@ interface
 uses
 
   {$IfDef ALLOW_DEBUG_SERVER}
-  // debug_server,                     // Can use SendDebug('my debug message') from dbugintf
+   //debug_server,                     // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
   strUtils, HTTPDefs, Classes, SysUtils, regexpr,
   consts_types;
@@ -72,15 +72,21 @@ end;
 
 function removeCDataHtmlElem(cdata_string: string): string;
 var
-  no_cdata_elems: string;
+  s1, s2, s3, s4, s5, s6, s7, s8: string;
 begin
-  no_cdata_elems := eraseStr(cdata_string, '<![CDATA[');
-  no_cdata_elems := eraseStr(no_cdata_elems, ']]>');
-  no_cdata_elems := AdjustLineBreaks(no_cdata_elems, tlbsCRLF);
-  no_cdata_elems := StringReplace(no_cdata_elems, LINE_ENDING, ' ', [rfReplaceAll]);
-  no_cdata_elems := ReplaceRegExpr('<[^>]*>', no_cdata_elems, '', False);
-  no_cdata_elems := ReplaceRegExpr('&lt;[^&]*&gt;', no_cdata_elems, '', False);
-  Result := no_cdata_elems;
+  s1 := eraseStr(cdata_string, '<![CDATA[');
+  s2 := eraseStr(s1, ']]>');
+  s3 := AdjustLineBreaks(s2, tlbsCRLF);
+  s4 := StringReplace(s3, LINE_ENDING, ' ', [rfReplaceAll]);
+  s5 := ReplaceRegExpr('<[^>]*>', s4, '', False);
+  s6 := StringReplace(s5, '&lt;', '<', [rfReplaceAll]);        // Coding Blocks issue
+  s7 := StringReplace(s6, '&gt;', '>', [rfReplaceAll]);        // https://www.codingblocks.net/podcast-feed.xml
+  s8 := ReplaceRegExpr('<[^>]*>', s7, '', False);
+//  _d('s5', s5);
+//  _d('s6', s6);
+//  _d('s7', s7);
+//  _d('s8', s8);
+  Result := s8;
 end;
 
 function getNoHtml(descriptionElement, title_desc_regex: string): string;
@@ -251,6 +257,16 @@ function htmlCharEntities(no_html: string): string;
   end;
 
 begin
+  replaceAll('&amp;nbsp;', ' ');
+  replaceAll('&amp;ldquo;', '''');    // https://feeds.feedwrench.com/js-jabber.rss
+  replaceAll('&amp;rdquo;', '''');
+  replaceAll('&amp;quot;', '''');
+  replaceAll('&amp;#39;', '''');
+  replaceAll('&amp;rsquo;', '''');
+  replaceAll('&amp;lsquo;', '''');
+  replaceAll('&amp;ndash;', '-');
+  replaceAll('&amp;mdash;', '-');
+
   replaceAll('&nbsp;', ' ');
   replaceAll('&#160;', ' ');
 
@@ -267,7 +283,7 @@ begin
   replaceAll('&#62;', '>');
   replaceAll('&#062;', '>');
 
-  replaceAll('&amp;', '&');
+
   replaceAll('&#38;', '&');
   replaceAll('&#038;', '&');
 
@@ -302,6 +318,8 @@ begin
 
   replaceAll('&reg;', '®');
   replaceAll('&#174;', '®');
+
+  replaceAll('&amp;', '&');  // NB, keep last
 
   Result := no_html;
 end;

@@ -34,13 +34,13 @@
         <PackageName Value="LazUtils"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="9">
       <Unit0>
         <Filename Value="console_podcast_downloader.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="console_backup.pas"/>
+        <Filename Value="console_podcast.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit1>
       <Unit2>
@@ -51,6 +51,26 @@
         <Filename Value="..\rss_podcast.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="..\download_stream.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\progress_stream.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\dirs_files.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="..\xml_episode.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="..\consts_types.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

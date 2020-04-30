@@ -46,6 +46,7 @@ type
     menuThisAmericanLife: TMenuItem;
     menuVideo: TMenuItem;
 
+    procedure edRssUrlKeyDown_1(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure menuQuitClick(Sender: TObject);
     procedure menuChannelNineClick(Sender: TObject);
     procedure menuAljazeeraClick(Sender: TObject);
@@ -94,6 +95,8 @@ procedure TMenuForm1.menuQuitClick(Sender: TObject);
 begin
   g_podcast_form.quitProgram();
 end;
+
+
 
 procedure TMenuForm1.menuChannelNineClick(Sender: TObject);
 begin
@@ -179,6 +182,17 @@ procedure TMenuForm1.edRssUrlChange_1(Sender: TObject);
 begin
   FStateOfGui.beforeAfterUrl(edRssUrl.Text);
 end;
+
+procedure TMenuForm1.edRssUrlKeyDown_1(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  text_length:integer;
+{$push}{$warn 5024 off}// Shift not used
+begin
+  text_length := length(edRssUrl.Text);
+  if (Key=13) AND (text_length>8) then
+    btnReadRssClick_1(nil);
+end;
+{$pop}
 
 procedure TMenuForm1.btnReadRssClick_1(Sender: TObject);
 var
