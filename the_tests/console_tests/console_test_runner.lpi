@@ -46,19 +46,19 @@
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="..\..\console_podcast_downloader\console_backup.pas"/>
+        <Filename Value="..\test_support.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="..\test_support.pas"/>
+        <Filename Value="..\..\xml_episode.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="..\..\xml_episode.pas"/>
+        <Filename Value="test_internet.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="test_internet.pas"/>
+        <Filename Value="..\..\console_podcast_downloader\console_podcast.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
     </Units>
@@ -71,7 +71,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\..;..\..\console_podcast_downloader;.."/>
+      <OtherUnitFiles Value="..\..;..;..\..\console_podcast_downloader"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Other>

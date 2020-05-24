@@ -8,7 +8,7 @@ program console_test_runner;
 uses
   Classes, consoletestrunner,
   test_local,
-  test_internet,
+  test_internet, console_podcast,
   Keyboard;
 
 type

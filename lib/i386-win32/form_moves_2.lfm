@@ -1,7 +1,7 @@
 inherited MovesForm2: TMovesForm2
-  Left = 320
+  Left = 1604
   Height = 187
-  Top = 235
+  Top = 253
   Width = 1444
   Caption = 'cancel_form_2'
   ClientHeight = 167
@@ -121,7 +121,7 @@ inherited MovesForm2: TMovesForm2
     Height = 49
     Top = 0
     Width = 984
-    Caption = 'Save to Directory'
+    Caption = 'Save to Directory (non-destructive, files NOT overwritten, re-run multiple times with same directory)'
     ClientHeight = 29
     ClientWidth = 980
     TabOrder = 5
@@ -145,8 +145,6 @@ inherited MovesForm2: TMovesForm2
     end
   end
   inherited MainMenu1: TMainMenu[7]
-    left = 1192
-    top = 40
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog[8]
     InitialDir = 'desktop'

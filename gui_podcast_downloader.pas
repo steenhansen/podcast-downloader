@@ -17,7 +17,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   progress_stream,
   form_menu_1,
   form_moves_2,
-  form_events_3, xml_episode;
+  form_events_3, xml_episode, form_about;
 
 {$R *.res}
 
@@ -27,5 +27,6 @@ begin
   Application.Scaled := True;
   Application.Initialize;
   Application.CreateForm(TPodcastForm4, g_podcast_form);
+  Application.CreateForm(TAboutForm, AboutForm);
   Application.Run;
 end.

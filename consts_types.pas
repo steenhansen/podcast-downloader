@@ -28,6 +28,12 @@ const
   V_RECT_INDENT = 2;
   CHECK_RECT_SIZE = 13;
 
+  GB_DISK_WARN_SIZE = 0.5;          // 0.5 warn once when disk space is below
+  ONE_GIGABYTE = 1073741824;
+  NETWORK_MEDIUM_SLEEP = 1;
+  NETWORK_LOW_SLEEP = 50;
+  LETTER_A_AS_CHAR = 64;
+
   COLOR_CHECKBOX_BORDER = TColor($333333);
   COLOR_CHECKBOX_INTERIOR = TColor($FFFFFF);
 
@@ -85,6 +91,8 @@ type
     checkedFileCount: integer;
     fileSizeChecked: integer;
   end;
+
+        TNetworkLoad = (High=0, Medium=1, Low=2);
 
 implementation
 

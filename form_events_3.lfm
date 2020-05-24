@@ -1,8 +1,11 @@
 inherited EventsForm3: TEventsForm3
+  Left = 1027
   Height = 357
-  Top = 507
+  Top = 390
+  Width = 2046
   Caption = 'events_form_3'
-  ClientHeight = 337
+  ClientHeight = 357
+  ClientWidth = 2046
   inherited gbPodcastFeed: TGroupBox
     Left = 1008
   end
@@ -25,6 +28,11 @@ inherited EventsForm3: TEventsForm3
   inherited gbFailedEpisodes: TGroupBox
     Left = 1008
     Top = 144
+    Width = 496
+    ClientWidth = 492
+    inherited memFailedFiles: TMemo
+      Width = 492
+    end
   end
   inherited gbSelectDirectory: TGroupBox
     Left = 1008
@@ -200,11 +208,33 @@ inherited EventsForm3: TEventsForm3
       TabOrder = 2
     end
   end
-  inherited MainMenu1: TMainMenu[11]
-    left = 1360
-    top = 272
+  object rbgSpeed: TRadioGroup[11]
+    Left = 1328
+    Height = 80
+    Top = 256
+    Width = 107
+    AutoFill = True
+    Caption = 'Network Load'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 60
+    ClientWidth = 103
+    ItemIndex = 0
+    Items.Strings = (
+      'High'
+      'Medium'
+      'Low'
+    )
+    TabOrder = 10
   end
-  inherited SelectDirectoryDialog1: TSelectDirectoryDialog[12]
+  inherited MainMenu1: TMainMenu[12]
+  end
+  inherited SelectDirectoryDialog1: TSelectDirectoryDialog[13]
     left = 1360
     top = 184
   end

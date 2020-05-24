@@ -31,8 +31,11 @@ type
     menuExamples: TMenuItem;
     menuHeist: TMenuItem;
     menuImages: TMenuItem;
-    MenuItem1: TMenuItem;
-    MenuItem2: TMenuItem;
+    N2: TMenuItem;
+    N1: TMenuItem;
+    menuNews: TMenuItem;
+    menuQuit: TMenuItem;
+    menuAbout: TMenuItem;
     menuJoeRogan: TMenuItem;
     menuNasa: TMenuItem;
     menuNHK: TMenuItem;
@@ -47,6 +50,7 @@ type
     menuVideo: TMenuItem;
 
     procedure edRssUrlKeyDown_1(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure menuAboutClick(Sender: TObject);
     procedure menuQuitClick(Sender: TObject);
     procedure menuChannelNineClick(Sender: TObject);
     procedure menuAljazeeraClick(Sender: TObject);
@@ -80,6 +84,7 @@ implementation
 
 uses
   process_data,
+  form_about,
   form_podcast_4;
 
 {$R *.lfm}
@@ -192,6 +197,12 @@ begin
   if (Key=13) AND (text_length>8) then
     btnReadRssClick_1(nil);
 end;
+
+procedure TMenuForm1.menuAboutClick(Sender: TObject);
+begin
+  AboutForm.show();
+end;
+
 {$pop}
 
 procedure TMenuForm1.btnReadRssClick_1(Sender: TObject);
@@ -214,7 +225,7 @@ begin
   except
     FreeAndNil(g_selection_mediator);
     FStateOfGui.setState(GUI_AFTER_A_URL_2);
-    rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' doesn''t respond.';
+    rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' is not an RSS file.';
     MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], g_podcast_form);
   end;
 end;

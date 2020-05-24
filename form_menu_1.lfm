@@ -1,7 +1,7 @@
 object MenuForm1: TMenuForm1
-  Left = 141
+  Left = 1935
   Height = 130
-  Top = 130
+  Top = 76
   Width = 1056
   Caption = 'menu_form_1'
   ClientHeight = 110
@@ -99,7 +99,7 @@ object MenuForm1: TMenuForm1
         end
       end
       object menuPdf: TMenuItem
-        Caption = 'PDF '
+        Caption = 'PDF Podcast'
         object menuSffAudio: TMenuItem
           Caption = 'Public Domain PDFs 6600+'
           OnClick = menuSffPDFClick
@@ -147,8 +147,8 @@ object MenuForm1: TMenuForm1
           OnClick = menuRsdClickClick
         end
       end
-      object MenuItem1: TMenuItem
-        Caption = 'News'
+      object menuNews: TMenuItem
+        Caption = 'News Podcasts'
         object menuNHK: TMenuItem
           Caption = 'NHK World - Japan'
           OnClick = menuNHKClick
@@ -162,7 +162,17 @@ object MenuForm1: TMenuForm1
           OnClick = menuCbcBCClick
         end
       end
-      object MenuItem2: TMenuItem
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object menuAbout: TMenuItem
+        Caption = 'About Podcast-Downloader'
+        OnClick = menuAboutClick
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object menuQuit: TMenuItem
         Caption = 'Quit'
         OnClick = menuQuitClick
       end

@@ -23,11 +23,11 @@ type
     grTextFilter: TGroupBox;
     lbEpisodeDesc: TListBox;
     lbEpisodeTitle: TListBox;
+    rbgSpeed: TRadioGroup;
     splFirst: TSplitter;
     splSecond: TSplitter;
     upDownFiltered: TUpDown;
     procedure FormCreate(Sender: TObject);
-
     procedure DoDrawItemlbEpisodeDesc_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
     procedure clbEpisodeFilesItemClick_3(Sender: TObject; Index: integer);
     procedure splFirstMoved_3(Sender: TObject);
@@ -45,8 +45,10 @@ type
     procedure DoDrawItemclbEpisodeFiles_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
     procedure DoDrawItemlbEpisodeTitle_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
     procedure DoOnWriteEpisode_3(Sender: TObject; APosition: int64; fileNumber: integer);
+    procedure freeSpaceCheck(file_path: String);
   protected
     FViewSearchMatch, FViewSearchCount: integer;
+    FLowDiskSpaceWarn: boolean;
   end;
 
 var
@@ -73,14 +75,8 @@ begin
   clbEpisodeFiles.Clear;
   lbEpisodeTitle.Clear;
   lbEpisodeDesc.Clear;
+  FLowDiskSpaceWarn:= false;
 end;
-
-procedure TEventsForm3.DoDrawItemlbEpisodeDesc_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
-{$push}{$warn 5024 off}// State not used
-begin
-  EpisodeListBoxDrawItem(Control, Index, ARect);
-end;
-{$pop}
 
 procedure TEventsForm3.clbEpisodeFilesItemClick_3(Sender: TObject; Index: integer);
 var
@@ -154,6 +150,7 @@ begin
   clbEpisodeFiles.TopIndex := lbEpisodeDesc.TopIndex;
   lbEpisodeTitle.TopIndex := lbEpisodeDesc.TopIndex;
 end;
+
 {$pop}
 
 procedure TEventsForm3.edtTextFilterChange_3(Sender: TObject);
@@ -236,6 +233,7 @@ procedure TEventsForm3.DoDrawItemclbEpisodeFiles_3(Control: TWinControl; Index: 
 begin
   checkBoxDrawItem(Control, Index, ARect, lbEpisodeDesc);
 end;
+
 {$pop}
 
 procedure TEventsForm3.DoDrawItemlbEpisodeTitle_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
@@ -243,11 +241,53 @@ procedure TEventsForm3.DoDrawItemlbEpisodeTitle_3(Control: TWinControl; Index: i
 begin
   TitleListBoxDrawItem(Control, Index, ARect, lbEpisodeDesc);
 end;
+
 {$pop}
+
+
+
+procedure TEventsForm3.DoDrawItemlbEpisodeDesc_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
+{$push}{$warn 5024 off}// State not used
+var
+  network_load: integer;
+begin
+  EpisodeListBoxDrawItem(Control, Index, ARect);
+  network_load := rbgSpeed.ItemIndex;
+  if network_load = integer(Medium) then
+    sleep(NETWORK_MEDIUM_SLEEP)
+  else if network_load = integer(Low) then
+    sleep(NETWORK_LOW_SLEEP);
+end;
+
+
+
+{$pop}
+
+
+procedure  TEventsForm3.freeSpaceCheck(file_path: String);
+var
+   drive_letter:char;
+    disk_capacity, free_space: Extended;
+    disk_mess, free_mess, warning_mess:string;
+begin
+  drive_letter := UpCase(file_path[1]);
+  free_space := DiskFree(Ord(drive_letter) - LETTER_A_AS_CHAR) / ONE_GIGABYTE ;
+  if (not FLowDiskSpaceWarn) and (free_space <GB_DISK_WARN_SIZE) then
+  begin
+    FLowDiskSpaceWarn:=true;
+    free_mess :=  FormatFloat('#,##0', free_space) + 'GB';
+    disk_capacity := DiskSize(Ord(drive_letter) - LETTER_A_AS_CHAR) / ONE_GIGABYTE;
+    disk_mess :=  FormatFloat('#,##0', disk_capacity) + 'GB';
+    warning_mess := 'Drive ' + drive_letter + ' has only ' + free_mess + ' out of ' + disk_mess + '. You may want to Cancel';
+    MessageDlgEx(warning_mess, mtInformation, [mbOK], g_podcast_form);
+ end;
+end;
+
 
 procedure TEventsForm3.DoOnWriteEpisode_3(Sender: TObject; APosition: int64; fileNumber: integer);
 var
   num_success, num_wanted: integer;
+  save_dir:string;
 begin
   if FStartStopIO <> '' then
     raise ECancelException.Create(WRITE_EXCEPTION_EPISODE + EXCEPTION_SPACE + FStartStopIO);
@@ -256,6 +296,15 @@ begin
   num_wanted := g_selection_mediator.getWantedDownloads();
   lblDownloadingXofY.Caption := 'Downloading ' + IntToStr(num_success) + '/' + IntToStr(num_wanted);
   Application.ProcessMessages;
+  save_dir := Trim(g_podcast_form.edtSaveDirectory.Text);
+  freeSpaceCheck(save_dir);
 end;
+
+
+
+
+
+
+
 
 end.

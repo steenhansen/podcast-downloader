@@ -1,13 +1,13 @@
 inherited PodcastForm4: TPodcastForm4
-  Left = 392
+  Left = 122
   Height = 588
-  Top = 134
-  Width = 1000
+  Top = 98
+  Width = 1003
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Podcast Downloader - 123,456,789 bytes read'
   ClientHeight = 568
-  ClientWidth = 1000
+  ClientWidth = 1003
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
@@ -45,12 +45,15 @@ inherited PodcastForm4: TPodcastForm4
     Top = 544
   end
   inherited gbFailedEpisodes: TGroupBox
-    Left = 333
+    Left = 456
     Height = 79
     Top = 480
+    Width = 539
     ClientHeight = 59
+    ClientWidth = 535
     inherited memFailedFiles: TMemo
       Height = 59
+      Width = 535
     end
   end
   inherited gbSelectDirectory: TGroupBox
@@ -78,6 +81,10 @@ inherited PodcastForm4: TPodcastForm4
   end
   inherited grTextFilter: TGroupBox
     Top = 104
+  end
+  inherited rbgSpeed: TRadioGroup
+    Left = 336
+    Top = 479
   end
   inherited MainMenu1: TMainMenu
     left = 624

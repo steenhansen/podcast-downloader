@@ -65,10 +65,8 @@ implementation
 
 
 uses
-  //console_routines,
   dirs_files,
-  console_backup,
-
+  console_podcast,
   test_support;
 
 procedure TTestInternet.SetUp;

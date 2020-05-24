@@ -25,7 +25,7 @@ const
   GUI_AFTER_FINISHED_7 = 7;
 
   POINTER_1_HOURGLASS_START_READ_PODCAST = crHourGlass;
-  POINTER_2_DEFAULT_READING_PODCAST =  crDefault;
+  POINTER_2_HOURGLASS_READING_PODCAST = crHourGlass;
   POINTER_3_HOURGLASS_START_PARSE_EPISODES = crHourGlass;
   POINTER_4_DEFAULT_STOP_PARSE_EPISODES =  crDefault;
   POINTER_5_HOURGLASS_START_NEW_SAVE_DIR = crHourGlass;
@@ -52,6 +52,7 @@ type
     FbtnDownloadNone: TButton;
     FedtSaveDirectory: TEdit;
     FbtnDirectoryChange: TButton;
+    FrbgSpeed:TRadioGroup;
     FbtnDownloadChecked: TBCMDButton;
     FlblDownloadingXofY: TLabel;
     procedure beforeAUrl_1();
@@ -99,7 +100,7 @@ end;
 
 procedure mouseReadingUrl();
 begin
-  Screen.Cursor :=POINTER_2_DEFAULT_READING_PODCAST;
+  Screen.Cursor :=  POINTER_2_HOURGLASS_READING_PODCAST;
 end;
 
  procedure mouseStartParseEpisodes();
@@ -134,6 +135,7 @@ begin
     FbtnDownloadNone := TButton(FindComponent('btnDownloadNone'));
     FedtSaveDirectory := TEdit(FindComponent('edtSaveDirectory'));
     FbtnDirectoryChange := TButton(FindComponent('btnDirectoryChange'));
+    FrbgSpeed := TRadioGroup(FindComponent('rbgSpeed'));
     FbtnDownloadChecked := TBCMDButton(FindComponent('btnDownloadChecked'));
     FlblDownloadingXofY := TLabel(FindComponent('lblDownloadingXofY'));
   end;
@@ -190,6 +192,7 @@ begin
   FedtTextFilter.Clear;
   FedRssUrl.SetFocus;
   FbtnDownloadChecked.Caption := downloadCaption(0, 0);
+    disableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=false;
 end;
 
@@ -210,6 +213,7 @@ begin
   disableGui(FlbEpisodeDesc);
 
   mouseStopParseEpisodes();
+    disableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=false;
 
 end;
@@ -232,6 +236,7 @@ begin
   disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
 
+    disableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=false;
     FmemFailedFiles.Clear();
 end;
@@ -252,6 +257,7 @@ begin
   enableGui(FclbEpisodeFiles);
   enableGui(FlbEpisodeDesc);
 
+    disableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=false;
 end;
 
@@ -269,6 +275,7 @@ begin
   enableGui(FclbEpisodeFiles);
   enableGui(FlbEpisodeDesc);
 
+    disableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=false;
 end;
 
@@ -288,6 +295,10 @@ begin
   enableGui(FclbEpisodeFiles);
   enableGui(FlbEpisodeDesc);
 
+
+
+  FrbgSpeed.ItemIndex:=0;
+  enableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=true;
 end;
 
@@ -307,6 +318,7 @@ begin
   disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
 
+  disableGui(FrbgSpeed);
   FlblDownloadingXofY.Visible:=false;
   mouseStopParseEpisodes();
 end;
