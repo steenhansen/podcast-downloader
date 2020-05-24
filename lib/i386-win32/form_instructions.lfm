@@ -1,0 +1,38 @@
+object InstructionsForm: TInstructionsForm
+  Left = 552
+  Height = 583
+  Top = 206
+  Width = 601
+  Caption = 'Using the Podcast Downloader'
+  ClientHeight = 583
+  ClientWidth = 601
+  Position = poScreenCenter
+  LCLVersion = '2.0.6.0'
+  object StaticText1: TStaticText
+    Left = 0
+    Height = 584
+    Top = 0
+    Width = 608
+    Caption = 'How to back up a podcast :'#13#10#13#10' - Enter an RSS podcast feed url in the first text box, for example, ''http://joeroganexp.joerogan.libsynpro.com/rss'''#13#10'  '#13#10' - Press ''Read Podcast Feed'' to see what episodes are in the podcast'#13#10#13#10' - Choose ''Select All 12345 Episodes for Download'''#13#10#13#10' - Accept the default desktop directory, like ''\Desktop\joeroganexp.joerogan.libsynpro.com-rss\'' as,'#13#10'    files are never erased nor downloaded more than once'#13#10#13#10' - Click on ''Download 12345 Checked Episodes 123 GB'''#13#10#13#10' - Push the ''Cancel'' button, or the ''Esc'' key to stop downloading at any time'#13#10#13#10'Choosing distinct episodes :'#13#10#13#10' - Type text to search for, such as ''mmashow'''#13#10#13#10' - Use       to traverse though matching episodes'#13#10#13#10' - Press ''Add 96 Episodes Matching Search Text'', to add all MMA shows to be downloaded'#13#10#13#10' - Now replace ''mmashow'' with ''Dore'' to view episodes with Jimmy Dore '#13#10#13#10' - Then choose ''Add 3 Episodes Matching Search Text'' to add these episodes to be downloaded'#13#10#13#10'Miscellaneous :'#13#10' '#13#10' - You are warned once if disk space goes below 1/2 gigabytes on the used hard drive'#13#10#13#10' - You can adjust the amout of network bandwith used by the program to high, medium, or low'#13#10#13#10' - If an episode did not get downloaded in three tries it is recored as a failed episode'#13#10#13#10' - Episodes are downloaded in the order they appear in the RSS feed file, newest first'#13#10#13#10' - Several different types of podcasts are available via the File menu'
+    OnClick = StaticText1Click
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 520
+    Height = 25
+    Top = 552
+    Width = 75
+    Caption = 'Ok'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object UpDown1: TUpDown
+    Left = 32
+    Height = 24
+    Top = 280
+    Width = 16
+    Min = 0
+    Position = 0
+    TabOrder = 2
+  end
+end

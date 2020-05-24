@@ -9,7 +9,6 @@ uses
 
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, LCLType,
   Buttons, Menus, ActnList, ComCtrls, regexpr, LazFileUtils, lazlogger, BCMDButton,
-
   form_events_3, gui_state, selection_mediator;
 
 type
@@ -62,6 +61,15 @@ begin
   FreeAndNil(FStateOfGui);
   FreeAndNil(g_selection_mediator);
 end;
+
+
+
+
+
+
+
+
+
 {$pop}
 
 procedure TPodcastForm4.quitProgram();

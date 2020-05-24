@@ -18,6 +18,7 @@ type
     edtCopyableExample: TEdit;
     gbPodcastDescription: TGroupBox;
     gbPodcastFeed: TGroupBox;
+    ImageList1: TImageList;
     lblExample: TLabel;
     lblPodcastDescription: TLabel;
     MainMenu1: TMainMenu;
@@ -31,6 +32,8 @@ type
     menuExamples: TMenuItem;
     menuHeist: TMenuItem;
     menuImages: TMenuItem;
+    N3: TMenuItem;
+    menuInstructions: TMenuItem;
     N2: TMenuItem;
     N1: TMenuItem;
     menuNews: TMenuItem;
@@ -51,6 +54,7 @@ type
 
     procedure edRssUrlKeyDown_1(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure menuAboutClick(Sender: TObject);
+    procedure menuInstructionsClick(Sender: TObject);
     procedure menuQuitClick(Sender: TObject);
     procedure menuChannelNineClick(Sender: TObject);
     procedure menuAljazeeraClick(Sender: TObject);
@@ -85,6 +89,7 @@ implementation
 uses
   process_data,
   form_about,
+  form_instructions,
   form_podcast_4;
 
 {$R *.lfm}
@@ -200,7 +205,12 @@ end;
 
 procedure TMenuForm1.menuAboutClick(Sender: TObject);
 begin
-  AboutForm.show();
+  AboutForm.ShowModal();
+end;
+
+procedure TMenuForm1.menuInstructionsClick(Sender: TObject);
+begin
+        InstructionsForm.ShowModal();
 end;
 
 {$pop}

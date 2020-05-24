@@ -1,7 +1,6 @@
 inherited MovesForm2: TMovesForm2
-  Left = 1604
   Height = 187
-  Top = 253
+  Top = 296
   Width = 1444
   Caption = 'cancel_form_2'
   ClientHeight = 167
@@ -143,8 +142,6 @@ inherited MovesForm2: TMovesForm2
       OnClick = selectDirBtn_2
       TabOrder = 1
     end
-  end
-  inherited MainMenu1: TMainMenu[7]
   end
   object SelectDirectoryDialog1: TSelectDirectoryDialog[8]
     InitialDir = 'desktop'

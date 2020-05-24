@@ -247,8 +247,11 @@ begin
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   enableGui(FedtTextFilter);
-  disableGui(FbtnDownloadFiltered);
-  disableGui(FupDownFiltered);
+
+
+  enableGui(FbtnDownloadFiltered);
+  enableGui(FupDownFiltered);
+
   enableGui(FbtnDownloadAll);
   enableGui(FbtnDownloadNone);
   enableGui(FedtSaveDirectory);

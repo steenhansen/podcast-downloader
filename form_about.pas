@@ -39,14 +39,10 @@ uses
 
 { TAboutForm }
 
-procedure TAboutForm.lblGitHubMouseEnter(Sender: TObject);
-begin
-                    lblGitHub.Font.Color:=clHighlight;
-end;
 
 procedure TAboutForm.Button1Click(Sender: TObject);
 begin
-        AboutForm.Close();
+        Close();
 end;
 
 procedure TAboutForm.lblGitHubClick(Sender: TObject);
@@ -63,6 +59,13 @@ procedure TAboutForm.lblGitHubMouseLeave(Sender: TObject);
 begin
               lblGitHub.Font.Color:=clMenuText;
 end;
+
+procedure TAboutForm.lblGitHubMouseEnter(Sender: TObject);
+begin
+  lblGitHub.Font.Color:=clHighlight;
+end;
+
+
 
 end.
 

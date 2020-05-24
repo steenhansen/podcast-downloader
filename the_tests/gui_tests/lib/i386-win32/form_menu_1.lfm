@@ -81,7 +81,6 @@ object MenuForm1: TMenuForm1
     left = 368
     top = 16
     object menuExamples: TMenuItem
-      Caption = 'Example Podcasts'
       object menuVideo: TMenuItem
         Caption = 'Video Podcasts'
         object menuChannel9: TMenuItem

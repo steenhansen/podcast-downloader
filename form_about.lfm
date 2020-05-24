@@ -6,13 +6,14 @@ object AboutForm: TAboutForm
   Caption = 'About Podcast-Downloader'
   ClientHeight = 78
   ClientWidth = 592
+  Position = poScreenCenter
   LCLVersion = '2.0.6.0'
   object Button1: TButton
     Left = 504
     Height = 25
     Top = 32
     Width = 75
-    Caption = 'Close'
+    Caption = 'Ok'
     OnClick = Button1Click
     TabOrder = 0
   end

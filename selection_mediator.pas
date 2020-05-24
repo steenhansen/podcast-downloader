@@ -34,6 +34,8 @@ type
     Furl_or_file: string;
     FNumItems: integer;
     FrssPodcast: TRssPodcast;
+
+    FcaptionSpacer:Double;
   public
     constructor Create(url_or_file: string);
     destructor Destroy; override;
@@ -110,6 +112,7 @@ begin
   inherited Create;
   FrssPodcast := nil;
   Furl_or_file := url_or_file;
+  FcaptionSpacer :=0;
 end;
 
 procedure TSelectionMediator.checkedAllOfThem(clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox);
@@ -150,25 +153,7 @@ begin
   Result := checkedFileCount;
 end;
 
-procedure TSelectionMediator.readingRss(g_podcast_form: TForm; fileSize: int64);
-var
-  file_str, byte_part: string;
-begin
-  if fileSize <> 0 then
-  begin
-    file_str := IntToStr(fileSize);
-    byte_part := ' - ' + file_str + ' bytes read';
-    {$IFDEF  ALLOW_GUI_STATE}
-    mouseReadingUrl();
-    {$ENDIF}
-  end
-  else
-  begin
-    byte_part := '';
-  end;
-  g_podcast_form.Caption := 'Podcast Downloader' + byte_part;
-  Application.ProcessMessages;
-end;
+
 
 function TSelectionMediator.clickedBoxNew(fileList: TCheckListBox; lbEpisodeDesc: TListBox; itemNumber: integer;
   btnDownloadChecked: TBCMDButton): integer;
@@ -422,5 +407,34 @@ function TSelectionMediator.getWantedDownloads(): integer;
 begin
   Result := FrssPodcast.getWantedDownloads();
 end;
+
+
+
+
+
+procedure TSelectionMediator.readingRss(g_podcast_form: TForm; fileSize: int64);
+var
+  file_str, size_indent, byte_part: string;
+begin
+  if fileSize <> 0 then
+  begin
+    file_str := IntToStr(fileSize);
+    FcaptionSpacer := FcaptionSpacer+0.1;
+    if FcaptionSpacer>200 then
+       FcaptionSpacer :=0;
+    size_indent := StringOfChar(' ', trunc(FcaptionSpacer));
+    byte_part := size_indent + file_str + ' bytes read';
+    {$IFDEF  ALLOW_GUI_STATE}
+    mouseReadingUrl();
+    {$ENDIF}
+  end
+  else
+  begin
+    byte_part := '';
+  end;
+  g_podcast_form.Caption := 'Podcast Downloader' + byte_part;
+  Application.ProcessMessages;
+end;
+
 
 end.

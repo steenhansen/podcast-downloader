@@ -1,10 +1,10 @@
 inherited EventsForm3: TEventsForm3
-  Left = 1027
+  Left = 149
   Height = 357
-  Top = 390
+  Top = 532
   Width = 2046
   Caption = 'events_form_3'
-  ClientHeight = 357
+  ClientHeight = 337
   ClientWidth = 2046
   inherited gbPodcastFeed: TGroupBox
     Left = 1008

@@ -1,7 +1,7 @@
 inherited PodcastForm4: TPodcastForm4
-  Left = 122
+  Left = 459
   Height = 588
-  Top = 98
+  Top = 114
   Width = 1003
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -12,6 +12,7 @@ inherited PodcastForm4: TPodcastForm4
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
+  Position = poScreenCenter
   inherited gbPodcastFeed: TGroupBox
     Left = 8
     Top = 6
