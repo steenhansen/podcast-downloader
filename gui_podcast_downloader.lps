@@ -19,7 +19,6 @@
         <ComponentName Value="PodcastForm4"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="4"/>
         <TopLine Value="11"/>
         <CursorPos X="59" Y="24"/>
@@ -133,7 +132,8 @@
       <Unit10>
         <Filename Value="consts_types.pas"/>
         <IsPartOfProject Value="True"/>
-        <CursorPos X="78" Y="12"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="98" Y="12"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
       </Unit10>

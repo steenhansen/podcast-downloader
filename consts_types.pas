@@ -9,7 +9,7 @@ uses
 
 const
 
-    HTTP_RETRIES = 1;       // default is 5, change to 1 if you want lots of failures
+    HTTP_RETRIES = 5;       // default is 5, change to 1 if you want lots of failures for testing
 
 
  //////////////////////
