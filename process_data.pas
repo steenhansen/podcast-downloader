@@ -94,7 +94,7 @@ var
 begin
   with g_podcast_form do
   begin
-    checkedFileCount := g_selection_mediator.addFilteredToDownload(filteredText, clbEpisodeFiles);
+    checkedFileCount := g_selection_mediator.addFilteredToDownload(filteredText, clbEpisodeFiles, lbEpisodeDesc);
     fileSizeChecked := g_selection_mediator.calcDownload(clbEpisodeFiles, btnDownloadChecked);
   end;
   checked_and_total_size.checkedFileCount := checkedFileCount;

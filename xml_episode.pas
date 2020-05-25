@@ -14,11 +14,6 @@ uses
   strUtils, HTTPDefs, Classes, SysUtils, regexpr,
   consts_types;
 
-const
-
-  DESC_CDATA_REGEX = '<description[^>]*>(.*)</description>';
-  TITLE_CDATA_REGEX = '<title[^>]*>(.*)</title>';
-
 function eraseStr(mainStr, strToErase: string): string;
 function removeCDataHtmlElem(cdata_string: string): string;
 function getTheDesc(descriptionElement: string): string;
@@ -57,8 +52,7 @@ type
 
 function htmlCharEntities(no_html: string): string;
 
-const
-  CASE_INSENSITIVE = True;
+
 
 implementation
 

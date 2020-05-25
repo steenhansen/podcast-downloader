@@ -37,24 +37,26 @@ inherited PodcastForm4: TPodcastForm4
     Top = 490
   end
   inherited cancelBtnPanel: TPanel
-    Left = 170
+    Left = 164
     Top = 490
     TabOrder = 8
   end
   inherited lblDownloadingXofY: TLabel
-    Left = 170
+    Left = 164
     Top = 544
+    Width = 96
+    Caption = 'DownloadingXofY'
   end
   inherited gbFailedEpisodes: TGroupBox
-    Left = 456
+    Left = 496
     Height = 79
     Top = 480
-    Width = 539
+    Width = 499
     ClientHeight = 59
-    ClientWidth = 535
+    ClientWidth = 495
     inherited memFailedFiles: TMemo
       Height = 59
-      Width = 535
+      Width = 495
     end
   end
   inherited gbSelectDirectory: TGroupBox
@@ -84,8 +86,10 @@ inherited PodcastForm4: TPodcastForm4
     Top = 104
   end
   inherited rbgSpeed: TRadioGroup
-    Left = 336
+    Left = 280
     Top = 479
+    Width = 208
+    ClientWidth = 204
   end
   inherited MainMenu1: TMainMenu
     left = 624

@@ -17,8 +17,6 @@ uses
   progress_stream;
 
 const
-  HTTP_TIMEOUT = 1000;    //  note has a backoff, 1000,2000,3000,4000,5000mSec
-  HTTP_RETRIES = 5;
   DOWNLOAD_BUFFER_SIZE = fphttpclient.ReadBufLen;
 
 type
@@ -145,7 +143,7 @@ var
   var
     io_time_out: integer;
   begin
-    io_time_out := (numTrys + 1) * HTTP_TIMEOUT;             // 1000mSec, 2000mSec, 3000mSec
+    io_time_out := (numTrys + 1) * HTTP_TIMEOUT;             //  note has a backoff, 1001,2002,3003,4004,5005 mSec
     mediaHttp.IOTimeout := io_time_out;
     mediaHttp.HTTPMethod('GET', mediaUrl, urlStream, [200]);
     isDone := True;

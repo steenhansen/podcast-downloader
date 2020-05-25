@@ -17,12 +17,6 @@ uses
   xml_episode,
   progress_stream;
 
-const
-  LINE_BREAK_ON_XML_ITEM = '<item';
-  END_HTML_COMMENT = '-->';
-  START_HTML_COMMENT = '<!--';
-  START_CDATA = '<![CDATA[';
-  END_CDATA = ']]>';
 
 type
   TBooleanArray = array of boolean;
@@ -171,11 +165,6 @@ begin
   Result := FSuccessfuls;
 end;
 
-function TRssPodcast.setCheckClick(itemNumber: integer; isChecked: boolean): int64;
-begin
-  FMediaWillBeDownloaded[itemNumber] := isChecked;
-  Result := amountToDownload();
-end;
 
 function localCopyAnEpisode(local_relative_episode_path, the_save_directory, fileName, program_path: string): boolean;
 var
@@ -215,24 +204,7 @@ begin
   Result := FNumberItems;
 end;
 
-function TRssPodcast.filterCheckboxes(theFilter: string; mark_download: boolean): TBooleanArray;
-var
-  episode_index: integer;
-  downloadItem: boolean;
-  xmlRec: TXmlEpisode;
-  itemStates: TBooleanArray;
-begin
-  SetLength(itemStates, FNumberItems);
-  for episode_index := 0 to FNumberItems - 1 do
-  begin
-    xmlRec := FXmlEpisodes[episode_index];
-    downloadItem := xmlRec.containsSearch(theFilter);
-    if mark_download then
-      FMediaWillBeDownloaded[episode_index] := downloadItem;
-    itemStates[episode_index] := downloadItem;
-  end;
-  Result := itemStates;
-end;
+
 
 {
  </image>
@@ -413,28 +385,7 @@ begin
   Result := failed_episodes;
 end;
 
-function TRssPodcast.amountToDownload(): int64;
-var
-  a, fileSize: integer;
-  downloadAmount: int64;
-  toDownload: boolean;
-  xmlRec: TXmlEpisode;
-begin
-  downloadAmount := 0;
-  FNumToDownload := 0;
-  for a := 0 to FNumberItems - 1 do
-  begin
-    toDownload := FMediaWillBeDownloaded[a];
-    if toDownload then
-    begin
-      xmlRec := FXmlEpisodes[a];
-      fileSize := xmlRec.bytesInEpisode();
-      downloadAmount := downloadAmount + fileSize;
-      FNumToDownload := FNumToDownload + 1;
-    end;
-  end;
-  Result := downloadAmount;
-end;
+
 
 function TRssPodcast.getWantedDownloads(): integer;
 begin
@@ -488,6 +439,63 @@ begin
   except
     Result := curUrl;
   end;
+end;
+
+
+function TRssPodcast.amountToDownload(): int64;
+var
+  a, fileSize: integer;
+  downloadAmount: int64;
+  toDownload: boolean;
+  xmlRec: TXmlEpisode;
+begin
+   //_d('TRssPodcast.amountToDownload STAET FNumToDownload=', FNumToDownload);
+  downloadAmount := 0;
+  FNumToDownload := 0;
+  for a := 0 to FNumberItems - 1 do
+  begin
+    // q*bert
+    toDownload := FMediaWillBeDownloaded[a];
+    if toDownload then
+    begin
+      xmlRec := FXmlEpisodes[a];
+      fileSize := xmlRec.bytesInEpisode();
+      downloadAmount := downloadAmount + fileSize;
+      FNumToDownload := FNumToDownload + 1;
+    end;
+  end;
+    // _d('TRssPodcast.amountToDownload END FNumToDownload=', FNumToDownload);
+  Result := downloadAmount;
+end;
+
+
+function TRssPodcast.setCheckClick(itemNumber: integer; isChecked: boolean): int64;
+begin
+  FMediaWillBeDownloaded[itemNumber] := isChecked;
+  Result := amountToDownload();
+end;
+
+function TRssPodcast.filterCheckboxes(theFilter: string; mark_download: boolean): TBooleanArray;
+var
+  episode_index: integer;
+  downloadItem: boolean;
+  already_downloading:boolean;
+  xmlRec: TXmlEpisode;
+ color_text_matches: TBooleanArray;
+begin
+  // _sb('TRssPodcast.filterCheckboxes START FNumToDownload=', FMediaWillBeDownloaded);
+  SetLength(color_text_matches, FNumberItems);
+  for episode_index := 0 to FNumberItems - 1 do
+  begin
+    xmlRec := FXmlEpisodes[episode_index];
+    downloadItem := xmlRec.containsSearch(theFilter);
+    color_text_matches[episode_index] := downloadItem;
+    already_downloading :=  FMediaWillBeDownloaded[episode_index];
+    if mark_download AND NOT already_downloading then
+      FMediaWillBeDownloaded[episode_index] := downloadItem;
+    end;
+   //  _sb('TRssPodcast.filterCheckboxes END FNumToDownload=', FMediaWillBeDownloaded);
+  Result := color_text_matches;
 end;
 
 end.

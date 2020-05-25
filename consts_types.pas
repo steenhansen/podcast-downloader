@@ -8,6 +8,32 @@ uses
   Classes, SysUtils, Graphics;
 
 const
+
+    HTTP_RETRIES = 1;       // default is 5, change to 1 if you want lots of failures
+
+
+ //////////////////////
+
+
+
+
+
+  HTTP_TIMEOUT = 1001;    //  note has a backoff, 1001,2002,3003,4004,5005 mSec
+
+
+
+  GB_DISK_WARN_SIZE = 0.5;          // 0.5 warn once when disk space is below
+
+  NETWORK_MEDIUM_SLEEP = 1;
+  NETWORK_LOW_SLEEP = 50;
+
+//// Don't change below ////////////////////////////
+
+  CASE_INSENSITIVE = True;
+
+  DESC_CDATA_REGEX = '<description[^>]*>(.*)</description>';
+  TITLE_CDATA_REGEX = '<title[^>]*>(.*)</title>';
+
   OUT_OF_SLASH = '/';
   DATE_SLASH = '/';
   HTTP_SLASH = '/';
@@ -28,10 +54,9 @@ const
   V_RECT_INDENT = 2;
   CHECK_RECT_SIZE = 13;
 
-  GB_DISK_WARN_SIZE = 0.5;          // 0.5 warn once when disk space is below
+
   ONE_GIGABYTE = 1073741824;
-  NETWORK_MEDIUM_SLEEP = 1;
-  NETWORK_LOW_SLEEP = 50;
+
   LETTER_A_AS_CHAR = 64;
 
   COLOR_CHECKBOX_BORDER = TColor($333333);
@@ -71,6 +96,12 @@ const
   NUM_EPISODES_CONSOL_ROW = 11;
   DEST_FOLDER_CONSOL_ROW = 12;
   FIRST_EPISODE_CONSOL_ROW = 13;
+
+    LINE_BREAK_ON_XML_ITEM = '<item';
+  END_HTML_COMMENT = '-->';
+  START_HTML_COMMENT = '<!--';
+  START_CDATA = '<![CDATA[';
+  END_CDATA = ']]>';
 
 type
   // hitting 'Esc' key in consol app stops program

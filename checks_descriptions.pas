@@ -226,7 +226,7 @@ begin
     if downloadingSelected then
     begin
       if willDownload and (theFileSize <> 0) then
-        TextOut(ARect.Left + EPISODE_DESC_INDENT, ARect.Top, fileSize);
+        TextOut(ARect.Left + EPISODE_DESC_INDENT, ARect.Top, fileSize)
     end
     else
       TextOut(ARect.Left + EPISODE_DESC_INDENT, ARect.Top, theItem);

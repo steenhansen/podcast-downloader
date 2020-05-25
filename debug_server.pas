@@ -27,6 +27,8 @@ procedure _d(integer_value: integer; debug_message: string );
 procedure _d(str1: string; int1: integer; int2: integer);
 procedure _d(m1: string; i1: integer; m2: string; i2: integer; m3: string; i3: integer);
 
+procedure _sb(debug_message: string; FMediaWillBeDownloaded: array of boolean);
+
 implementation
 
 uses
@@ -93,6 +95,28 @@ procedure _d(m1: string; i1: integer; m2: string; i2: integer; m3: string; i3: i
 begin
   SendDebug(m1 + IntToStr(i1) + '::' + m2 + IntToStr(i2) + '::' + m3 + IntToStr(i3));
 end;
+
+
+
+
+
+//  _sb('my_boolean_array, show true indexes', FMediaWillBeDownloaded);
+procedure _sb(debug_message: string; FMediaWillBeDownloaded: array of boolean);
+var
+  arr_len, a:integer;
+  true_indexes_str: string;
+begin
+  true_indexes_str := '';
+  arr_len := Length(FMediaWillBeDownloaded);
+
+  for a := 0 to arr_len - 1 do
+    if FMediaWillBeDownloaded[a] then
+      true_indexes_str := true_indexes_str + ' ' +  IntToStr(a);
+
+  SendDebug(debug_message + '::' + true_indexes_str);
+end;
+
+
 
 end.
 

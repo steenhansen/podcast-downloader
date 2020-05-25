@@ -18,17 +18,17 @@ inherited MovesForm2: TMovesForm2
     Left = 672
     Height = 66
     Top = 56
-    Width = 146
+    Width = 136
     BevelColor = 39680
     Caption = 'downloadBtnPanel'
     ClientHeight = 66
-    ClientWidth = 146
+    ClientWidth = 136
     TabOrder = 1
     object btnDownloadChecked: TBCMDButton
       Left = 1
       Height = 64
       Top = 1
-      Width = 144
+      Width = 134
       StyleNormal.Color = 14803425
       StyleNormal.TextColor = 39680
       StyleHover.Color = 16511461
@@ -55,18 +55,18 @@ inherited MovesForm2: TMovesForm2
     Left = 824
     Height = 50
     Top = 57
-    Width = 146
+    Width = 100
     BevelColor = 192
     BevelWidth = 2
     Caption = 'cancelBtnPanel'
     ClientHeight = 50
-    ClientWidth = 146
+    ClientWidth = 100
     TabOrder = 2
     object btnCancel: TBCMDButton
       Left = 2
       Height = 46
       Top = 2
-      Width = 142
+      Width = 96
       StyleNormal.Color = 14803425
       StyleNormal.TextColor = 192
       StyleHover.Color = 16511461
@@ -112,6 +112,7 @@ inherited MovesForm2: TMovesForm2
       Width = 652
       Align = alClient
       ReadOnly = True
+      ScrollBars = ssVertical
       TabOrder = 0
     end
   end
@@ -143,9 +144,13 @@ inherited MovesForm2: TMovesForm2
       TabOrder = 1
     end
   end
-  object SelectDirectoryDialog1: TSelectDirectoryDialog[8]
+  inherited MainMenu1: TMainMenu[7]
+  end
+  inherited ImageList1: TImageList[8]
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog[9]
     InitialDir = 'desktop'
-    left = 880
-    top = 112
+    left = 1024
+    top = 120
   end
 end

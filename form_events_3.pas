@@ -30,6 +30,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure DoDrawItemlbEpisodeDesc_3(Control: TWinControl; Index: integer; ARect: TRect; State: TOwnerDrawState);
     procedure clbEpisodeFilesItemClick_3(Sender: TObject; Index: integer);
+    procedure rbgSpeedClick(Sender: TObject);
     procedure splFirstMoved_3(Sender: TObject);
     procedure splSecondMoved_3(Sender: TObject);
     procedure lbEpisodeDescClick_3(Sender: TObject);
@@ -94,6 +95,11 @@ begin
   end
   else
     clbEpisodeFiles.Checked[Index] := not clbEpisodeFiles.Checked[Index];
+end;
+
+procedure TEventsForm3.rbgSpeedClick(Sender: TObject);
+begin
+
 end;
 
 procedure TEventsForm3.splFirstMoved_3(Sender: TObject);

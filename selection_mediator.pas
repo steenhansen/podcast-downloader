@@ -46,7 +46,7 @@ type
     function startDownloading(lbEpisodeDesc: TListBox; DoOnWriteEpisode_3: TOnWriteStream;
       DoOnFailedReadEpisode_2: TOnFailedReadEpisode; urlToRead, saveDir: string): TFailsAndSuccesses;
     function checkedCount(clbEpisodeFiles: TCheckListBox): integer;
-    function addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox): integer;
+    function addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox): integer;
     function showFilterMatch(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
       TEDITtextFilter: TEdit; downloadFiltered: TButton): integer;
     procedure readingMediaFile(clbEpisodeFiles: TCheckListBox; lbEpisodeTitle: TListBox; lbEpisodeDesc: TListBox;
@@ -130,28 +130,7 @@ begin
   end;
 end;
 
-function TSelectionMediator.addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox): integer;
-var
-  itemStates: TBooleanArray;
-  textMatches: boolean;
-  a, checkedFileCount: integer;
-  textFilter: string;
-begin
-  textFilter := filteredText;
-  itemStates := FrssPodcast.filterCheckboxes(textFilter, True);
-  checkedFileCount := 0;
-  for a := 0 to FNumItems - 1 do
-  begin
-    textMatches := itemStates[a];
-    if textMatches then
-    begin
-      clbEpisodeFiles.Checked[a] := True;
-      FrssPodcast.setCheckClick(a, True);
-      checkedFileCount := checkedFileCount + 1;
-    end;
-  end;
-  Result := checkedFileCount;
-end;
+
 
 
 
@@ -434,6 +413,33 @@ begin
   end;
   g_podcast_form.Caption := 'Podcast Downloader' + byte_part;
   Application.ProcessMessages;
+end;
+
+function TSelectionMediator.addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox): integer;
+var
+  itemStates: TBooleanArray;
+  textMatches: boolean;
+  a, checkedFileCount: integer;
+  textFilter: string;
+    myobj, newObj: TObject;
+begin
+  textFilter := filteredText;
+  itemStates := FrssPodcast.filterCheckboxes(textFilter, True);
+  checkedFileCount := 0;
+  for a := 0 to FNumItems - 1 do
+  begin
+    textMatches := itemStates[a];
+    if textMatches then
+    begin
+      clbEpisodeFiles.Checked[a] := True;
+      FrssPodcast.setCheckClick(a, True);
+      myobj := lbEpisodeDesc.items.Objects[a];
+      newObj := encodeWillDownload(myobj);
+      lbEpisodeDesc.items.Objects[a] := newObj;
+      checkedFileCount := checkedFileCount + 1;
+    end;
+  end;
+  Result := checkedFileCount;
 end;
 
 
