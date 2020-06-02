@@ -15,10 +15,13 @@ uses
   Classes, SysUtils, RegExpr, HTTPDefs, lazstringutils,
   LazFileUtils,
   xml_episode,
+ fgl,
   progress_stream;
 
 
 type
+  Tfilename_to_count = specialize TFPGmap<string, integer>;
+
   TBooleanArray = array of boolean;
 
   TRssPodcast = class(TObject)
@@ -32,7 +35,7 @@ type
     FPodcastTitle: string;
     FPodcastDescription: string;
     FSaveDirectory: string;
-    FFileNames: TStringList;
+    FDuplicateFilenames: boolean;
   protected
     function getOnlinePodcast(episode_index: integer; DoOnWriteEpisode_3: TOnWriteStream;
       DoOnFailedReadEpisode_2: TOnFailedReadEpisode): string;
@@ -67,6 +70,7 @@ function lineBreakStringList(line_break: string; xml_text: string = ''): TString
 implementation
 
 uses
+ Forms,
   consts_types,
   download_stream,
   dirs_files;
@@ -255,48 +259,12 @@ begin
   end;
 end;
 
-function TRssPodcast.readPodcast(url_or_file, program_path: string; DoOnWriteEpisode_3: TOnWriteStream;
-  DoOnFailedReadPodcast_2: TOnFailedReadPodcast): integer;
-var
-  episode_index: integer;
-  myXmlRec: TXmlEpisode;
-  itemStrs: TStringList;
-  podcastIntro, xmlItem, commentedXml: string;
-begin
-  inherited Create;
-  commentedXml := urlOrTestFile(url_or_file, program_path, DoOnWriteEpisode_3, DoOnFailedReadPodcast_2);
-  FPodcastXmlText := deleteComments(commentedXml);
-  podcastIntro := getRssTitleDesc(FPodcastXmlText);
-  ItemStrs := getEpisodeItems(FPodcastXmlText);
-  FPodcastTitle := getPodcastTitle(podcastIntro);
-  FPodcastDescription := getTheDesc(podcastIntro);
-  FNumberItems := ItemStrs.Count;
-  SetLength(FXmlEpisodes, FNumberItems);
-  SetLength(FMediaWillBeDownloaded, FNumberItems);
-  {$IFDEF ALLOW_GUI_STATE}
-  mouseStartParseEpisodes();
-  {$ENDIF}
-  FFileNames := TStringList.Create();
-  for episode_index := 0 to FNumberItems - 1 do
-  begin
-    xmlItem := itemStrs[episode_index];
-    myXmlRec := TXmlEpisode.Create(xmlItem);
-    FXmlEpisodes[episode_index] := myXmlRec;
-    FMediaWillBeDownloaded[episode_index] := False;
-  end;
-  {$IFDEF ALLOW_GUI_STATE}
-  mouseStopParseEpisodes();
-  {$ENDIF}
-  itemStrs.Free();
-  Result := FNumberItems;
-end;
 
 destructor TRssPodcast.Destroy;
 var
   episode_index: integer;
   myXmlRec: TXmlEpisode;
 begin
-  FFileNames.Free();
   for episode_index := 0 to FNumberItems - 1 do
   begin
     myXmlRec := FXmlEpisodes[episode_index];
@@ -324,30 +292,7 @@ begin
   end;
 end;
 
-function TRssPodcast.identicalNamesFix(filename: string; episode_index: integer): string;
-var
-  filename_pieces: TStrings;
-  add_number_pos: integer;
-  extra_extension_num, non_dup_filename: string;
-begin
-  non_dup_filename := filename;
-  filename_pieces := nil;
-  try
-    if FFileNames.IndexOf(filename) <> -1 then
-    begin
-      filename_pieces := SplitString(filename, '.');
-      filename_pieces.LineBreak := '.';
-      add_number_pos := filename_pieces.Count - 1;
-      extra_extension_num := IntToStr(episode_index);
-      filename_pieces.insert(add_number_pos, extra_extension_num);
-      non_dup_filename := filename_pieces.Text;
-    end;
-  finally
-    Result := non_dup_filename;
-    FFileNames.Add(non_dup_filename);
-    filename_pieces.Free();
-  end;
-end;
+
 
 function TRssPodcast.downloadChosen(DoOnWriteEpisode_3: TOnWriteStream; DoOnFailedReadEpisode_2: TOnFailedReadEpisode;
   url_or_file, the_save_directory, program_path: string): TStringList;
@@ -497,5 +442,86 @@ begin
    //  _sb('TRssPodcast.filterCheckboxes END FNumToDownload=', FMediaWillBeDownloaded);
   Result := color_text_matches;
 end;
+
+
+function TRssPodcast.identicalNamesFix(filename: string; episode_index: integer): string;
+var
+  filename_pieces: TStrings;
+  add_number_pos: integer;
+  extra_extension_num, non_dup_filename: string;
+begin
+  non_dup_filename := filename;
+  filename_pieces := nil;
+  try
+    if FDuplicateFilenames then
+    begin
+      filename_pieces := SplitString(filename, '.');
+      filename_pieces.LineBreak := '.';
+      add_number_pos := filename_pieces.Count - 1;
+      extra_extension_num := IntToStr(episode_index);
+      filename_pieces.insert(add_number_pos, extra_extension_num);
+      non_dup_filename := filename_pieces.Text;
+    end;
+  finally
+    Result := non_dup_filename;
+    filename_pieces.Free();
+  end;
+end;
+
+
+function TRssPodcast.readPodcast(url_or_file, program_path: string; DoOnWriteEpisode_3: TOnWriteStream;
+  DoOnFailedReadPodcast_2: TOnFailedReadPodcast): integer;
+var
+  episode_index, distinct_count: integer;
+  myXmlRec: TXmlEpisode;
+  itemStrs: TStringList;
+  podcastIntro, xmlItem, commentedXml, episode_filename: string;
+  file_names: TStringList;
+begin
+  inherited Create;
+  commentedXml := urlOrTestFile(url_or_file, program_path, DoOnWriteEpisode_3, DoOnFailedReadPodcast_2);
+  FPodcastXmlText := deleteComments(commentedXml);
+  podcastIntro := getRssTitleDesc(FPodcastXmlText);
+  ItemStrs := getEpisodeItems(FPodcastXmlText);
+  FPodcastTitle := getPodcastTitle(podcastIntro);
+  FPodcastDescription := getTheDesc(podcastIntro);
+  FNumberItems := ItemStrs.Count;
+  SetLength(FXmlEpisodes, FNumberItems);
+  SetLength(FMediaWillBeDownloaded, FNumberItems);
+  {$IFDEF ALLOW_GUI_STATE}
+  mouseStartParseEpisodes();
+  {$ENDIF}
+  file_names := TStringList.Create();
+  distinct_count :=0;
+  for episode_index := 0 to FNumberItems - 1 do
+  begin
+    xmlItem := itemStrs[episode_index];
+    myXmlRec := TXmlEpisode.Create(xmlItem);
+    FXmlEpisodes[episode_index] := myXmlRec;
+    FMediaWillBeDownloaded[episode_index] := False;
+    episode_filename := myXmlRec.theEpisodeFilename();
+    if episode_index < DUPLICATE_FNAME_CHECKS then
+    begin
+       distinct_count := distinct_count+1;
+       if file_names.IndexOf(episode_filename) = -1 then
+          file_names.Add(episode_filename);
+    end;
+    Application.ProcessMessages;
+  end;
+  if file_names.Count<>distinct_count then
+     FDuplicateFilenames := true
+  else
+     FDuplicateFilenames := false;
+
+  {$IFDEF ALLOW_GUI_STATE}
+  mouseStopParseEpisodes();
+  {$ENDIF}
+  file_names.Free();
+  itemStrs.Free();
+  Result := FNumberItems;
+end;
+
+
+
 
 end.

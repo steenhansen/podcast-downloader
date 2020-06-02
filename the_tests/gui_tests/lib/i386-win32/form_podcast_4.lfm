@@ -1,17 +1,18 @@
 inherited PodcastForm4: TPodcastForm4
-  Left = 148
+  Left = 459
   Height = 588
-  Top = 32
-  Width = 1000
+  Top = 114
+  Width = 1003
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Podcast Downloader - 123,456,789 bytes read'
   ClientHeight = 568
-  ClientWidth = 1000
+  ClientWidth = 1003
   OnActivate = FormActivate
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
+  Position = poScreenCenter
   inherited gbPodcastFeed: TGroupBox
     Left = 8
     Top = 6
@@ -36,26 +37,32 @@ inherited PodcastForm4: TPodcastForm4
     Top = 490
   end
   inherited cancelBtnPanel: TPanel
-    Left = 170
+    Left = 164
     Top = 490
     TabOrder = 8
   end
   inherited lblDownloadingXofY: TLabel
-    Left = 170
+    Left = 164
     Top = 544
+    Width = 96
+    Caption = 'DownloadingXofY'
   end
   inherited gbFailedEpisodes: TGroupBox
-    Left = 333
+    Left = 496
     Height = 79
     Top = 480
+    Width = 499
     ClientHeight = 59
+    ClientWidth = 495
     inherited memFailedFiles: TMemo
       Height = 59
+      Width = 495
     end
   end
   inherited gbSelectDirectory: TGroupBox
     Left = 8
     Top = 430
+    Caption = 'Save to Directory (non-destructive, files NOT overwritten, re-run multiple times with same directory safely)'
     TabOrder = 0
   end
   inherited gbEpisodesToDownload: TGroupBox
@@ -73,11 +80,18 @@ inherited PodcastForm4: TPodcastForm4
     TabOrder = 6
   end
   inherited btnDownloadAll: TButton
+    Hint = 'Completed episodes are not re-downloaded. Files only get dowloaded once.'
     Top = 120
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 7
   end
   inherited grTextFilter: TGroupBox
     Top = 104
+  end
+  inherited rbgSpeed: TRadioGroup
+    Left = 276
+    Top = 479
   end
   inherited MainMenu1: TMainMenu
     left = 624

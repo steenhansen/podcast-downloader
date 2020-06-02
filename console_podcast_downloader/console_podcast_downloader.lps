@@ -325,8 +325,8 @@
       </Unit43>
       <Unit44>
         <Filename Value="C:\lazarus\lcl\interfaces\win32\win32lclintf.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
         <TopLine Value="247"/>
         <CursorPos X="81" Y="272"/>
         <UsageCount Value="10"/>

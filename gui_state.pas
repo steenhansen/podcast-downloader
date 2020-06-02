@@ -70,9 +70,9 @@ type
     function getState(): integer;
     procedure enableGui(theControl: TControl);
     procedure disableGui(theControl: TControl);
-    procedure beforeAfterUrl(url_value: string);
+    procedure beforeOrAfterUrl(url_value: string);
     function finishedMess(succesfulDownloads, failedCount: integer): string;
-    procedure searchButtons();
+    procedure searchButtons(search_matches:integer);
   end;
 
 procedure mouseConnectToUrl();
@@ -212,8 +212,22 @@ begin
   disableGui(FclbEpisodeFiles);
   disableGui(FlbEpisodeDesc);
 
+
+
   mouseStopParseEpisodes();
-    disableGui(FrbgSpeed);
+
+  FclbEpisodeFiles.Clear;
+
+  FlbEpisodeTitle.Clear;
+  FlbEpisodeDesc.Clear;
+  FedtTextFilter.Clear;
+  FedRssUrl.SetFocus;
+  FbtnDownloadChecked.Caption := downloadCaption(0, 0);
+
+
+
+  disableGui(FrbgSpeed);
+
   FlblDownloadingXofY.Visible:=false;
 
 end;
@@ -222,7 +236,7 @@ procedure TGuiState.whileParsingRss_3();
 begin
     FedtTextFilter.Text := '';
 
-  disableGui(FedRssUrl);
+  enableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   disableGui(FedtTextFilter);
@@ -243,7 +257,7 @@ end;
 
 procedure TGuiState.afterRssProcessed_4();
 begin
-  disableGui(FedRssUrl);
+  enableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   enableGui(FedtTextFilter);
@@ -266,7 +280,7 @@ end;
 
 procedure TGuiState.afterOneCheck_5();
 begin
-  disableGui(FedRssUrl);
+  enableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   enableGui(FedtTextFilter);
@@ -284,7 +298,7 @@ end;
 
 procedure TGuiState.whileDownloading_6();
 begin
-  disableGui(FedRssUrl);
+  enableGui(FedRssUrl);
   disableGui(FbtnReadRss);
   enableGui(FbtnCancel);
   disableGui(FedtTextFilter);
@@ -307,8 +321,8 @@ end;
 
 procedure TGuiState.afterFinished_7();
 begin
-  disableGui(FedRssUrl);
-  enableGui(FbtnReadRss);
+  enableGui(FedRssUrl);
+  disableGui(FbtnReadRss);
   disableGui(FbtnCancel);
   disableGui(FedtTextFilter);
   disableGui(FbtnDownloadFiltered);
@@ -342,53 +356,27 @@ begin
   end;
 end;
 
-procedure TGuiState.beforeAfterUrl(url_value: string);
-var
-  rssUrl, trimmedRssUrl: string;
-  rssUrlLen: integer;
-begin
-  rssUrl := url_value;
-  trimmedRssUrl := Trim(rssUrl);
-  rssUrlLen := Length(trimmedRssUrl);
-  if rssUrlLen = 0 then
-    setState(GUI_BEFORE_A_URL_1)
-  else
-    setState(GUI_AFTER_A_URL_2);
-end;
 
 function TGuiState.finishedMess(succesfulDownloads, failedCount: integer): string;
 var
   successStr, failStr, finishMess: string;
 begin
   if (succesfulDownloads=0) AND (failedCount=0) then
-       finishMess := 'Podcast downloading Cancelled'
+       finishMess := 'Podcast downloading Cancelled' + LINE_ENDING  + LINE_ENDING  +
+                      'View destination folder?'
   else
     begin
          successStr := IntToStr(succesfulDownloads);
          failStr := IntToStr(failedCount);
-         finishMess := successStr + ' successful downloads, and ' + LINE_ENDING  +
+         finishMess := successStr + ' successful downloads, and ' +
                        failStr + ' failures' + LINE_ENDING  +
-                       'in ' + FedtSaveDirectory.Text  + LINE_ENDING ;
+                       'in ' + FedtSaveDirectory.Text  + LINE_ENDING  + LINE_ENDING  +
+                      'View destination folder?';
      end;
   Result := finishMess;
 end;
 
-procedure TGuiState.searchButtons();
-var
-  filter_text: string;
-begin
-   filter_text := FedtTextFilter.Text;
-  if filter_text.Length =0 then
-  begin
-     FbtnDownloadFiltered.Enabled := false;
-     FupDownFiltered.Enabled := false;
-  end
-  else
-  begin
-    FbtnDownloadFiltered.Enabled := true;
-    FupDownFiltered.Enabled := true;
-  end;
-end;
+
 
 function MessageDlgEx(const AMsg: string; ADlgType: TMsgDlgType; AButtons: TMsgDlgButtons; AParent: TForm): TModalResult;
 var
@@ -405,6 +393,49 @@ begin
     MsgFrm.Free
   end;
 end;
+
+
+procedure TGuiState.searchButtons(search_matches:integer);
+var
+  filter_text: string;
+begin
+   filter_text := FedtTextFilter.Text;
+  if (search_matches=0) OR (filter_text.Length =0) then
+  begin
+     FbtnDownloadFiltered.Enabled := false;
+     FupDownFiltered.Enabled := false;
+  end
+  else
+  begin
+    FbtnDownloadFiltered.Enabled := true;
+    FupDownFiltered.Enabled := true;
+  end;
+end;
+
+
+
+
+
+
+
+
+procedure TGuiState.beforeOrAfterUrl(url_value: string);
+var
+  rssUrl, trimmedRssUrl: string;
+  rssUrlLen: integer;
+begin
+  rssUrl := url_value;
+  trimmedRssUrl := Trim(rssUrl);
+  rssUrlLen := Length(trimmedRssUrl);
+  if rssUrlLen = 0 then
+    setState(GUI_BEFORE_A_URL_1)
+  else
+    setState(GUI_AFTER_A_URL_2);
+end;
+
+
+
+
 
 end.
 

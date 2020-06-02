@@ -31,8 +31,19 @@ const
 
   CASE_INSENSITIVE = True;
 
+  DUPLICATE_FNAME_CHECKS = 10;
+
   DESC_CDATA_REGEX = '<description[^>]*>(.*)</description>';
   TITLE_CDATA_REGEX = '<title[^>]*>(.*)</title>';
+
+
+   DEFAULT_DIR   = 'C';
+   WINDOWS_DRIVE_PATH = '([a-zA-Z])?(:)?(.*)';
+
+   WINDOWS_DRIVE = '[^a-zA-Z]';
+
+   WINDOWS_PATH =   '[^\w\\.-]';
+
 
   OUT_OF_SLASH = '/';
   DATE_SLASH = '/';

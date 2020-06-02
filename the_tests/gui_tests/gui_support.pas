@@ -14,7 +14,6 @@ procedure guiDirectory(expected_text, actual_text, which_test: string);
 implementation
 
 uses
-  rss_podcast,
   dir_list_differences;
 
 procedure guiDirectory(expected_text, actual_text, which_test: string);

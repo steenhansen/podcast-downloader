@@ -62,6 +62,7 @@ inherited PodcastForm4: TPodcastForm4
   inherited gbSelectDirectory: TGroupBox
     Left = 8
     Top = 430
+    Caption = 'Save to Directory (non-destructive, files NOT overwritten, re-run multiple times with same directory safely)'
     TabOrder = 0
   end
   inherited gbEpisodesToDownload: TGroupBox
@@ -79,17 +80,18 @@ inherited PodcastForm4: TPodcastForm4
     TabOrder = 6
   end
   inherited btnDownloadAll: TButton
+    Hint = 'Completed episodes are not re-downloaded. Files only get dowloaded once.'
     Top = 120
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 7
   end
   inherited grTextFilter: TGroupBox
     Top = 104
   end
   inherited rbgSpeed: TRadioGroup
-    Left = 280
+    Left = 276
     Top = 479
-    Width = 208
-    ClientWidth = 204
   end
   inherited MainMenu1: TMainMenu
     left = 624

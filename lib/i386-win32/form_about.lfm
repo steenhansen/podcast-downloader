@@ -1,22 +1,13 @@
 object AboutForm: TAboutForm
   Left = 475
-  Height = 78
+  Height = 228
   Top = 151
   Width = 592
   Caption = 'About Podcast-Downloader'
-  ClientHeight = 78
+  ClientHeight = 228
   ClientWidth = 592
   Position = poScreenCenter
   LCLVersion = '2.0.6.0'
-  object Button1: TButton
-    Left = 504
-    Height = 25
-    Top = 32
-    Width = 75
-    Caption = 'Ok'
-    OnClick = Button1Click
-    TabOrder = 0
-  end
   object lblGitHub: TLabel
     Left = 120
     Height = 15
@@ -47,5 +38,23 @@ object AboutForm: TAboutForm
     Width = 113
     Caption = 'The source code is at '
     ParentColor = False
+  end
+  object StaticText1: TStaticText
+    Left = 8
+    Height = 144
+    Top = 80
+    Width = 571
+    Caption = 'This program was written to ensure unhindered access to podcast episodes in the future.'#13#10#13#10' - Dan Carlin''s "Hardcore History" erases old episodes, only episodes 50 -64 are available on RSS'#13#10#13#10' - Parcast''s "Espionage" is now only available on Spotify'#13#10#13#10' - "The Joe Rogan Experience" will be moving to Spotify soon'#13#10#13#10' - Gimlet Media has been bought by Spotify'
+    OnClick = StaticText1Click
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 496
+    Height = 25
+    Top = 192
+    Width = 75
+    Caption = 'Ok'
+    OnClick = Button1Click
+    TabOrder = 0
   end
 end

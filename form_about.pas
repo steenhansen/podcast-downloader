@@ -16,11 +16,13 @@ type
     Label1: TLabel;
     Label2: TLabel;
     lblGitHub: TLabel;
+    StaticText1: TStaticText;
     procedure Button1Click(Sender: TObject);
     procedure lblGitHubClick(Sender: TObject);
     procedure lblGitHubDblClick(Sender: TObject);
     procedure lblGitHubMouseEnter(Sender: TObject);
     procedure lblGitHubMouseLeave(Sender: TObject);
+    procedure StaticText1Click(Sender: TObject);
   private
 
   public
@@ -58,6 +60,11 @@ end;
 procedure TAboutForm.lblGitHubMouseLeave(Sender: TObject);
 begin
               lblGitHub.Font.Color:=clMenuText;
+end;
+
+procedure TAboutForm.StaticText1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TAboutForm.lblGitHubMouseEnter(Sender: TObject);

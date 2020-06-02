@@ -1,10 +1,11 @@
-inherited MovesForm2: TMovesForm2
+inherited CancelForm2: TCancelForm2
+  Left = 591
   Height = 187
   Top = 296
-  Width = 1444
+  Width = 1981
   Caption = 'cancel_form_2'
   ClientHeight = 167
-  ClientWidth = 1444
+  ClientWidth = 1981
   inherited gbPodcastFeed: TGroupBox
     Left = 1000
     Top = 1
@@ -125,7 +126,6 @@ inherited MovesForm2: TMovesForm2
     ClientHeight = 29
     ClientWidth = 980
     TabOrder = 5
-    OnClick = gbSelectDirectoryClick
     object edtSaveDirectory: TEdit
       Left = 8
       Height = 23

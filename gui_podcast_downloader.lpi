@@ -97,9 +97,9 @@
         <ResourceBaseClass Value="Form"/>
       </Unit13>
       <Unit14>
-        <Filename Value="form_moves_2.pas"/>
+        <Filename Value="form_cancel_2.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="MovesForm2"/>
+        <ComponentName Value="CancelForm2"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit14>
@@ -125,6 +125,7 @@
         <Filename Value="form_instructions.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="InstructionsForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit18>
     </Units>

@@ -1,8 +1,11 @@
 inherited EventsForm3: TEventsForm3
+  Left = 244
   Height = 357
-  Top = 507
+  Top = 573
+  Width = 2046
   Caption = 'events_form_3'
   ClientHeight = 337
+  ClientWidth = 2046
   inherited gbPodcastFeed: TGroupBox
     Left = 1008
   end
@@ -13,18 +16,28 @@ inherited EventsForm3: TEventsForm3
   inherited downloadBtnPanel: TPanel
     Left = 1008
     Top = 256
+    Width = 146
+    ClientWidth = 146
+    inherited btnDownloadChecked: TBCMDButton
+      Width = 144
+    end
   end
   inherited cancelBtnPanel: TPanel
     Left = 1168
     Top = 256
   end
   inherited lblDownloadingXofY: TLabel
-    Left = 1176
+    Left = 1160
     Top = 312
   end
   inherited gbFailedEpisodes: TGroupBox
     Left = 1008
     Top = 144
+    Width = 496
+    ClientWidth = 492
+    inherited memFailedFiles: TMemo
+      Width = 492
+    end
   end
   inherited gbSelectDirectory: TGroupBox
     Left = 1008
@@ -192,19 +205,47 @@ inherited EventsForm3: TEventsForm3
     object upDownFiltered: TUpDown
       Left = 272
       Height = 25
+      Hint = 'Cycle through episodes matching search'
       Top = -1
       Width = 17
       Min = 0
       OnClick = upDownFilteredClick_3
+      ParentShowHint = False
       Position = 0
+      ShowHint = True
       TabOrder = 2
     end
   end
-  inherited MainMenu1: TMainMenu[11]
-    left = 1360
-    top = 272
+  object rbgSpeed: TRadioGroup[11]
+    Left = 1328
+    Height = 80
+    Top = 256
+    Width = 216
+    AutoFill = True
+    Caption = 'Network Load'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 60
+    ClientWidth = 212
+    ItemIndex = 0
+    Items.Strings = (
+      'High'
+      'Medium  (if webpages don''t load)'
+      'Low'
+    )
+    OnClick = rbgSpeedClick
+    TabOrder = 10
   end
-  inherited SelectDirectoryDialog1: TSelectDirectoryDialog[12]
+  inherited MainMenu1: TMainMenu[12]
+  end
+  inherited ImageList1: TImageList[13]
+  end
+  inherited SelectDirectoryDialog1: TSelectDirectoryDialog[14]
     left = 1360
     top = 184
   end

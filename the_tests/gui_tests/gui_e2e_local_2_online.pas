@@ -188,8 +188,8 @@ begin
   numberFailed := failsAndSuccesses.failedCount;
   memActualText := filesWithSizes(outputPath);
   memExpectedText := '_rss_test_11_e2e_local_to_online_same.xml~~2615' + LINE_ENDING +
-    'ToTHEBOWERS1829ByEdgarAllanPoe.1.pdf~~11140' + LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.2.pdf~~11140' +
-    LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140' + LINE_ENDING;
+    'ToTHEBOWERS1829ByEdgarAllanPoe.0.pdf~~11140' + LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.1.pdf~~11140' +
+    LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.2.pdf~~11140' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 34832, fileSizeChecked);
   AssertEquals('Number successful files', 3, numberSuccess);

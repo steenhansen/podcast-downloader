@@ -1,7 +1,7 @@
 inherited EventsForm3: TEventsForm3
-  Left = 149
+  Left = 244
   Height = 357
-  Top = 532
+  Top = 573
   Width = 2046
   Caption = 'events_form_3'
   ClientHeight = 337
@@ -205,11 +205,14 @@ inherited EventsForm3: TEventsForm3
     object upDownFiltered: TUpDown
       Left = 272
       Height = 25
+      Hint = 'Cycle through episodes matching search'
       Top = -1
       Width = 17
       Min = 0
       OnClick = upDownFilteredClick_3
+      ParentShowHint = False
       Position = 0
+      ShowHint = True
       TabOrder = 2
     end
   end
@@ -217,7 +220,7 @@ inherited EventsForm3: TEventsForm3
     Left = 1328
     Height = 80
     Top = 256
-    Width = 208
+    Width = 216
     AutoFill = True
     Caption = 'Network Load'
     ChildSizing.LeftRightSpacing = 6
@@ -228,11 +231,11 @@ inherited EventsForm3: TEventsForm3
     ChildSizing.Layout = cclLeftToRightThenTopToBottom
     ChildSizing.ControlsPerLine = 1
     ClientHeight = 60
-    ClientWidth = 204
+    ClientWidth = 212
     ItemIndex = 0
     Items.Strings = (
       'High'
-      'Medium  (if facebook can''t load)'
+      'Medium  (if webpages don''t load)'
       'Low'
     )
     OnClick = rbgSpeedClick

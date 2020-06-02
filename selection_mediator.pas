@@ -418,7 +418,7 @@ end;
 function TSelectionMediator.addFilteredToDownload(filteredText: string; clbEpisodeFiles: TCheckListBox; lbEpisodeDesc: TListBox): integer;
 var
   itemStates: TBooleanArray;
-  textMatches: boolean;
+  textMatches, already_downloading: boolean;
   a, checkedFileCount: integer;
   textFilter: string;
     myobj, newObj: TObject;
@@ -429,15 +429,21 @@ begin
   for a := 0 to FNumItems - 1 do
   begin
     textMatches := itemStates[a];
+    myobj := lbEpisodeDesc.items.Objects[a];
     if textMatches then
     begin
       clbEpisodeFiles.Checked[a] := True;
       FrssPodcast.setCheckClick(a, True);
-      myobj := lbEpisodeDesc.items.Objects[a];
       newObj := encodeWillDownload(myobj);
       lbEpisodeDesc.items.Objects[a] := newObj;
       checkedFileCount := checkedFileCount + 1;
-    end;
+    end
+    else
+    begin
+      already_downloading := decodeWillDownload(myobj);
+      if already_downloading then
+         checkedFileCount := checkedFileCount + 1;
+    end
   end;
   Result := checkedFileCount;
 end;

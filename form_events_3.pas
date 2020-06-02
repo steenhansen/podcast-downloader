@@ -7,13 +7,13 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, LCLType, StdCtrls, Menus, ExtCtrls, CheckLst,
   checks_descriptions, BCMDButton, ComCtrls,
-  form_moves_2;
+  form_cancel_2;
 
 type
 
   { TEventsForm3 }
 
-  TEventsForm3 = class(TMovesForm2)
+  TEventsForm3 = class(TCancelForm2)
     btnDownloadAll: TButton;
     btnDownloadFiltered: TButton;
     btnDownloadNone: TButton;
@@ -164,7 +164,7 @@ begin
   FViewSearchCount := g_selection_mediator.showFilterMatch(clbEpisodeFiles, lbEpisodeTitle, lbEpisodeDesc,
     g_podcast_form.edtTextFilter, g_podcast_form.btnDownloadFiltered);
   FViewSearchMatch := 0;
-  FStateOfGui.searchButtons();
+  FStateOfGui.searchButtons(FViewSearchCount);
 end;
 
 procedure TEventsForm3.upDownFilteredClick_3(Sender: TObject; Button: TUDBtnType);
@@ -187,21 +187,6 @@ begin
     FViewSearchMatch := FViewSearchCount
   else
     FViewSearchMatch := FViewSearchMatch - 1;
-end;
-
-procedure TEventsForm3.btnDownloadFilteredClick_3(Sender: TObject);
-var
-  checkedFileCount: integer;
-  checked_and_total_size: TCheckedAndTotalSize;
-  search_text: string;
-begin
-  search_text := g_podcast_form.edtTextFilter.Text;
-  checked_and_total_size := process_b_filter(search_text);
-  checkedFileCount := checked_and_total_size.checkedFileCount;
-  if checkedFileCount = 0 then
-    FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4)
-  else
-    FStateOfGui.setState(GUI_ONE_CHECKMARK_5);
 end;
 
 procedure TEventsForm3.btnDownloadAllClick_3(Sender: TObject);
@@ -306,8 +291,20 @@ begin
   freeSpaceCheck(save_dir);
 end;
 
-
-
+procedure TEventsForm3.btnDownloadFilteredClick_3(Sender: TObject);
+var
+  checkedFileCount: integer;
+  checked_and_total_size: TCheckedAndTotalSize;
+  search_text: string;
+begin
+  search_text := g_podcast_form.edtTextFilter.Text;
+  checked_and_total_size := process_b_filter(search_text);
+  checkedFileCount := checked_and_total_size.checkedFileCount;
+  if checkedFileCount = 0 then
+    FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4)
+  else
+    FStateOfGui.setState(GUI_ONE_CHECKMARK_5);
+end;
 
 
 

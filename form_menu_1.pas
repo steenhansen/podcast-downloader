@@ -5,7 +5,7 @@ unit form_menu_1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, ComCtrls,
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, ComCtrls, ExtCtrls, Buttons,
   gui_state;
 
 type
@@ -32,6 +32,8 @@ type
     menuExamples: TMenuItem;
     menuHeist: TMenuItem;
     menuImages: TMenuItem;
+    menuHardcoreHistory: TMenuItem;
+    menuLispCast: TMenuItem;
     N3: TMenuItem;
     menuInstructions: TMenuItem;
     N2: TMenuItem;
@@ -44,17 +46,21 @@ type
     menuNHK: TMenuItem;
     menuPdf: TMenuItem;
     menuPhpRoundTable: TMenuItem;
-    menuRsdClick: TMenuItem;
+    menuRsd: TMenuItem;
     menuSffAudio: TMenuItem;
     menuSffPodcast: TMenuItem;
     menuSiberian: TMenuItem;
     menuTedTalk: TMenuItem;
     menuThisAmericanLife: TMenuItem;
     menuVideo: TMenuItem;
+    SpeedButton1: TSpeedButton;
 
     procedure edRssUrlKeyDown_1(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Image1Click(Sender: TObject);
     procedure menuAboutClick(Sender: TObject);
     procedure menuInstructionsClick(Sender: TObject);
+    procedure menuHardcoreHistoryClick(Sender: TObject);
+    procedure menuLispCastClick(Sender: TObject);
     procedure menuQuitClick(Sender: TObject);
     procedure menuChannelNineClick(Sender: TObject);
     procedure menuAljazeeraClick(Sender: TObject);
@@ -62,7 +68,7 @@ type
     procedure menuCbcBCClick(Sender: TObject);
     procedure menuNHKClick(Sender: TObject);
     procedure menuSffPodcastClick(Sender: TObject);
-    procedure menuRsdClickClick(Sender: TObject);
+    procedure menuRsdClick(Sender: TObject);
     procedure menuSiberianClick(Sender: TObject);
     procedure menuSmithsonianPhotosClick(Sender: TObject);
     procedure menuHeistClick(Sender: TObject);
@@ -76,6 +82,8 @@ type
     procedure edRssUrlChange_1(Sender: TObject);
     procedure btnReadRssClick_1(Sender: TObject);
     procedure edtCopyableExampleClick_1(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure SpeedButton1DblClick(Sender: TObject);
   protected
     FStateOfGui: TGuiState;
     FStartStopIO: string;
@@ -87,9 +95,11 @@ var
 implementation
 
 uses
+  LCLIntf,
   process_data,
   form_about,
   form_instructions,
+  form_cancel_2,
   form_podcast_4;
 
 {$R *.lfm}
@@ -138,7 +148,7 @@ begin
   translateUrl('https://sffaudio.herokuapp.com/podcast/rss');
 end;
 
-procedure TMenuForm1.menuRsdClickClick(Sender: TObject);
+procedure TMenuForm1.menuRsdClick(Sender: TObject);
 begin
   translateUrl('https://sffaudio.herokuapp.com/rsd/rss');
 end;
@@ -188,10 +198,6 @@ begin
   translateUrl('https://sffaudio.herokuapp.com/pdf/rss');
 end;
 
-procedure TMenuForm1.edRssUrlChange_1(Sender: TObject);
-begin
-  FStateOfGui.beforeAfterUrl(edRssUrl.Text);
-end;
 
 procedure TMenuForm1.edRssUrlKeyDown_1(Sender: TObject; var Key: Word; Shift: TShiftState);
 var
@@ -201,6 +207,13 @@ begin
   text_length := length(edRssUrl.Text);
   if (Key=13) AND (text_length>8) then
     btnReadRssClick_1(nil);
+end;
+{$pop}
+
+
+procedure TMenuForm1.Image1Click(Sender: TObject);
+begin
+
 end;
 
 procedure TMenuForm1.menuAboutClick(Sender: TObject);
@@ -213,7 +226,35 @@ begin
         InstructionsForm.ShowModal();
 end;
 
-{$pop}
+procedure TMenuForm1.menuHardcoreHistoryClick(Sender: TObject);
+begin
+      translateUrl('http://feeds.feedburner.com/dancarlin/history');
+end;
+
+procedure TMenuForm1.menuLispCastClick(Sender: TObject);
+begin
+      translateUrl('https://feeds.transistor.fm/thoughts-on-functional-programming-podcast-by-eric-normand');
+end;
+
+
+
+
+procedure TMenuForm1.edtCopyableExampleClick_1(Sender: TObject);
+begin
+  edtCopyableExample.SelectAll;
+end;
+
+procedure TMenuForm1.SpeedButton1Click(Sender: TObject);
+begin
+    OpenURL('https://www.listennotes.com/search/?q=mark%20blyth&sort_by_date=0');
+end;
+
+procedure TMenuForm1.SpeedButton1DblClick(Sender: TObject);
+begin
+       OpenURL('https://www.listennotes.com/search/?q=mark%20blyth&sort_by_date=0');
+end;
+
+
 
 procedure TMenuForm1.btnReadRssClick_1(Sender: TObject);
 var
@@ -235,14 +276,21 @@ begin
   except
     FreeAndNil(g_selection_mediator);
     FStateOfGui.setState(GUI_AFTER_A_URL_2);
-    rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' is not an RSS file.';
-    MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], g_podcast_form);
+    if  FStartStopIO = '' then
+    begin
+         rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' is not an RSS file.';
+         MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], g_podcast_form);
+    end;
   end;
 end;
 
-procedure TMenuForm1.edtCopyableExampleClick_1(Sender: TObject);
+
+procedure TMenuForm1.edRssUrlChange_1(Sender: TObject);
 begin
-  edtCopyableExample.SelectAll;
+  g_podcast_form.btnStopClick_2(nil);
+  FStateOfGui.beforeOrAfterUrl(edRssUrl.Text);
 end;
+
+
 
 end.

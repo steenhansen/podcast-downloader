@@ -8,28 +8,25 @@
       <Unit0>
         <Filename Value="gui_test_runner.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="38" Y="20"/>
-        <UsageCount Value="162"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="163"/>
       </Unit0>
       <Unit1>
         <Filename Value="unit_episode_bits.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="12"/>
         <CursorPos Y="43"/>
-        <UsageCount Value="162"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="163"/>
       </Unit1>
       <Unit2>
         <Filename Value="gui_e2e_local_2_local.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="167"/>
-        <CursorPos X="30" Y="169"/>
-        <UsageCount Value="154"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="42"/>
+        <CursorPos X="40" Y="74"/>
+        <UsageCount Value="155"/>
       </Unit2>
       <Unit3>
         <Filename Value="dir_list_differences.pas"/>
@@ -37,27 +34,24 @@
         <ComponentName Value="frmTestDirListDifference"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="32" Y="23"/>
-        <UsageCount Value="153"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="154"/>
       </Unit3>
       <Unit4>
         <Filename Value="unit_xml_episode.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="62" Y="136"/>
-        <UsageCount Value="150"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="151"/>
       </Unit4>
       <Unit5>
         <Filename Value="gui_e2e_local_2_online.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="184"/>
-        <CursorPos X="60" Y="200"/>
-        <UsageCount Value="122"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="168"/>
+        <CursorPos X="53" Y="192"/>
+        <UsageCount Value="123"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\episode_bits.pas"/>
@@ -65,30 +59,27 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="4"/>
         <CursorPos X="100" Y="8"/>
-        <UsageCount Value="48"/>
+        <UsageCount Value="49"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\test_support.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="31"/>
-        <CursorPos Y="18"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="76" Y="23"/>
         <ExtraEditorCount Value="1"/>
         <ExtraEditor1>
           <EditorIndex Value="-1"/>
-          <CursorPos X="76" Y="23"/>
+          <TopLine Value="31"/>
+          <CursorPos Y="18"/>
         </ExtraEditor1>
-        <UsageCount Value="48"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="49"/>
       </Unit7>
       <Unit8>
         <Filename Value="gui_support.pas"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="18" Y="5"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="48" Y="6"/>
+        <UsageCount Value="22"/>
       </Unit8>
       <Unit9>
         <Filename Value="..\gui_support.pas"/>
@@ -408,11 +399,10 @@
       </Unit47>
       <Unit48>
         <Filename Value="..\..\process_data.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="34"/>
         <CursorPos Y="52"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit48>
       <Unit49>
         <Filename Value="..\..\selection_mediator.pas"/>
@@ -423,11 +413,11 @@
       </Unit49>
       <Unit50>
         <Filename Value="..\..\rss_podcast.pas"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="502"/>
-        <CursorPos Y="539"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="477"/>
+        <CursorPos X="3" Y="506"/>
+        <UsageCount Value="14"/>
       </Unit50>
       <Unit51>
         <Filename Value="..\console_tests\fpcunitproject1.lpr"/>
@@ -461,10 +451,11 @@
       </Unit55>
       <Unit56>
         <Filename Value="..\..\download_stream.pas"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="1"/>
-        <CursorPos X="55" Y="18"/>
-        <UsageCount Value="9"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="130"/>
+        <CursorPos Y="148"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit56>
       <Unit57>
         <Filename Value="..\..\gui_state.pas"/>
@@ -492,91 +483,17 @@
     <OtherDefines Count="1">
       <Define0 Value="IS_GUI_PROGRAM"/>
     </OtherDefines>
-    <JumpHistory Count="20" HistoryIndex="19">
-      <Position1>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="13" Column="31"/>
-      </Position1>
-      <Position2>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="17" Column="26"/>
-      </Position2>
-      <Position3>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="37" Column="34" TopLine="6"/>
-      </Position3>
-      <Position4>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="43" Column="34" TopLine="12"/>
-      </Position4>
-      <Position5>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="50" Column="34" TopLine="31"/>
-      </Position5>
-      <Position6>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="77" Column="72" TopLine="59"/>
-      </Position6>
-      <Position7>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="82" Column="34" TopLine="58"/>
-      </Position7>
-      <Position8>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="116" Column="34" TopLine="97"/>
-      </Position8>
-      <Position9>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="147" Column="40" TopLine="128"/>
-      </Position9>
-      <Position10>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="173" Column="64" TopLine="148"/>
-      </Position10>
-      <Position11>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="43" Column="11" TopLine="24"/>
-      </Position11>
-      <Position12>
-        <Filename Value="..\..\process_data.pas"/>
-        <Caret Line="49" TopLine="34"/>
-      </Position12>
-      <Position13>
-        <Filename Value="..\..\process_data.pas"/>
-        <Caret Line="53" TopLine="34"/>
-      </Position13>
-      <Position14>
-        <Filename Value="..\..\process_data.pas"/>
-        <Caret Line="52" TopLine="34"/>
-      </Position14>
-      <Position15>
-        <Filename Value="gui_e2e_local_2_local.pas"/>
-        <Caret Line="75" Column="11" TopLine="46"/>
-      </Position15>
-      <Position16>
-        <Filename Value="dir_list_differences.pas"/>
-        <Caret Line="36" Column="11"/>
-      </Position16>
-      <Position17>
-        <Filename Value="unit_xml_episode.pas"/>
-        <Caret Line="136" Column="62"/>
-      </Position17>
-      <Position18>
-        <Filename Value="..\..\process_data.pas"/>
-        <Caret Line="52" TopLine="34"/>
-      </Position18>
-      <Position19>
-        <Filename Value="..\..\rss_podcast.pas"/>
-        <Caret Line="539" Column="72" TopLine="495"/>
-      </Position19>
-      <Position20>
-        <Filename Value="gui_e2e_local_2_online.pas"/>
-        <Caret Line="200" Column="60" TopLine="184"/>
-      </Position20>
-    </JumpHistory>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="0" ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="FFileNames"/>
+      </Item1>
+    </Watches>
+  </Debugging>
 </CONFIG>

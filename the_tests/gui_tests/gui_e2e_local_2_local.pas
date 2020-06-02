@@ -176,8 +176,8 @@ begin
   numberSuccess := failsAndSuccesses.successCount;
   numberFailed := failsAndSuccesses.failedCount;
   memActualText := filesWithSizes(outputPath);
-  memExpectedText := '_rss_test_10_e2e_local_to_local_same.xml~~2493' + LINE_ENDING + 'same_name.1.pdf~~11431' +
-    LINE_ENDING + 'same_name.2.pdf~~11431' + LINE_ENDING + 'same_name.pdf~~11431' + LINE_ENDING;
+  memExpectedText := '_rss_test_10_e2e_local_to_local_same.xml~~2493' + LINE_ENDING + 'same_name.0.pdf~~11431' +
+    LINE_ENDING + 'same_name.1.pdf~~11431' + LINE_ENDING + 'same_name.2.pdf~~11431' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 34832, fileSizeChecked);
   AssertEquals('Number successful files', 3, numberSuccess);

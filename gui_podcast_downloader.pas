@@ -16,7 +16,7 @@ uses {$IFDEF UNIX} {$IFDEF UseCThreads}
   consts_types,
   progress_stream,
   form_menu_1,
-  form_moves_2,
+  form_cancel_2,
   form_events_3, xml_episode, form_about, form_instructions;
 
 {$R *.res}
