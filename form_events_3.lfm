@@ -29,6 +29,8 @@ inherited EventsForm3: TEventsForm3
   inherited lblDownloadingXofY: TLabel
     Left = 1160
     Top = 312
+    Width = 127
+    Caption = 'Downloading 6666/9999'
   end
   inherited gbFailedEpisodes: TGroupBox
     Left = 1008
@@ -42,7 +44,6 @@ inherited EventsForm3: TEventsForm3
   inherited gbSelectDirectory: TGroupBox
     Left = 1008
     Top = 96
-    OnClick = nil
   end
   object gbEpisodesToDownload: TGroupBox[7]
     Left = 0
