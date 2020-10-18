@@ -9,7 +9,13 @@ uses
   Classes, consoletestrunner,
   test_local,
   test_internet, console_podcast,
-  Keyboard;
+  Keyboard
+
+
+  , interfaces
+
+
+  ;
 
 type
 

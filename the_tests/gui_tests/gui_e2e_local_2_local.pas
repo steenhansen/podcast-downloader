@@ -63,7 +63,7 @@ begin
 
 
   memActualText := filesWithSizes(outputPath);
-  memExpectedText := '_rss_test_0_e2e_local_to_local_click_3rd.xml~~2600' + LINE_ENDING +
+  memExpectedText := '_rss_test_0_e2e_local_to_local_click_3rd.xml~~2599' + LINE_ENDING +
     'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 12261, fileSizeChecked);
@@ -90,7 +90,7 @@ begin
   numberSuccess := failsAndSuccesses.successCount;
   numberFailed := failsAndSuccesses.failedCount;
   memActualText := filesWithSizes(outputPath);
-  memExpectedText := '_rss_test_1_e2e_local_to_local_anecdote.xml~~2597' + LINE_ENDING +
+  memExpectedText := '_rss_test_1_e2e_local_to_local_anecdote.xml~~2596' + LINE_ENDING +
     'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 11431, fileSizeChecked);
@@ -119,7 +119,7 @@ begin
   numberSuccess := failsAndSuccesses.successCount;
   numberFailed := failsAndSuccesses.failedCount;
   memActualText := filesWithSizes(outputPath);
-  memExpectedText := '_rss_test_2_e2e_local_to_local_all.xml~~2582' + LINE_ENDING +
+  memExpectedText := '_rss_test_2_e2e_local_to_local_all.xml~~2581' + LINE_ENDING +
     'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING +
     'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING + 'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
@@ -148,7 +148,7 @@ begin
   numberSuccess := failsAndSuccesses.successCount;
   numberFailed := failsAndSuccesses.failedCount;
   memActualText := filesWithSizes(outputPath);
-  memExpectedText := '_rss_test_3_e2e_local_to_local_none.xml~~2585' + LINE_ENDING;
+  memExpectedText := '_rss_test_3_e2e_local_to_local_none.xml~~2584' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 0, fileSizeChecked);
   AssertEquals('Number successful files', 0, numberSuccess);
@@ -176,7 +176,7 @@ begin
   numberSuccess := failsAndSuccesses.successCount;
   numberFailed := failsAndSuccesses.failedCount;
   memActualText := filesWithSizes(outputPath);
-  memExpectedText := '_rss_test_10_e2e_local_to_local_same.xml~~2493' + LINE_ENDING + 'same_name.0.pdf~~11431' +
+  memExpectedText := '_rss_test_10_e2e_local_to_local_same.xml~~2492' + LINE_ENDING + 'same_name.0.pdf~~11431' +
     LINE_ENDING + 'same_name.1.pdf~~11431' + LINE_ENDING + 'same_name.2.pdf~~11431' + LINE_ENDING;
   AssertEquals('Bytes of all files', 34832, allPossibleFileSize);
   AssertEquals('Bytes of checked files', 34832, fileSizeChecked);

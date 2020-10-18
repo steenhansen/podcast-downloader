@@ -21,16 +21,10 @@
       <FormatVersion Value="2"/>
       <Modes Count="0"/>
     </RunParams>
-    <RequiredPackages Count="3">
+    <RequiredPackages Count="1">
       <Item1>
-        <PackageName Value="LCLBase"/>
+        <PackageName Value="LCL"/>
       </Item1>
-      <Item2>
-        <PackageName Value="LazUtils"/>
-      </Item2>
-      <Item3>
-        <PackageName Value="FCL"/>
-      </Item3>
     </RequiredPackages>
     <Units Count="7">
       <Unit0>

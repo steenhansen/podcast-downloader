@@ -429,7 +429,10 @@ var
  color_text_matches: TBooleanArray;
 begin
   // _sb('TRssPodcast.filterCheckboxes START FNumToDownload=', FMediaWillBeDownloaded);
+  {$PUSH}
+  {$HINTS OFF}                // local variable "color_text_matches" of a managed type does not seem to be initialized
   SetLength(color_text_matches, FNumberItems);
+  {$POP}
   for episode_index := 0 to FNumberItems - 1 do
   begin
     xmlRec := FXmlEpisodes[episode_index];

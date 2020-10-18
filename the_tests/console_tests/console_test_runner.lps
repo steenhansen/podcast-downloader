@@ -4,22 +4,22 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="28">
+    <Units Count="30">
       <Unit0>
         <Filename Value="console_test_runner.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="51" Y="16"/>
-        <UsageCount Value="118"/>
+        <CursorPos X="5" Y="15"/>
+        <UsageCount Value="122"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
         <Filename Value="test_local.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="73"/>
-        <CursorPos X="19" Y="80"/>
-        <UsageCount Value="118"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="158"/>
+        <CursorPos X="7" Y="162"/>
+        <UsageCount Value="122"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
@@ -27,7 +27,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="122"/>
       </Unit2>
       <Unit3>
         <Filename Value="..\test_support.pas"/>
@@ -35,7 +35,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="7"/>
         <CursorPos Y="31"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="122"/>
       </Unit3>
       <Unit4>
         <Filename Value="..\..\xml_episode.pas"/>
@@ -44,23 +44,23 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="37"/>
         <CursorPos X="59" Y="44"/>
-        <UsageCount Value="118"/>
+        <UsageCount Value="122"/>
       </Unit4>
       <Unit5>
         <Filename Value="test_internet.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="45"/>
-        <CursorPos X="4" Y="70"/>
-        <UsageCount Value="47"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="60" Y="141"/>
+        <UsageCount Value="51"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
         <Filename Value="..\..\console_podcast_downloader\console_podcast.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="8"/>
         <CursorPos X="10" Y="43"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -79,10 +79,9 @@
       </Unit7>
       <Unit8>
         <Filename Value="..\..\consts_types.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
-        <CursorPos X="3" Y="21"/>
-        <UsageCount Value="11"/>
+        <EditorIndex Value="5"/>
+        <CursorPos X="23" Y="8"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit8>
       <Unit9>
@@ -95,10 +94,10 @@
       </Unit9>
       <Unit10>
         <Filename Value="..\..\download_stream.pas"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="128"/>
         <CursorPos X="21" Y="138"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -205,7 +204,7 @@
       <Unit26>
         <Filename Value="..\..\debug_server.pas"/>
         <CursorPos X="41" Y="29"/>
-        <UsageCount Value="11"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit26>
       <Unit27>
@@ -215,8 +214,25 @@
         <CursorPos X="3" Y="126"/>
         <UsageCount Value="10"/>
       </Unit27>
+      <Unit28>
+        <Filename Value="C:\lazarus\components\lazutils\graphtype.pp"/>
+        <UnitName Value="GraphType"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="462"/>
+        <CursorPos X="41" Y="484"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\objpas\fgl.pp"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="1556"/>
+        <CursorPos Y="1578"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
+      </Unit29>
     </Units>
-    <JumpHistory Count="11" HistoryIndex="10">
+    <JumpHistory Count="22" HistoryIndex="21">
       <Position1>
         <Filename Value="test_local.pas"/>
         <Caret Line="80" Column="5" TopLine="61"/>
@@ -261,6 +277,50 @@
         <Filename Value="..\..\download_stream.pas"/>
         <Caret Line="138" Column="21" TopLine="128"/>
       </Position11>
+      <Position12>
+        <Filename Value="..\..\consts_types.pas"/>
+        <Caret Line="21" Column="3"/>
+      </Position12>
+      <Position13>
+        <Filename Value="..\..\consts_types.pas"/>
+        <Caret Line="8" Column="23"/>
+      </Position13>
+      <Position14>
+        <Filename Value="..\..\consts_types.pas"/>
+        <Caret Line="74" Column="27" TopLine="52"/>
+      </Position14>
+      <Position15>
+        <Filename Value="..\..\consts_types.pas"/>
+        <Caret Line="8" Column="23"/>
+      </Position15>
+      <Position16>
+        <Filename Value="C:\lazarus\components\lazutils\graphtype.pp"/>
+        <Caret Line="484" Column="41" TopLine="462"/>
+      </Position16>
+      <Position17>
+        <Filename Value="console_test_runner.pas"/>
+        <Caret Line="7" Column="29"/>
+      </Position17>
+      <Position18>
+        <Filename Value="console_test_runner.pas"/>
+        <Caret Line="15" Column="5"/>
+      </Position18>
+      <Position19>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\objpas\fgl.pp"/>
+        <Caret Line="1578" TopLine="1556"/>
+      </Position19>
+      <Position20>
+        <Filename Value="test_local.pas"/>
+        <Caret Line="248" Column="55" TopLine="240"/>
+      </Position20>
+      <Position21>
+        <Filename Value="test_internet.pas"/>
+        <Caret Line="200" Column="42" TopLine="196"/>
+      </Position21>
+      <Position22>
+        <Filename Value="test_local.pas"/>
+        <Caret Line="162" Column="7" TopLine="158"/>
+      </Position22>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

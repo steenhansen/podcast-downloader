@@ -12,7 +12,7 @@ uses
   LazLoggerBase,
   LazLoggerDummy,
   LazLogger,
-  openssl,
+  opensslsockets,
   regexpr,
   LazFileUtils;
 

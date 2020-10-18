@@ -12,7 +12,8 @@ uses
   {$IfDef ALLOW_DEBUG_SERVER}
   //debug_server,           // Can use SendDebug('my debug message') from dbugintf
   {$ENDIF}
-  Classes, SysUtils, openssl,
+  Classes, SysUtils,
+  opensslsockets,
   fphttpclient, regexpr, LazFileUtils,
   progress_stream;
 
@@ -126,7 +127,6 @@ var
 
   procedure startConnect();
   begin
-    InitSSLInterface();
     urlStream := TDownloadStream.Create(tempPathname, fileNumber, DoOnWriteEpisode_3);
     mediaHttp := makeHttpConnection();
     numTrys := 0;

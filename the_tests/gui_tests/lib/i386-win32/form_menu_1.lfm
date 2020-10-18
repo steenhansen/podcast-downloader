@@ -1,13 +1,13 @@
 object MenuForm1: TMenuForm1
-  Left = 360
+  Left = 215
   Height = 130
-  Top = 211
+  Top = 144
   Width = 1056
   Caption = 'menu_form_1'
   ClientHeight = 110
   ClientWidth = 1056
   Menu = MainMenu1
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object gbPodcastFeed: TGroupBox
     Left = 8
     Height = 48
@@ -18,23 +18,26 @@ object MenuForm1: TMenuForm1
     ClientWidth = 980
     TabOrder = 0
     object edtCopyableExample: TEdit
-      Left = 712
+      Left = 696
       Height = 15
+      Hint = 'Copy the podcast feed of Serial'
       Top = 4
-      Width = 240
+      Width = 256
       BorderStyle = bsNone
       Color = clBtnFace
       OnClick = edtCopyableExampleClick_1
+      ParentShowHint = False
       ReadOnly = True
+      ShowHint = True
       TabOrder = 0
       Text = 'http://feeds.serialpodcast.org/serialpodcast'
     end
     object btnReadRss: TButton
       AnchorSideTop.Side = asrCenter
       AnchorSideRight.Side = asrBottom
-      Left = 520
+      Left = 496
       Height = 25
-      Top = -2
+      Top = -1
       Width = 136
       Caption = 'Read Podcast Feed'
       OnClick = btnReadRssClick_1
@@ -45,15 +48,15 @@ object MenuForm1: TMenuForm1
       Height = 23
       Hint = 'Use listennotes.com to search for podcasts, and then click ''RSS'' to get the podcast address.'
       Top = 0
-      Width = 504
+      Width = 480
       OnChange = edRssUrlChange_1
       OnClick = edRssUrlChange_1
       OnKeyDown = edRssUrlKeyDown_1
       TabOrder = 2
-      Text = 'http://feeds.serialpodcast.org/serialpodcast'
+      Text = 'http://joeroganexp.joerogan.libsynpro.com/rss'
     end
     object lblExample: TLabel
-      Left = 664
+      Left = 640
       Height = 15
       Top = 4
       Width = 48
@@ -96,8 +99,8 @@ object MenuForm1: TMenuForm1
   object MainMenu1: TMainMenu
     ParentBidiMode = False
     Images = ImageList1
-    left = 368
-    top = 16
+    Left = 368
+    Top = 16
     object menuExamples: TMenuItem
       Caption = 'Menu'
       ImageIndex = 0
@@ -168,6 +171,10 @@ object MenuForm1: TMenuForm1
           Caption = 'Hardcore History (only last 15)'
           OnClick = menuHardcoreHistoryClick
         end
+        object menuLispCast: TMenuItem
+          Caption = 'Lisp Cast'
+          OnClick = menuLispCastClick
+        end
         object menuRsd: TMenuItem
           Caption = 'Reading Short and Deep - SFFaudio'
           OnClick = menuRsdClick
@@ -213,8 +220,8 @@ object MenuForm1: TMenuForm1
     end
   end
   object ImageList1: TImageList
-    left = 1017
-    top = 59
+    Left = 1017
+    Top = 59
     Bitmap = {
       4C69070000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF

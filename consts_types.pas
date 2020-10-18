@@ -5,7 +5,7 @@ unit consts_types;
 interface
 
 uses
-  Classes, SysUtils, Graphics;
+  Classes, SysUtils , Graphics;
 
 const
 

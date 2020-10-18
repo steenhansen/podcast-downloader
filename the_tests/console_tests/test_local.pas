@@ -143,7 +143,7 @@ begin
   clearOutputDir(outputPath);
   readAPodcast(XML_FILE_B);
   directory_text := filesWithSizes(outputPath);
-  expected_text := '__directory_b__three_files.xml~~2543' + LINE_ENDING;
+  expected_text := '__directory_b__three_files.xml~~2542' + LINE_ENDING;
   expected_text := expected_text + 'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING;
   expected_text := expected_text + 'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING;
   expected_text := expected_text + 'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140';
@@ -177,7 +177,7 @@ begin
   expected_text := expected_text + 'Failed Episodes:'+ LINE_ENDING;
   expected_text := expected_text + '\tconsole_a_local\files\XToTHEBOWERS1829ByEdgarAllanPoe.pdf'+ LINE_ENDING;
   expected_text := expected_text + LINE_ENDING;
-  expected_text := expected_text + 'Destination Folder : C:\Users\steen\Desktop\__screen_c__1_of_3_files_missing.xml\';
+  expected_text := expected_text + 'Destination Folder : C:\Users\16043\Desktop\__screen_c__1_of_3_files_missing.xml\';
   consoleAssert('Screen files not matching', expected_text, screen_text);
 end;
 
@@ -194,7 +194,7 @@ begin
   clearOutputDir(outputPath);
   readAPodcast(XML_FILE_D);
   directory_text :=filesWithSizes(outputPath);
-  expected_text := '__directory_d__1_of_3_files_missing.xml~~2544' + LINE_ENDING;
+  expected_text := '__directory_d__1_of_3_files_missing.xml~~2543' + LINE_ENDING;
   expected_text := expected_text + 'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING;
   expected_text := expected_text + 'TheDwellerInTheHillsByAugustDerleth.pdf~~12261';
   consoleAssert('Directory One file is missing',  expected_text, directory_text);

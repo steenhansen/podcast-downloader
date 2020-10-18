@@ -1,13 +1,13 @@
 object MenuForm1: TMenuForm1
-  Left = 410
+  Left = 215
   Height = 130
   Top = 144
   Width = 1056
   Caption = 'menu_form_1'
-  ClientHeight = 130
+  ClientHeight = 110
   ClientWidth = 1056
   Menu = MainMenu1
-  LCLVersion = '2.0.6.0'
+  LCLVersion = '2.0.10.0'
   object gbPodcastFeed: TGroupBox
     Left = 8
     Height = 48
@@ -99,8 +99,8 @@ object MenuForm1: TMenuForm1
   object MainMenu1: TMainMenu
     ParentBidiMode = False
     Images = ImageList1
-    left = 368
-    top = 16
+    Left = 368
+    Top = 16
     object menuExamples: TMenuItem
       Caption = 'Menu'
       ImageIndex = 0
@@ -220,8 +220,8 @@ object MenuForm1: TMenuForm1
     end
   end
   object ImageList1: TImageList
-    left = 1017
-    top = 59
+    Left = 1017
+    Top = 59
     Bitmap = {
       4C69070000001000000010000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
       FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF

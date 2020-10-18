@@ -274,13 +274,28 @@ begin
     else
       FStateOfGui.setState(GUI_AFTER_RSS_PROCESSED_4);
   except
-    FreeAndNil(g_selection_mediator);
-    FStateOfGui.setState(GUI_AFTER_A_URL_2);
-    if  FStartStopIO = '' then
-    begin
-         rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' is not an RSS file.';
-         MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], g_podcast_form);
-    end;
+
+
+     on E : Exception do
+     begin
+
+           ShowMessage(e.ClassName + 'error raised with message : ' + E.Message);
+
+          FreeAndNil(g_selection_mediator);
+          FStateOfGui.setState(GUI_AFTER_A_URL_2);
+          if  FStartStopIO = '' then
+          begin
+               rss_url_404_mess := 'The URL ' + edRssUrl.Text + ' is not an RSS file.';
+               MessageDlgEx(rss_url_404_mess, mtInformation, [mbOK], g_podcast_form);
+          end;
+     end;
+
+
+
+
+
+
+
   end;
 end;
 

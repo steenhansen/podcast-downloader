@@ -131,7 +131,7 @@ begin
   clearOutputDir(outputPath);
   readAPodcast(XML_FILE_I);
   directory_text := filesWithSizes(outputPath);
-  expected_text := '__directory_i__three_files.xml~~2570' + LINE_ENDING;
+  expected_text := '__directory_i__three_files.xml~~2569' + LINE_ENDING;
   expected_text := expected_text + 'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING;
   expected_text := expected_text + 'TheDwellerInTheHillsByAugustDerleth.pdf~~12261' + LINE_ENDING;
   expected_text := expected_text + 'ToTHEBOWERS1829ByEdgarAllanPoe.pdf~~11140';
@@ -165,7 +165,7 @@ begin
   expected_text := expected_text + 'Failed Episodes:'+ LINE_ENDING;
   expected_text := expected_text + 'http://www.sffaudio.com/podcasts/XToTHEBOWERS1829ByEdgarAllanPoe.pdf'+ LINE_ENDING;
   expected_text := expected_text + LINE_ENDING;
-  expected_text := expected_text + 'Destination Folder : C:\Users\steen\Desktop\__screen_j__1_of_3_files_missing.xml\';
+  expected_text := expected_text + 'Destination Folder : C:\Users\16043\Desktop\__screen_j__1_of_3_files_missing.xml\';
   consoleAssert('Screen files not matching', expected_text, screen_text);
 end;
 
@@ -182,7 +182,7 @@ begin
   clearOutputDir(outputPath);
   readAPodcast(XML_FILE_K);
   directory_text :=filesWithSizes(outputPath);
-  expected_text := '__directory_k__1_of_3_files_missing.xml~~2571' + LINE_ENDING;
+  expected_text := '__directory_k__1_of_3_files_missing.xml~~2570' + LINE_ENDING;
   expected_text := expected_text + '_partial_XToTHEBOWERS1829ByEdgarAllanPoe.pdf~~0' + LINE_ENDING;
   expected_text := expected_text + 'AnecdoteOfTheJarByWallaceStevensPoetryMagazineOctober1919.pdf~~11431' + LINE_ENDING;
   expected_text := expected_text + 'TheDwellerInTheHillsByAugustDerleth.pdf~~12261';

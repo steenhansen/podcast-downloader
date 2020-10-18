@@ -72,15 +72,22 @@ begin
   s2 := eraseStr(s1, ']]>');
   s3 := AdjustLineBreaks(s2, tlbsCRLF);
   s4 := StringReplace(s3, LINE_ENDING, ' ', [rfReplaceAll]);
-  s5 := ReplaceRegExpr('<[^>]*>', s4, '', False);
-  s6 := StringReplace(s5, '&lt;', '<', [rfReplaceAll]);        // Coding Blocks issue
-  s7 := StringReplace(s6, '&gt;', '>', [rfReplaceAll]);        // https://www.codingblocks.net/podcast-feed.xml
-  s8 := ReplaceRegExpr('<[^>]*>', s7, '', False);
+  if s4<>'' then
+  begin
+    s5 := ReplaceRegExpr('<[^>]*>', s4, '', False);
+    s6 := StringReplace(s5, '&lt;', '<', [rfReplaceAll]);        // Coding Blocks issue
+    s7 := StringReplace(s6, '&gt;', '>', [rfReplaceAll]);        // https://www.codingblocks.net/podcast-feed.xml
+    s8 := ReplaceRegExpr('<[^>]*>', s7, '', False);
 //  _d('s5', s5);
 //  _d('s6', s6);
 //  _d('s7', s7);
 //  _d('s8', s8);
-  Result := s8;
+    Result := s8
+  end
+  else
+  begin
+    Result :='';
+  end;
 end;
 
 function getNoHtml(descriptionElement, title_desc_regex: string): string;
@@ -127,13 +134,16 @@ begin
   enclosureParts := enclosureOfEpisode(itemString);
   FValidDownload := False;
   FBytesEpisode := 0;
-  FUrlEpisode := urlOfEpisode(enclosureParts);
-  FFilenameEpisode := filenameOfEpisode(enclosureParts);
-  if FFilenameEpisode <> '' then
+  if enclosureParts <> '' then
   begin
-    FBytesEpisode := bytesOfEpisode(enclosureParts);
-    FSearchTextEpisode := FFilenameEpisode + ' ' + FEpisodeTitle + ' ' + FDescEpisode;
-    FValidDownload := True;
+    FUrlEpisode := urlOfEpisode(enclosureParts);
+    FFilenameEpisode := filenameOfEpisode(enclosureParts);
+    if FFilenameEpisode <> '' then
+    begin
+      FBytesEpisode := bytesOfEpisode(enclosureParts);
+      FSearchTextEpisode := FFilenameEpisode + ' ' + FEpisodeTitle + ' ' + FDescEpisode;
+      FValidDownload := True;
+    end;
   end;
 end;
 
