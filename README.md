@@ -3,7 +3,7 @@
 
 #### Joe Rogan's podcasts are only on Spotify, except for #1109 in the RSS feed https://joeroganexp.libsyn.com/rss.
 
-### RSS feeds that don't work anymore
+### RSS feeds that don't work anymore that are in the menu.
 
 #### Video
  - Microsoft Channel 9
