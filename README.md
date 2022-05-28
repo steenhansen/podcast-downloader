@@ -3,7 +3,7 @@
 
 #### Joe Rogan's latest podcast episode, #1551 - Paul Saladino, is on Spotify but not in the RSS feed. Thus you must use Spotify to listen to this episode as iTunes and Stitcher do not have episode #1551 of The Joe Rogan Experience either. Download the first 1550 podcasts while they are still available via RSS outside the Spotify walled garden.
 
-[Download](https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip) the console and GUI EXEs without source code, no installation is needed. Copy files from ZIP to a new folder to avoid the Microsoft Defender SmartScreen pop-up when running gui\_podcast\_downloader.exe.  
+[Download the console and GUI EXEs without source code](https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip), no installation is needed. Copy files from ZIP to a new folder to avoid the Microsoft Defender SmartScreen pop-up when running gui\_podcast\_downloader.exe.  
 
 This desktop program downloads podcast episodes onto your computer be they MP3s, PDFs, MP4s, or images. The rationale for this program is that some podcasts disappear when hosting is cancelled. And some podcast feeds, such as [The Joe Rogan Experience - libsynpro.com](http://joeroganexp.joerogan.libsynpro.com/rss) with 1,400+ episodes, only have the last 248 episodes listed on iTunes. For example the episodes listed on [The Joe Rogan Experience - iTunes](https://podcasts.apple.com/us/podcast/the-joe-rogan-experience/id360084272)  currently spans only from #1,212 to #1,460.
 
