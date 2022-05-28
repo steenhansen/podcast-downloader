@@ -1,7 +1,6 @@
 
 ## Podcast-Downloader for Windows 7+
-Download only raw EXEs [https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip](https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip) from GitHub to run as Windows desktop programs.
-
+Download only raw EXEs [https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip](https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip) from GitHub to run as Windows desktop programs. You will get a red colored 'Windows protected your PC' warning.
 
 #### Joe Rogan's podcasts are only on Spotify, except for #1109 in the RSS feed https://joeroganexp.libsyn.com/rss.
 
