@@ -1,7 +1,15 @@
 
 ## Podcast-Downloader for Windows 7+
 
-#### Joe Rogan's latest podcast episode, #1551 - Paul Saladino, is on Spotify but not in the RSS feed. Thus you must use Spotify to listen to this episode as iTunes and Stitcher do not have episode #1551 of The Joe Rogan Experience either. Download the first 1550 podcasts while they are still available via RSS outside the Spotify walled garden.
+#### Joe Rogan's podcasts are only on Spotify, except for #1109 in the RSS feed https://joeroganexp.libsyn.com/rss.
+
+# RSS feeds that don't work anymore
+### Video
+ - Microsoft Channel 9
+ - Aljezeera Documentaries
+
+### Images
+ - Smithsonian Photos
 
 [Download the console and GUI EXEs without source code](https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip), no installation is needed. Copy files from ZIP to a new folder to avoid the Microsoft Defender SmartScreen pop-up when running gui\_podcast\_downloader.exe.  
 
