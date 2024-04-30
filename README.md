@@ -1,4 +1,4 @@
-<a name="s"></a>
+
 
 ## Podcast-Downloader for Windows 7+
 Download only raw EXEs [https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip](https://github.com/steenhansen/podcast-downloader/raw/master/podcast-downloader-exes.zip) from GitHub to run as Windows desktop programs. You will get a red colored 'Windows protected your PC' warning.
@@ -22,6 +22,7 @@ Moreover, the program also tests that an RSS feed points to the correct files. T
 
 The program was developed with the open source [Lazarus-IDE](https://www.lazarus-ide.org/). There is both a normal Windows program and a console version. 
 
+<a name="s"></a>
 <a name="screen-shot"></a>
 The project contains [tests](https://github.com/steenhansen/podcast-downloader/tree/master/the_tests), [dependency instructions](https://github.com/steenhansen/podcast-downloader/blob/master/compile-info/gui-podcast-downloader-dependencies.png), [compile options](https://github.com/steenhansen/podcast-downloader/blob/master/compile-info/compile-options.png), [class information](https://github.com/steenhansen/podcast-downloader/blob/master/compile-info/var-types.txt), and [debugging information](https://github.com/steenhansen/podcast-downloader/blob/master/compile-info/debug-server.png).
 
